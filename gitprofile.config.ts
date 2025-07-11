@@ -9,7 +9,7 @@ const CONFIG = {
    * If you are deploying to https://<USERNAME>.github.io/<REPO_NAME>/,
    * for example your repository is at https://github.com/arifszn/portfolio, then set base to '/portfolio/'.
    */
-  base: '/gitprofile/',
+  base: '/',
   projects: {
     github: {
       display: true, // Display GitHub projects?
@@ -20,12 +20,17 @@ const CONFIG = {
         limit: 8, // How many projects to display.
         exclude: {
           forks: false, // Forked projects will not be displayed if set to true.
-          projects: ['hardik88t.github.io', 'hardik88t', 'sarvsevak', 'rustimg'], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
+          projects: [
+            'hardik88t/hardik88t.github.io',
+            'hardik88t/hardik88t',
+            'hardik88t/sarvsevak',
+            'hardik88t/rustimg',
+          ], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
         },
       },
       manual: {
         // Properties for manually specifying projects
-        projects: ['hardik88t/rapid',  'hardik88t/solTrace'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+        projects: ['hardik88t/rapid', 'hardik88t/solTrace'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
       },
     },
     external: {
@@ -34,8 +39,7 @@ const CONFIG = {
       projects: [
         {
           title: 'Avinya Website',
-          description:
-            'Simple Static website made with React',
+          description: 'Simple Static Business Showcase website made with React',
           imageUrl: '',
           //   'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
           link: 'https://avinya.co.in',
@@ -45,13 +49,18 @@ const CONFIG = {
           description:
             'A Admin & Client Dashboard Webapp made with NexJS, Figma, ShadCN.',
           imageUrl: '',
-            // 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
+          // 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
           link: 'https://anvika.vercel.app',
         },
       ],
     },
   },
-  seo: { title: 'Portfolio of Hardik Thant', description: 'Portfolio a Full-Stack Developer, Freelance, Computer Engineer.', imageURL: '' },
+  seo: {
+    title: 'Portfolio of Hardik Thant',
+    description:
+      'Portfolio a Full-Stack Developer, Freelance, Computer Engineer.',
+    imageURL: '',
+  },
   social: {
     linkedin: 'hardik88t',
     x: '',
@@ -65,8 +74,8 @@ const CONFIG = {
     udemy: '',
     dribbble: '',
     behance: '',
-    medium: 'arifszn',
-    dev: 'arifszn',
+    medium: '',
+    dev: '',
     stackoverflow: '', // example: '1/jeff-atwood'
     discord: '',
     telegram: '',
@@ -75,10 +84,9 @@ const CONFIG = {
     email: 'hardik88t@gmail.com',
   },
   resume: {
-    fileUrl:
-      '', // Empty fileUrl will hide the `Download Resume` button.
+    fileUrl: '', // Empty fileUrl will hide the `Download Resume` button.
   },
-    skills: [
+  skills: [
     'Python',
     'JavaScript',
     'Figma',
@@ -111,13 +119,15 @@ const CONFIG = {
       from: 'July 2025',
       to: 'Present',
       companyLink: 'https://rapidops.com',
-    }, {
+    },
+    {
       company: 'Rapidops Inc.',
       position: 'Software Developer Intern',
       from: 'January 2024',
       to: 'July 2024',
       companyLink: 'https://rapidops.com',
-    }, {
+    },
+    {
       company: 'Freelancer.com',
       position: 'Freelancer',
       from: 'November 2021',
@@ -136,14 +146,10 @@ const CONFIG = {
   ],
   publications: [],
   // Display articles from your medium or dev account. (Optional)
-  // blog: {
-  //   source: 'dev', // medium | dev
-  //   username: 'arifszn', // to hide blog section, keep it empty
-  //   limit: 2, // How many articles to display. Max is 10.
-  // },
-  // googleAnalytics: {
-  //   id: '', // GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
-  // },
+  blog: {},
+  googleAnalytics: {
+    id: '', // GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
+  },
   // Track visitor interaction and behavior. https://www.hotjar.com
   hotjar: { id: '3451091', snippetVersion: 6 },
   themeConfig: {
