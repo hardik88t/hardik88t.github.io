@@ -4,27 +4,27 @@ const config = {
   github: {
     username: 'hardik88t', // Your GitHub org/user name. (Required)
     sortBy: 'updated', // stars | updated
-    limit: 12, // How many projects to display.
+    limit: 5, // How many projects to display.
     exclude: {
       forks: false, // Forked projects will not be displayed if set to true.
-      projects: [], // These projects will not be displayed. example: ['my-project1', 'my-project2']
+      projects: [hardik88t.github.io, hardik88t, sarvsevak, rustimg], // These projects will not be displayed. example: ['my-project1', 'my-project2']
     },
   },
   social: {
     linkedin: 'hardik88t',
-    twitter: 'hardik88t',
-    mastodon: '',
-    facebook: 'hardik88t',
-    instagram: 'hardik.88t',
-    dribbble: '',
-    behance: '',
-    medium: 'hardik88t',
-    dev: 'hardik88t',
-    stackoverflow: '17916979/hardik88t', // format: userid/username
-    skype: '',
-    telegram: '',
-    website: 'https://hardik88t.github.com',
-    phone: '',
+    // twitter: 'hardik88t',
+    // mastodon: '',
+    // facebook: 'hardik88t',
+    // instagram: 'hardik.88t',
+    // dribbble: '',
+    // behance: '',
+    // medium: 'hardik88t',
+    // dev: 'hardik88t',
+    // stackoverflow: '17916979/hardik88t', // format: userid/username
+    // skype: '',
+    // telegram: '',
+    website: 'https://hardik88t.cv',
+    // phone: '',
     email: 'hardik88t@gmail.com',
   },
   resume: {
@@ -34,17 +34,19 @@ const config = {
   skills: [
     'Python',
     'JavaScript',
-    'C#',
+    'Figma',
+    'React.js',
+    'Node.js',
+    'PostgreSQL',
+    'Tailwind',
+    'Bootstrap',
     'C',
-    'C++',
     'Java',
     'MySQL',
-    'PostgreSQL',
     'MongoDB',
     'CSS',
     'HTML',
-    'React.js',
-    'Node.js',
+    'Latex',
     'Git',
     'GitHub',
     'Docker',
@@ -54,6 +56,18 @@ const config = {
   ],
   experiences: [
     {
+      company: 'Rapidops Inc.',
+      position: 'Jr. Software Developer',
+      from: 'July 2025',
+      to: 'Present',
+      companyLink: 'https://rapidops.com',
+    }, {
+      company: 'Rapidops Inc.',
+      position: 'Software Developer Intern',
+      from: 'January 2024',
+      to: 'July 2024',
+      companyLink: 'https://rapidops.com',
+    }, {
       company: 'Freelancer.com',
       position: 'Freelancer',
       from: 'November 2021',
@@ -61,14 +75,6 @@ const config = {
       companyLink: 'https://freelancer.com',
     },
   ],
-  /* certifications: [
-    {
-      name: 'Lorem ipsum',
-      body: 'Lorem ipsum dolor sit amet',
-      year: 'March 2022',
-      link: 'https://example.com'
-    },
-  ], */
   education: [
     {
       institution: 'DDIT, Nadiad',
@@ -79,16 +85,18 @@ const config = {
   ],
 
   // To hide the `My Projects` section, keep it empty.
-  externalProjects: [],
+  externalProjects: [
+
+  ],
   // Display blog posts from your medium or dev account. (Optional)
-  blog: {
-    source: 'dev', // medium | dev
-    username: 'hardik88t', // to hide blog section, keep it empty
-    limit: 2, // How many posts to display. Max is 10.
-  },
-  googleAnalytics: {
-    id: '', // GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
-  },
+  // blog: {
+  //   source: 'dev', // medium | dev
+  //   username: 'hardik88t', // to hide blog section, keep it empty
+  //   limit: 2, // How many posts to display. Max is 10.
+  // },
+  // googleAnalytics: {
+  //   id: '', // GA3 tracking id/GA4 tag id UA-XXXXXXXXX-X | G-XXXXXXXXXX
+  // },
   // Track visitor interaction and behavior. https://www.hotjar.com
   hotjar: {
     id: '3451091',
@@ -155,7 +163,7 @@ const config = {
   },
 
   // Optional Footer. Supports plain text or HTML.
-  footer: `Copyright © 2023 <a 
+  footer: `Copyright © 2025 <a 
       class="text-primary" href="https://github.com/hardik88t"
       target="_blank"
       rel="noreferrer"
