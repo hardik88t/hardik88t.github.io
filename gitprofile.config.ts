@@ -39,7 +39,8 @@ const CONFIG = {
       projects: [
         {
           title: 'Avinya Website',
-          description: 'Simple Static Business Showcase website made with React',
+          description:
+            'Simple Static Business Showcase website made with React',
           imageUrl: '',
           //   'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
           link: 'https://avinya.co.in',
@@ -84,7 +85,7 @@ const CONFIG = {
     email: 'hardik88t@gmail.com',
   },
   resume: {
-    fileUrl: '', // Empty fileUrl will hide the `Download Resume` button.
+    fileUrl: 'https://hardik88t.tiiny.site/cv-full-stack-dev.pdf',
   },
   skills: [
     'Python',
