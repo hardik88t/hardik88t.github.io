@@ -12,7 +12,11 @@
     "location": "Ahmedabad, India",
     "remote": "Working with clients worldwide",
     "timezone": "IST, UTC+5:30",
-    "availability": { "mode": "auto", "leadWeeks": 6, "fixedText": "" },
+    "availability": {
+      "mode": "auto",
+      "leadWeeks": 6,
+      "fixedText": ""
+    },
     "email": "hardik88t@gmail.com",
     "links": {
       "github": "https://github.com/hardik88t",
@@ -26,7 +30,11 @@
     "statement": "Software that feels obvious, shipped faster than you expect.",
     "studio": "Need a web or mobile app built properly, and soon?",
     "hero": {
-      "lines": ["I design and build", "apps and web", "that feel"],
+      "lines": [
+        "I design and build",
+        "apps and web",
+        "that feel"
+      ],
       "struck": "perfect",
       "correction": "human"
     }
@@ -36,15 +44,60 @@
     "medium": "I'm Hardik, a product engineer in Ahmedabad, India. Over the last four years I have built ordering platforms, clinic tools, desktop and Android apps for startups and growing businesses. I design the interface, write the code and stay accountable for the result. AI coding agents work alongside me on the routine parts, which is why projects move at the pace of a small team."
   },
   "principles": [
-    { "title": "Small-team speed, one point of contact", "body": "AI coding agents handle routine implementation while I design, review and own every change. You get the output of a small team and talk to one person." },
-    { "title": "Design and code in one head", "body": "The person who designs the screen also builds it, so nothing gets lost between a mockup and the release." },
-    { "title": "Built to stay easy to change", "body": "Typed code, automated tests and reviewed releases from day one, so the product keeps moving after launch." }
+    {
+      "title": "Small-team speed, one point of contact",
+      "body": "AI coding agents handle routine implementation while I design, review and own every change. You get the output of a small team and talk to one person."
+    },
+    {
+      "title": "Design and code in one head",
+      "body": "The person who designs the screen also builds it, so nothing gets lost between a mockup and the release."
+    },
+    {
+      "title": "Built to stay easy to change",
+      "body": "Typed code, automated tests and reviewed releases from day one, so the product keeps moving after launch."
+    }
   ],
   "services": [
-    { "id": "web", "title": "Web apps", "line": "Dashboards, SaaS products and internal tools, from database to interface.", "tags": ["React", "Next.js", "Postgres"] },
-    { "id": "mobile", "title": "Mobile and desktop apps", "line": "Cross-platform iOS and Android apps, native Android, and lightweight desktop apps.", "tags": ["React Native", "Kotlin", "Tauri"] },
-    { "id": "ai", "title": "AI features", "line": "Assistants, smart search and automations that fit naturally into your product.", "tags": ["LLMs", "RAG", "Automation"] },
-    { "id": "design", "title": "UI/UX and design systems", "line": "Interfaces that feel calm and fast, and component libraries your team can grow.", "tags": ["Figma", "Design systems", "Accessibility"] }
+    {
+      "id": "web",
+      "title": "Web apps",
+      "line": "Dashboards, SaaS products and internal tools, from database to interface.",
+      "tags": [
+        "React",
+        "Next.js",
+        "Postgres"
+      ]
+    },
+    {
+      "id": "mobile",
+      "title": "Mobile and desktop apps",
+      "line": "Cross-platform iOS and Android apps, native Android, and lightweight desktop apps.",
+      "tags": [
+        "React Native",
+        "Kotlin",
+        "Tauri"
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI features",
+      "line": "Assistants, smart search and automations that fit naturally into your product.",
+      "tags": [
+        "LLMs",
+        "RAG",
+        "Automation"
+      ]
+    },
+    {
+      "id": "design",
+      "title": "UI/UX and design systems",
+      "line": "Interfaces that feel calm and fast, and component libraries your team can grow.",
+      "tags": [
+        "Figma",
+        "Design systems",
+        "Accessibility"
+      ]
+    }
   ],
   "projects": [
     {
@@ -61,7 +114,12 @@
       "approach": "A multi-tenant web platform with offline order capture for reps on the road, live stock, and invoicing in one place.",
       "outcome": "Orders taken offline sync on their own, and the office works from one source of truth.",
       "outcomeNeedsConfirm": true,
-      "stack": ["React", "TanStack Start", "Cloudflare", "Postgres"],
+      "stack": [
+        "React",
+        "TanStack Start",
+        "Cloudflare",
+        "Postgres"
+      ],
       "accent": "#2F6BFF",
       "visual": "Desktop dashboard: sidebar nav, order table with status pills, stock level bars, an invoice drawer."
     },
@@ -78,7 +136,12 @@
       "approach": "A mobile-first installable app that keeps all data on the device, with symptom chips, learned autocomplete and a command palette.",
       "outcome": "A full visit, from symptoms to a printed receipt, takes a few taps.",
       "outcomeNeedsConfirm": true,
-      "stack": ["React", "IndexedDB", "PWA", "Tailwind"],
+      "stack": [
+        "React",
+        "IndexedDB",
+        "PWA",
+        "Tailwind"
+      ],
       "accent": "#14B8A6",
       "visual": "Phone screens: patient visit form with symptom chips, medicine autocomplete list, a receipt preview."
     },
@@ -96,7 +159,12 @@
       "approach": "A question bank with versioned questions, AI-drafted papers and instant typesetting in the browser.",
       "outcome": "A complete paper with its answer key is ready in minutes instead of hours.",
       "outcomeNeedsConfirm": true,
-      "stack": ["React", "AI SDK", "Typst", "Postgres"],
+      "stack": [
+        "React",
+        "AI SDK",
+        "Typst",
+        "Postgres"
+      ],
       "accent": "#F59E0B",
       "visual": "Split view: question list on the left, typeset A4 paper preview on the right, an 'AI draft' button."
     },
@@ -105,17 +173,25 @@
       "title": "Fieldbook",
       "type": "Mobile app",
       "year": "2026",
-      "status": "concept",
+      "status": "real",
       "anonymized": false,
       "oneLiner": "A mobile app for field sales reps: catalogue, orders and today's route, online or not.",
       "sticky": "Offline catalogue and quick reorder: a repeat order takes under thirty seconds at the counter.",
       "challenge": "Reps visit shops with patchy signal and need prices, stock and order history in their pocket.",
       "approach": "A cross-platform iOS and Android app with an offline catalogue, quick reorder and a daily route plan.",
-      "outcome": "A reorder takes under thirty seconds at the counter.",
-      "outcomeNeedsConfirm": true,
-      "stack": ["React Native", "Expo", "SQLite"],
+      "outcome": "Orders placed without signal are saved on the phone and sync on their own when the connection returns.",
+      "stack": [
+        "React Native",
+        "Expo",
+        "SQLite",
+        "TypeScript"
+      ],
       "accent": "#8B5CF6",
-      "visual": "Three phone screens: today's route list, product catalogue grid, cart with 'Place order'."
+      "visual": "Three phone screens: today's route list, product catalogue grid, cart with 'Place order'.",
+      "links": {
+        "github": "https://github.com/hardik88t/fieldbook",
+        "live": "https://hardik88t.github.io/fieldbook/"
+      }
     },
     {
       "slug": "footnote",
@@ -128,7 +204,11 @@
       "challenge": "Teams don't trust AI answers they can't verify.",
       "approach": "A chat interface that streams answers with inline citations, plus a sources panel that highlights the quoted passage.",
       "outcome": "Every sentence links back to its source.",
-      "stack": ["Next.js", "RAG", "Vector search"],
+      "stack": [
+        "Next.js",
+        "RAG",
+        "Vector search"
+      ],
       "accent": "#EF4444",
       "visual": "Chat answer with numbered citation chips, right panel showing a document with the cited passage highlighted."
     },
@@ -143,7 +223,11 @@
       "challenge": "Growing products end up with five button styles and no shared language between design and code.",
       "approach": "Design tokens in Figma and code, a component library tested for accessibility, and a docs site with live examples.",
       "outcome": "New screens are assembled, not redrawn.",
-      "stack": ["Figma", "React", "Storybook"],
+      "stack": [
+        "Figma",
+        "React",
+        "Storybook"
+      ],
       "accent": "#E85D3C",
       "visual": "Token sheet: colour swatches, type scale, spacing ruler, a grid of buttons, inputs and toggles in several states."
     },
@@ -159,10 +243,16 @@
       "challenge": "Notes pile up in folders and the connections between ideas get lost.",
       "approach": "A Tauri desktop app that ingests documents with an LLM, writes linked notes and draws them as an explorable graph.",
       "outcome": "Related ideas surface on their own, in a fast native window.",
-      "stack": ["Tauri", "React", "Graph view"],
+      "stack": [
+        "Tauri",
+        "React",
+        "Graph view"
+      ],
       "accent": "#6366F1",
       "visual": "Desktop window: editor on the left, a node-link knowledge graph with coloured clusters on the right.",
-      "links": { "github": "https://github.com/hardik88t/dhi" }
+      "links": {
+        "github": "https://github.com/hardik88t/dhi"
+      }
     },
     {
       "slug": "net-watch",
@@ -176,46 +266,176 @@
       "challenge": "\"The internet keeps cutting out\" is hard to prove to a provider.",
       "approach": "A native Kotlin app with a background monitor and a clear timeline of every drop and slow period.",
       "outcome": "A shareable report instead of a hunch.",
-      "stack": ["Kotlin", "Jetpack Compose"],
+      "stack": [
+        "Kotlin",
+        "Jetpack Compose"
+      ],
       "accent": "#10B981",
       "visual": "Phone screen: timeline of connection events with red drop markers and an Export button.",
-      "links": { "github": "https://github.com/hardik88t/net-watch" }
+      "links": {
+        "github": "https://github.com/hardik88t/net-watch"
+      }
     }
   ],
   "experience": [
-    { "org": "Avinya IT", "role": "Full-stack developer", "period": "2025 to now" },
-    { "org": "Rapidops", "role": "Software developer", "period": "2024 to 2025" },
-    { "org": "Freelance", "role": "Web developer", "period": "2022 to 2025" }
+    {
+      "org": "Avinya IT",
+      "role": "Full-stack developer",
+      "period": "2025 to now"
+    },
+    {
+      "org": "Rapidops",
+      "role": "Software developer",
+      "period": "2024 to 2025"
+    },
+    {
+      "org": "Freelance",
+      "role": "Web developer",
+      "period": "2022 to 2025"
+    }
   ],
-  "education": { "org": "Dharmsinh Desai University", "degree": "B.Tech, Computer Engineering", "year": "2024" },
+  "education": {
+    "org": "Dharmsinh Desai University",
+    "degree": "B.Tech, Computer Engineering",
+    "year": "2024"
+  },
   "skills": {
-    "Design": ["Figma", "Design systems", "Prototyping", "Accessibility"],
-    "Web": ["React", "Next.js", "TypeScript", "Node.js", "Postgres"],
-    "Mobile and desktop": ["React Native", "Expo", "Kotlin", "Tauri"],
-    "AI": ["LLM features", "RAG", "AI-assisted development"],
-    "Cloud": ["Cloudflare", "Vercel", "Docker"]
+    "Design": [
+      "Figma",
+      "Design systems",
+      "Prototyping",
+      "Accessibility"
+    ],
+    "Web": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Postgres"
+    ],
+    "Mobile and desktop": [
+      "React Native",
+      "Expo",
+      "Kotlin",
+      "Tauri"
+    ],
+    "AI": [
+      "LLM features",
+      "RAG",
+      "AI-assisted development"
+    ],
+    "Cloud": [
+      "Cloudflare",
+      "Vercel",
+      "Docker"
+    ]
   },
   "studio": {
     "offers": [
-      { "id": "launch", "name": "Launch", "for": "Founders with an idea to validate", "what": "A production-ready first version of your web app.", "timeline": "6 to 8 weeks", "includes": ["Product and UX planning", "Interface design", "Web app build and deployment", "30 days of fixes after launch"], "example": "wholesale-os" },
-      { "id": "mobile", "name": "Go mobile", "for": "Products that need an iOS and Android app", "what": "A cross-platform mobile app that shares logic with your web product.", "timeline": "6 to 10 weeks", "includes": ["App design", "iOS and Android build", "Store submission", "Offline support where it matters"], "example": "fieldbook" },
-      { "id": "ai", "name": "AI sprint", "for": "Teams that want AI in an existing product", "what": "One focused AI feature, designed, built and shipped.", "timeline": "2 to 3 weeks", "includes": ["Use-case workshop", "Prototype in week one", "Production build", "Quality checks on real data"], "example": "footnote" },
-      { "id": "system", "name": "Design system", "for": "Growing teams with inconsistent UI", "what": "Tokens, components and docs your team can build on.", "timeline": "3 to 5 weeks", "includes": ["UI audit", "Tokens in Figma and code", "Accessible component library", "Docs site"], "example": "kiln-ui" }
+      {
+        "id": "launch",
+        "name": "Launch",
+        "for": "Founders with an idea to validate",
+        "what": "A production-ready first version of your web app.",
+        "timeline": "6 to 8 weeks",
+        "includes": [
+          "Product and UX planning",
+          "Interface design",
+          "Web app build and deployment",
+          "30 days of fixes after launch"
+        ],
+        "example": "wholesale-os"
+      },
+      {
+        "id": "mobile",
+        "name": "Go mobile",
+        "for": "Products that need an iOS and Android app",
+        "what": "A cross-platform mobile app that shares logic with your web product.",
+        "timeline": "6 to 10 weeks",
+        "includes": [
+          "App design",
+          "iOS and Android build",
+          "Store submission",
+          "Offline support where it matters"
+        ],
+        "example": "fieldbook"
+      },
+      {
+        "id": "ai",
+        "name": "AI sprint",
+        "for": "Teams that want AI in an existing product",
+        "what": "One focused AI feature, designed, built and shipped.",
+        "timeline": "2 to 3 weeks",
+        "includes": [
+          "Use-case workshop",
+          "Prototype in week one",
+          "Production build",
+          "Quality checks on real data"
+        ],
+        "example": "footnote"
+      },
+      {
+        "id": "system",
+        "name": "Design system",
+        "for": "Growing teams with inconsistent UI",
+        "what": "Tokens, components and docs your team can build on.",
+        "timeline": "3 to 5 weeks",
+        "includes": [
+          "UI audit",
+          "Tokens in Figma and code",
+          "Accessible component library",
+          "Docs site"
+        ],
+        "example": "kiln-ui"
+      }
     ],
-    "retainer": { "name": "Ongoing partner", "what": "A monthly plan for improvements, new features and fixes after launch." },
+    "retainer": {
+      "name": "Ongoing partner",
+      "what": "A monthly plan for improvements, new features and fixes after launch."
+    },
     "steps": [
-      { "title": "Intro call", "body": "30 minutes to understand the problem and whether I'm the right fit." },
-      { "title": "Plan and quote", "body": "A written plan with scope, timeline and a fixed price within two working days." },
-      { "title": "Build with weekly demos", "body": "You see working software every week and can steer early." },
-      { "title": "Launch and handover", "body": "Release, documentation and full ownership of the code. Support if you want it." }
+      {
+        "title": "Intro call",
+        "body": "30 minutes to understand the problem and whether I'm the right fit."
+      },
+      {
+        "title": "Plan and quote",
+        "body": "A written plan with scope, timeline and a fixed price within two working days."
+      },
+      {
+        "title": "Build with weekly demos",
+        "body": "You see working software every week and can steer early."
+      },
+      {
+        "title": "Launch and handover",
+        "body": "Release, documentation and full ownership of the code. Support if you want it."
+      }
     ],
     "faq": [
-      { "q": "How do you price projects?", "a": "Fixed price for a scoped project, agreed after a free planning call. Ongoing work is a monthly plan." },
-      { "q": "Do you use AI to write code?", "a": "Yes. AI agents take on routine implementation, and I design, review and take responsibility for every change. It makes projects faster without lowering the bar." },
-      { "q": "Which time zones do you work with?", "a": "I'm on IST and overlap with mornings in Europe and evenings in Australia. Updates are written, so nothing waits for a meeting." },
-      { "q": "Who owns the code?", "a": "You do, from the first commit. Everything lives in your repository and your accounts." },
-      { "q": "Can you work with my existing team?", "a": "Yes. I can lead a feature end to end or slot into your process and tools." },
-      { "q": "What happens after launch?", "a": "Thirty days of fixes are included. After that, an ongoing plan covers improvements and new features." }
+      {
+        "q": "How do you price projects?",
+        "a": "Fixed price for a scoped project, agreed after a free planning call. Ongoing work is a monthly plan."
+      },
+      {
+        "q": "Do you use AI to write code?",
+        "a": "Yes. AI agents take on routine implementation, and I design, review and take responsibility for every change. It makes projects faster without lowering the bar."
+      },
+      {
+        "q": "Which time zones do you work with?",
+        "a": "I'm on IST and overlap with mornings in Europe and evenings in Australia. Updates are written, so nothing waits for a meeting."
+      },
+      {
+        "q": "Who owns the code?",
+        "a": "You do, from the first commit. Everything lives in your repository and your accounts."
+      },
+      {
+        "q": "Can you work with my existing team?",
+        "a": "Yes. I can lead a feature end to end or slot into your process and tools."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "Thirty days of fixes are included. After that, an ongoing plan covers improvements and new features."
+      }
     ]
   },
   "manifesto": [

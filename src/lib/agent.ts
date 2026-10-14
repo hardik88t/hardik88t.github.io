@@ -19,7 +19,7 @@ export function llmsTxt(): string {
 
 > ${SUMMARY}
 
-Client names are kept private; the work is described instead. Fieldbook is a design concept, not a shipped product.
+Client names are kept private; the work is described instead.
 
 ## Work
 
@@ -61,6 +61,7 @@ function projectFull(proj: Project): string {
     `Stack: ${proj.stack.join(', ')}`,
     proj.sticky ? `Design decision: ${proj.sticky}` : '',
     proj.links?.github ? `Code: ${proj.links.github}` : '',
+    proj.links?.live ? `Live demo: ${proj.links.live}` : '',
   ];
   return lines.filter((l) => l !== '').join('\n');
 }
@@ -91,7 +92,7 @@ ${principles}
 
 ## Work
 
-Six projects, in order. Client names are kept private where the content says so. Fieldbook is a concept, labelled below; it is not a shipped product.
+Six projects, in order. Client names are kept private where the content says so.
 
 ${projects.map(projectFull).join('\n\n')}
 
@@ -140,6 +141,7 @@ export function indexMd(): string {
         `- **Outcome:** ${proj.outcome}`,
         proj.sticky ? `- **Design decision:** ${proj.sticky}` : '',
         proj.links?.github ? `- **Code:** ${proj.links.github}` : '',
+        proj.links?.live ? `- **Live demo:** ${proj.links.live}` : '',
       ];
       return lines.filter((l, i, a) => !(l === '' && (i === 0 || a[i - 1] === ''))).join('\n');
     })

@@ -515,6 +515,12 @@ html:has(#system:target) .view--system {
   border-top: 1px solid var(--rule);
 }
 
+.dialog__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+}
+
 .dialog__close {
   min-width: 96px;
 }

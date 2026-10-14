@@ -9,6 +9,7 @@ const { project: p } = Astro.props;
 const id = `dlg-${p.slug}`;
 const titleId = `${id}-title`;
 const github = p.links?.github;
+const live = p.links?.live;
 ---
 <dialog id={id} class="dialog" aria-labelledby={titleId}>
   <div class="dialog__inner">
@@ -49,12 +50,13 @@ const github = p.links?.github;
     <p>
       <a class="btn btn--primary dialog__view" href={`#work-${p.slug}`} data-canvas-open>View screens →</a>
     </p>
-    {(p.anonymized || github) && (
+    {(p.anonymized || github || live) && (
       <div class="dialog__foot">
         {p.anonymized && p.client ? <p class="mono">Client: {p.client}</p> : <span />}
-        {github && (
-          <a class="link-hand" href={github} rel="noopener noreferrer">Code on GitHub</a>
-        )}
+        <span class="dialog__links">
+          {live && <a class="link-hand" href={live} rel="noopener noreferrer">Live demo</a>}
+          {github && <a class="link-hand" href={github} rel="noopener noreferrer">Code on GitHub</a>}
+        </span>
       </div>
     )}
   </div>

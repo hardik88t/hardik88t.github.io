@@ -64,8 +64,13 @@ for (const p of content.projects) {
   if (!p.client) continue;
   need(!ldText.includes(p.client), `JSON-LD names a client: ${p.client}`);
 }
-const fb = items.find((i) => i.item?.name === 'Fieldbook')?.item;
-need(fb?.creativeWorkStatus === 'Concept', 'Fieldbook must be marked Concept in JSON-LD');
+// Every project marked "concept" in the content must be labelled Concept in JSON-LD; real ones must not be.
+const shown = new Set(items.map((i) => i.item?.name));
+const conceptNames = content.projects.filter((x) => x.status === 'concept' && shown.has(x.title)).map((x) => x.title);
+for (const it of items) {
+  const isConceptItem = conceptNames.includes(it.item?.name);
+  need((it.item?.creativeWorkStatus === 'Concept') === isConceptItem, `${it.item?.name}: creativeWorkStatus must match its content status`);
+}
 
 // 5. head tags and relative references
 const head = html.slice(0, html.indexOf('</head>'));
@@ -113,8 +118,7 @@ for (const sec of ['## Work', '## About', '## Contact', '## CV', '## GitHub']) n
 const full = read('llms-full.txt');
 const md = read('index.md');
 for (const [name, body] of [['llms-full.txt', full], ['index.md', md]]) {
-  need(/Concept/.test(body), `${name} must label Fieldbook as concept`);
-  need(!/Fieldbook(?![^\n]*\bnot\b)[^\n]*(\bshipped\b|live in production|\bis live\b)/i.test(body), `${name} claims Fieldbook shipped`);
+  for (const c of conceptNames) need(new RegExp(`${c}[\\s\\S]{0,400}Concept`).test(body), `${name} must label ${c} as concept`);
   need(!/\b(20\d\d)\b.*\bseason\b/i.test(body), `${name} hard-codes a season`);
 }
 need(/Availability/.test(full), 'availability rule missing');
@@ -135,7 +139,7 @@ need(sitemap.includes(`<loc>${SITE_URL}/</loc>`), 'sitemap loc');
 console.log('head tags:');
 for (const t of tagList) console.log('  ' + t.slice(0, 150));
 console.log(`JSON-LD @types: ${types.join(', ')}`);
-console.log(`ItemList: ${items.length} items; Fieldbook status: ${fb?.creativeWorkStatus ?? 'none'}`);
+console.log(`ItemList: ${items.length} items; concept projects: ${conceptNames.join(', ') || 'none'}`);
 console.log(`h1 count: ${h1s}; description: ${desc.length} chars`);
 console.log(problems.length ? '\nPROBLEMS:\n  ' + problems.join('\n  ') : '\nproblems: none');
 process.exit(problems.length ? 1 : 0);

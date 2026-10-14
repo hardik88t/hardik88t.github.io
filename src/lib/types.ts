@@ -16,5 +16,5 @@ export interface Project {
   stack: string[];
   accent: string;
   visual: string;
-  links?: { github?: string };
+  links?: { github?: string; live?: string };
 }

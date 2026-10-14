@@ -61,6 +61,7 @@ export function jsonLd(): Record<string, unknown> {
       keywords: proj.stack.join(', '),
       ...(isConcept(proj) ? { creativeWorkStatus: 'Concept' } : {}),
       ...(proj.links?.github ? { codeRepository: proj.links.github } : {}),
+      ...(proj.links?.live ? { url: proj.links.live } : {}),
     },
   }));
 
