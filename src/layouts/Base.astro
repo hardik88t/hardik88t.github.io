@@ -1,0 +1,81 @@
+---
+import '../styles/base.css';
+import '../styles/imperfect.css';
+import '../styles/sections.css';
+import '../styles/system.css';
+import Fonts from '../components/Fonts.astro';
+import { themeCss } from '../lib/palette';
+import { SITE_DESCRIPTION, SITE_TITLE, absUrl } from '../lib/site';
+import { content } from '../lib/content';
+import { jsonLd } from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const tokens = themeCss();
+const canonical = absUrl('/');
+const image = absUrl('/og.png');
+const h = content.headlines.hero;
+const ogAlt = `Hardik Thanth: ${h.lines.join(' ')} ${h.struck}, ${h.correction}.`;
+// JSON-LD is embedded as text: "<" is escaped so no value can close the script element.
+const ldJson = JSON.stringify(jsonLd()).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/markdown" href="index.md" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141519" media="(prefers-color-scheme: dark)" />
+    <!-- Icons: one source (tools/icons/mark.svg), rendered by tools/icons/build.mjs. Paths are relative. -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="icon" href="icon-512.png" type="image/png" sizes="512x512" />
+    <link rel="icon" href="icon-maskable-512.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hardik Thanth" />
+    <meta property="og:title" content={SITE_TITLE} />
+    <meta property="og:description" content={SITE_DESCRIPTION} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={SITE_TITLE} />
+    <meta name="twitter:description" content={SITE_DESCRIPTION} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={ogAlt} />
+    <script type="application/ld+json" set:html={ldJson}></script>
+    <Fonts />
+    <style is:inline set:html={tokens}></style>
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('pi-theme');
+          if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+          if (location.hash === '#system') document.documentElement.dataset.view = 'system';
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

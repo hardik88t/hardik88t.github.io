@@ -1,0 +1,211 @@
+---
+// Six code-drawn riso prints. Two inks each: ink (--ink) and the project accent (--spot).
+// Halftone = SVG pattern dots. Misregistration and overprint live on .p-layer-spot (see imperfect.css).
+// Decorative only: aria-hidden. Drawn from each project's `visual` hint in content-v2.json.
+interface Props {
+  slug: string;
+  /** What the print shows, from the project's visual description. Read by screen readers. */
+  label: string;
+  id: string;
+}
+const { slug, label, id } = Astro.props;
+const ht = `ht-${slug}`;
+const hi = `hi-${slug}`;
+---
+<svg class="print__art" id={id} role="img" aria-label={label} viewBox="0 0 320 240" focusable="false" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id={ht} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <circle class="p-dot-spot" cx="3" cy="3" r="1.3" />
+    </pattern>
+    <pattern id={hi} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle class="p-dot-ink" cx="3" cy="3" r="0.7" />
+    </pattern>
+  </defs>
+  <rect class="p-paper" x="1" y="1" width="318" height="238" />
+
+  {slug === 'wholesale-os' && (
+    <>
+      <g class="p-layer-ink">
+        <rect class="p-line" x="14" y="14" width="292" height="212" rx="5" />
+        <line class="p-hair" x1="14" y1="34" x2="306" y2="34" />
+        <circle class="p-ink" cx="26" cy="24" r="2.3" /><circle class="p-ink" cx="35" cy="24" r="2.3" /><circle class="p-ink" cx="44" cy="24" r="2.3" />
+        <rect x="14" y="34" width="62" height="192" fill={`url(#${hi})`} />
+        <line class="p-hair" x1="76" y1="34" x2="76" y2="226" />
+        <rect class="p-ink" x="24" y="50" width="40" height="6" rx="3" /><rect class="p-ink" x="24" y="66" width="34" height="6" rx="3" /><rect class="p-ink" x="24" y="82" width="42" height="6" rx="3" /><rect class="p-ink" x="24" y="98" width="30" height="6" rx="3" /><rect class="p-ink" x="24" y="114" width="38" height="6" rx="3" />
+        <rect class="p-ink" x="90" y="46" width="96" height="9" rx="2" />
+        <rect class="p-line" x="90" y="64" width="70" height="36" rx="2" /><rect class="p-line" x="166" y="64" width="66" height="36" rx="2" />
+        <rect class="p-ink" x="99" y="78" width="30" height="8" rx="1" /><rect class="p-ink" x="175" y="78" width="38" height="8" rx="1" />
+        <line class="p-hair" x1="90" y1="112" x2="232" y2="112" />
+        <rect class="p-ink" x="92" y="122" width="38" height="5" /><rect class="p-ink" x="136" y="122" width="46" height="5" />
+        <rect class="p-ink" x="92" y="138" width="30" height="5" /><rect class="p-ink" x="136" y="138" width="52" height="5" />
+        <rect class="p-ink" x="92" y="154" width="42" height="5" /><rect class="p-ink" x="136" y="154" width="36" height="5" />
+        <rect class="p-ink" x="92" y="170" width="34" height="5" /><rect class="p-ink" x="136" y="170" width="48" height="5" />
+        <rect class="p-line" x="188" y="120" width="34" height="10" rx="5" /><rect class="p-line" x="188" y="152" width="34" height="10" rx="5" /><rect class="p-line" x="188" y="168" width="34" height="10" rx="5" />
+      </g>
+      <g class="p-layer-spot">
+        <rect class="p-spot" x="18" y="62" width="50" height="14" rx="3" />
+        <rect class="p-spot" x="90" y="190" width="104" height="6" rx="3" />
+        <rect class="p-spot" x="90" y="202" width="66" height="6" rx="3" />
+        <rect class="p-spot" x="90" y="214" width="38" height="6" rx="3" />
+        <rect class="p-spot" x="188" y="136" width="34" height="10" rx="5" />
+        <rect fill={`url(#${ht})`} x="166" y="64" width="66" height="36" />
+      </g>
+      <g>
+        <rect class="p-paper" x="240" y="34" width="66" height="192" />
+        <rect class="p-line" x="240" y="34" width="66" height="192" />
+        <rect class="p-ink" x="250" y="46" width="34" height="6" rx="3" />
+        <rect class="p-ink" x="250" y="60" width="46" height="4" rx="2" /><rect class="p-ink" x="250" y="70" width="40" height="4" rx="2" />
+        <rect class="p-ink" x="250" y="90" width="46" height="34" />
+        <rect class="p-ink" x="250" y="132" width="46" height="4" rx="2" /><rect class="p-ink" x="250" y="142" width="36" height="4" rx="2" />
+        <line class="p-hair" x1="250" y1="160" x2="296" y2="160" />
+        <rect class="p-ink" x="250" y="170" width="20" height="5" /><rect class="p-ink" x="276" y="170" width="20" height="5" />
+        <rect class="p-spot" x="250" y="200" width="46" height="14" rx="7" />
+      </g>
+    </>
+  )}
+
+  {slug === 'medjot' && (
+    <>
+      <g class="p-layer-ink">
+        <rect class="p-line" x="14" y="16" width="96" height="208" rx="12" />
+        <rect class="p-line" x="118" y="16" width="96" height="208" rx="12" />
+        <rect class="p-ink" x="26" y="36" width="44" height="6" rx="3" />
+        <rect class="p-ink" x="26" y="52" width="30" height="4" rx="2" /><rect class="p-ink" x="26" y="60" width="72" height="4" rx="2" />
+        <rect class="p-line" x="66" y="70" width="34" height="14" rx="7" />
+        <rect class="p-line" x="26" y="90" width="36" height="14" rx="7" /><rect class="p-line" x="68" y="90" width="42" height="14" rx="7" />
+        <rect class="p-line" x="26" y="110" width="50" height="14" rx="7" />
+        <rect class="p-ink" x="26" y="142" width="70" height="16" rx="8" />
+        <rect class="p-ink" x="130" y="36" width="50" height="6" rx="3" />
+        <rect class="p-line" x="130" y="50" width="72" height="16" rx="3" />
+        <rect class="p-ink" x="136" y="72" width="44" height="4" rx="2" /><rect class="p-ink" x="136" y="92" width="58" height="4" rx="2" /><rect class="p-ink" x="136" y="112" width="36" height="4" rx="2" /><rect class="p-ink" x="136" y="132" width="50" height="4" rx="2" /><rect class="p-ink" x="136" y="152" width="40" height="4" rx="2" />
+        <rect class="p-line" x="230" y="36" width="76" height="164" />
+      </g>
+      <g class="p-layer-spot">
+        <rect class="p-spot" x="26" y="70" width="34" height="14" rx="7" />
+        <rect class="p-spot" x="68" y="90" width="42" height="14" rx="7" />
+        <rect class="p-spot" x="26" y="142" width="70" height="16" rx="8" />
+        <rect class="p-spot" x="130" y="82" width="72" height="14" />
+      </g>
+      <g>
+        <rect class="p-paper" x="230" y="36" width="76" height="164" />
+        <path class="p-line" d="M230 40 H306 V190 L302.2 184 L298.4 190 L294.6 184 L290.8 190 L287 184 L283.2 190 L279.4 184 L275.6 190 L271.8 184 L268 190 L264.2 184 L260.4 190 L256.6 184 L252.8 190 L249 184 L245.2 190 L241.4 184 L237.6 190 L233.8 184 L230 190 Z" />
+        <rect class="p-ink" x="240" y="52" width="40" height="6" rx="3" />
+        <rect class="p-ink" x="240" y="70" width="56" height="3" /><rect class="p-ink" x="240" y="80" width="46" height="3" /><rect class="p-ink" x="240" y="90" width="52" height="3" />
+        <line class="p-hair" x1="240" y1="104" x2="296" y2="104" />
+        <rect class="p-ink" x="240" y="116" width="28" height="4" /><rect class="p-ink" x="276" y="116" width="20" height="4" />
+        <rect class="p-ink" x="240" y="128" width="36" height="4" /><rect class="p-ink" x="280" y="128" width="16" height="4" />
+        <rect class="p-ink" x="240" y="150" width="56" height="7" rx="1" />
+      </g>
+    </>
+  )}
+
+  {slug === 'paper-studio' && (
+    <>
+      <g class="p-layer-ink">
+        <rect class="p-line" x="14" y="14" width="292" height="212" rx="5" />
+        <rect class="p-ink" x="24" y="28" width="52" height="7" rx="2" />
+        <line class="p-hair" x1="142" y1="28" x2="142" y2="216" />
+        <rect class="p-line" x="158" y="40" width="130" height="180" />
+        <rect class="p-ink" x="170" y="54" width="72" height="7" rx="2" />
+        <rect class="p-ink" x="170" y="72" width="52" height="2.4" /><rect class="p-ink" x="170" y="79" width="48" height="2.4" /><rect class="p-ink" x="170" y="86" width="52" height="2.4" /><rect class="p-ink" x="170" y="93" width="44" height="2.4" /><rect class="p-ink" x="170" y="100" width="50" height="2.4" /><rect class="p-ink" x="170" y="107" width="46" height="2.4" />
+        <rect class="p-ink" x="228" y="72" width="52" height="2.4" /><rect class="p-ink" x="228" y="79" width="46" height="2.4" /><rect class="p-ink" x="228" y="86" width="50" height="2.4" /><rect class="p-ink" x="228" y="93" width="40" height="2.4" /><rect class="p-ink" x="228" y="100" width="52" height="2.4" />
+        <rect class="p-ink" x="170" y="180" width="106" height="2.4" /><rect class="p-ink" x="170" y="187" width="90" height="2.4" /><rect class="p-ink" x="170" y="194" width="98" height="2.4" />
+        <rect class="p-line" x="170" y="132" width="106" height="28" rx="2" />
+        <rect class="p-line" x="24" y="46" width="12" height="12" rx="2" /><rect class="p-line" x="24" y="72" width="12" height="12" rx="2" /><rect class="p-line" x="24" y="98" width="12" height="12" rx="2" /><rect class="p-line" x="24" y="124" width="12" height="12" rx="2" /><rect class="p-line" x="24" y="150" width="12" height="12" rx="2" /><rect class="p-line" x="24" y="176" width="12" height="12" rx="2" />
+        <rect class="p-ink" x="44" y="49" width="70" height="4" rx="2" /><rect class="p-ink" x="44" y="75" width="60" height="4" rx="2" /><rect class="p-ink" x="44" y="101" width="74" height="4" rx="2" /><rect class="p-ink" x="44" y="127" width="56" height="4" rx="2" /><rect class="p-ink" x="44" y="153" width="66" height="4" rx="2" /><rect class="p-ink" x="44" y="179" width="50" height="4" rx="2" />
+      </g>
+      <g class="p-layer-spot">
+        <rect class="p-spot" x="20" y="92" width="116" height="20" rx="3" />
+        <rect class="p-spot" x="236" y="16" width="62" height="16" rx="8" />
+        <rect fill={`url(#${ht})`} x="170" y="132" width="106" height="28" />
+        <rect class="p-spot" x="170" y="208" width="40" height="5" rx="2" />
+      </g>
+      <rect class="p-ink" x="250" y="21" width="34" height="6" rx="3" />
+    </>
+  )}
+
+  {slug === 'fieldbook' && (
+    <>
+      <g class="p-layer-ink">
+        <rect class="p-line" x="12" y="18" width="88" height="204" rx="11" />
+        <rect class="p-line" x="116" y="18" width="88" height="204" rx="11" />
+        <rect class="p-line" x="220" y="18" width="88" height="204" rx="11" />
+        <rect class="p-ink" x="22" y="30" width="44" height="6" rx="3" />
+        <line class="p-hair" x1="28" y1="50" x2="28" y2="200" />
+        <circle class="p-line" cx="28" cy="58" r="4" /><circle class="p-line" cx="28" cy="92" r="4" /><circle class="p-line" cx="28" cy="126" r="4" /><circle class="p-line" cx="28" cy="160" r="4" />
+        <rect class="p-ink" x="40" y="55" width="44" height="5" rx="2" /><rect class="p-ink" x="40" y="89" width="36" height="5" rx="2" /><rect class="p-ink" x="40" y="123" width="48" height="5" rx="2" /><rect class="p-ink" x="40" y="157" width="34" height="5" rx="2" />
+        <rect class="p-line" x="122" y="30" width="76" height="14" rx="7" />
+        <rect class="p-line" x="122" y="54" width="34" height="46" rx="2" /><rect class="p-line" x="160" y="54" width="34" height="46" rx="2" />
+        <rect class="p-line" x="122" y="110" width="34" height="46" rx="2" /><rect class="p-line" x="160" y="110" width="34" height="46" rx="2" />
+        <rect class="p-ink" x="128" y="104" width="22" height="4" /><rect class="p-ink" x="166" y="104" width="22" height="4" />
+        <rect class="p-ink" x="226" y="30" width="44" height="6" rx="3" />
+        <rect class="p-ink" x="226" y="52" width="36" height="4" rx="2" /><rect class="p-ink" x="226" y="62" width="50" height="4" rx="2" />
+        <rect class="p-ink" x="226" y="84" width="36" height="4" rx="2" /><rect class="p-ink" x="226" y="94" width="28" height="4" rx="2" />
+        <rect class="p-ink" x="226" y="142" width="72" height="14" rx="2" />
+      </g>
+      <g class="p-layer-spot">
+        <rect fill={`url(#${ht})`} x="122" y="54" width="34" height="46" />
+        <rect class="p-spot" x="160" y="110" width="34" height="46" rx="2" />
+        <circle class="p-spot" cx="28" cy="92" r="4" />
+        <rect class="p-spot" x="226" y="180" width="72" height="18" rx="9" />
+      </g>
+    </>
+  )}
+
+  {slug === 'dhi' && (
+    <>
+      <g class="p-layer-ink">
+        <rect class="p-line" x="14" y="14" width="292" height="212" rx="5" />
+        <line class="p-hair" x1="14" y1="34" x2="306" y2="34" />
+        <circle class="p-ink" cx="26" cy="24" r="2.3" /><circle class="p-ink" cx="35" cy="24" r="2.3" /><circle class="p-ink" cx="44" cy="24" r="2.3" />
+        <rect class="p-ink" x="24" y="50" width="78" height="8" rx="2" />
+        <rect class="p-ink" x="24" y="72" width="108" height="3" /><rect class="p-ink" x="24" y="81" width="96" height="3" /><rect class="p-ink" x="24" y="90" width="112" height="3" /><rect class="p-ink" x="24" y="99" width="84" height="3" />
+        <rect class="p-ink" x="24" y="112" width="104" height="3" /><rect class="p-ink" x="24" y="121" width="92" height="3" /><rect class="p-ink" x="24" y="130" width="110" height="3" />
+        <rect class="p-ink" x="24" y="143" width="70" height="3" /><rect class="p-ink" x="24" y="152" width="100" height="3" /><rect class="p-ink" x="24" y="161" width="58" height="3" />
+        <line class="p-hair" x1="160" y1="34" x2="160" y2="226" />
+        <line class="p-hair" x1="182" y1="100" x2="226" y2="98" />
+        <line class="p-hair" x1="226" y1="98" x2="262" y2="142" /> <line class="p-hair" x1="262" y1="142" x2="248" y2="170" />
+        <line class="p-hair" x1="226" y1="98" x2="198" y2="72" />
+        <line class="p-hair" x1="262" y1="142" x2="290" y2="128" />
+        <line class="p-hair" x1="248" y1="170" x2="226" y2="196" />
+        <circle class="p-ink" cx="198" cy="72" r="3.4" /><circle class="p-ink" cx="226" cy="98" r="3.4" /><circle class="p-ink" cx="182" cy="100" r="3.4" />
+        <circle class="p-ink" cx="208" cy="118" r="3.4" /><circle class="p-ink" cx="244" cy="114" r="3.4" />
+        <circle class="p-ink" cx="262" cy="142" r="3.4" /><circle class="p-ink" cx="290" cy="128" r="3.4" /><circle class="p-ink" cx="248" cy="170" r="3.4" />
+        <circle class="p-ink" cx="226" cy="196" r="3.4" /><circle class="p-ink" cx="270" cy="188" r="3.4" />
+      </g>
+      <g class="p-layer-spot">
+        <circle fill={`url(#${ht})`} cx="210" cy="94" r="44" />
+        <circle class="p-spot" cx="226" cy="98" r="5" /><circle class="p-spot" cx="198" cy="72" r="4" />
+        <circle class="p-spot" cx="208" cy="118" r="3.6" />
+        <circle class="p-spot" cx="262" cy="142" r="5" />
+        <circle class="p-spot" cx="270" cy="188" r="3.6" />
+      </g>
+      <rect class="p-ink" x="24" y="174" width="40" height="3" />
+      <rect class="p-spot" x="24" y="186" width="66" height="7" rx="2" />
+    </>
+  )}
+
+  {slug === 'net-watch' && (
+    <>
+      <g class="p-layer-ink">
+        <rect class="p-line" x="98" y="12" width="124" height="216" rx="16" />
+        <rect class="p-ink" x="116" y="30" width="54" height="6" rx="3" />
+        <line class="p-hair" x1="124" y1="54" x2="124" y2="206" />
+        <circle class="p-ink" cx="124" cy="62" r="3" /><circle class="p-ink" cx="124" cy="84" r="3" /><circle class="p-ink" cx="124" cy="106" r="3" /><circle class="p-ink" cx="124" cy="128" r="3" /><circle class="p-ink" cx="124" cy="150" r="3" /><circle class="p-ink" cx="124" cy="172" r="3" />
+        <rect class="p-ink" x="136" y="60" width="44" height="4" rx="2" /><rect class="p-ink" x="136" y="68" width="30" height="3" rx="1.5" />
+        <rect class="p-ink" x="136" y="82" width="40" height="4" rx="2" /><rect class="p-ink" x="136" y="90" width="28" height="3" rx="1.5" />
+        <rect class="p-ink" x="136" y="104" width="46" height="4" rx="2" /><rect class="p-ink" x="136" y="112" width="34" height="3" rx="1.5" />
+        <path class="p-ink" d="M118 124 L130 124 L124 136 Z" />
+        <rect class="p-ink" x="136" y="126" width="48" height="4" rx="2" /><rect class="p-ink" x="136" y="134" width="30" height="3" rx="1.5" />
+        <rect class="p-ink" x="136" y="148" width="40" height="4" rx="2" /><rect class="p-ink" x="136" y="156" width="26" height="3" rx="1.5" />
+        <path class="p-ink" d="M118 168 L130 168 L124 180 Z" />
+        <rect class="p-ink" x="136" y="170" width="44" height="4" rx="2" /><rect class="p-ink" x="136" y="178" width="30" height="3" rx="1.5" />
+      </g>
+      <g class="p-layer-spot">
+        <rect fill={`url(#${ht})`} x="118" y="116" width="92" height="26" />
+        <rect class="p-spot" x="112" y="186" width="84" height="18" rx="9" />
+      </g>
+      <rect class="p-ink" x="130" y="192" width="50" height="5" rx="2.5" />
+    </>
+  )}
+</svg>

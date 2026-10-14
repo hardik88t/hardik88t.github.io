@@ -1,0 +1,409 @@
+/* Imperfections. Each one is a transform, a paint layer or an absolutely positioned SVG.
+   None changes width, height or margins after load, so CLS stays 0. Text is never rotated. */
+
+/* Hand-drawn marks: inline SVG symbols, currentColor, non-scaling stroke. Decorative. */
+.mark {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mark--underline {
+  left: 0;
+  right: 0;
+  bottom: -0.36em;
+  width: 100%;
+  height: 0.5em;
+}
+
+.mark--strike {
+  left: -0.06em;
+  top: 46%;
+  width: calc(100% + 0.12em);
+  height: 0.46em;
+  transform: translateY(-50%);
+}
+
+/* Hand-underlined link: the link text stays straight, the mark sits under it. */
+.link-hand {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.25em;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-hand:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.25em;
+}
+
+.link-hand .mark--underline {
+  color: var(--blue);
+  bottom: -0.1em;
+  height: 0.42em;
+}
+
+/* The proofreader's edit: a pink pen strike, a caret below the line, and the correction handwritten
+   above. Every size is in em, so it scales from the 120px hero down to body text. Space is reserved
+   above and below (margin and padding on .edit), so the correction never touches the line above. */
+.edit {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  margin-top: 0.8em;
+  padding-bottom: 0.3em;
+}
+
+.edit__old {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+}
+
+.edit__strike,
+.edit__caret {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.edit__strike path,
+.edit__caret path {
+  fill: var(--pink);
+}
+
+/* The strike: tilted -4.5deg and longer than the word at both ends. */
+.edit__strike {
+  left: -0.2em;
+  top: 40%;
+  width: calc(100% + 0.42em);
+  height: 0.5em;
+  transform: translateY(-50%) rotate(-4.5deg);
+}
+
+.edit__caret {
+  left: 0.04em;
+  top: 86%;
+  width: 0.5em;
+  height: 0.34em;
+}
+
+/* The correction: handwritten Recursive, pink text ink (AA), leaning toward the caret. */
+.edit__new {
+  position: absolute;
+  left: 0.12em;
+  bottom: 81%;
+  font-family: var(--f-text);
+  font-size: 0.66em;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--pink-ink);
+  font-variation-settings: "CASL" 1, "slnt" -10, "MONO" 0;
+  text-shadow: none;
+  white-space: nowrap;
+  transform: rotate(-4deg);
+  transform-origin: 0 100%;
+  pointer-events: none;
+}
+
+/* Overprint: multiply on paper, screen on the dark night print. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .edit__strike,
+  :root:not([data-theme="light"]) .edit__caret {
+    mix-blend-mode: screen;
+  }
+}
+
+:root[data-theme="dark"] .edit__strike,
+:root[data-theme="dark"] .edit__caret {
+  mix-blend-mode: screen;
+}
+
+/* Riso misregistration on very large display type only: a hard pink offset, no blur.
+   The offset scales with the type (0.03em) and is capped by --misreg. Below ~48px the offset is
+   off, so small headlines never look like a blurred edge. */
+.display-misreg {
+  text-shadow: min(0.03em, var(--misreg)) min(0.03em, var(--misreg)) 0 var(--pink);
+}
+
+@media (max-width: 759px) {
+  /* Hero h1 is under 48px on phones (clamp at 3.8vw), so the offset is off there. */
+  .hero__title.display-misreg {
+    text-shadow: none;
+  }
+}
+
+/* Yellow highlight behind ink text. A per-line background (not a pseudo-element), so every
+   fragment of a wrapped phrase is highlighted: box-decoration-break clone repeats the box on each line. */
+.hl {
+  color: var(--on-yellow);
+  padding: 0 0.14em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: transparent;
+  background-image: linear-gradient(var(--highlight), var(--highlight));
+  background-repeat: no-repeat;
+  background-position: 0 0.12em;
+  background-size: 100% 1.04em;
+  border-radius: 0.14em 0.2em 0.16em 0.22em;
+}
+
+/* A paper plate under straight text: index cards and the letter. */
+.plate {
+  position: relative;
+  isolation: isolate;
+}
+
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--card);
+  border: 1.2px solid var(--rule);
+  transform: rotate(var(--tilt, 0deg));
+}
+
+/* Hairline that stops 1px short of its neighbour. */
+.hairline-short::before,
+.hairline-short::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hairline-short::before {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--rule);
+}
+
+.hairline-short::after {
+  display: none;
+  left: -22px;
+  top: 1px;
+  width: 1px;
+  height: calc(100% - 1px);
+  background: var(--rule);
+}
+
+@media (min-width: 900px) {
+  .hairline-short::after {
+    display: block;
+  }
+}
+
+/* Index cards: stacked slightly off, phone and desktop. */
+.cards {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  padding: 18px 18px 18px;
+  margin-inline: 4px;
+}
+
+.card__body p {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.card--2 {
+  transform: translateX(var(--nudge-sm));
+}
+
+.card__body {
+  position: relative;
+}
+
+.card__body h3 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.card__repair {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--gold);
+  z-index: 1;
+}
+
+/* Kintsugi: gold hairline shown plainly across a repaired card. Decoration, never text. */
+.kintsugi-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Margin notes: casual Recursive (CASL 1, slnt -8) with a small curved arrow that points up at
+   the item it annotates. On phones the note sits under its item; from 1100px it moves to the margin. */
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 8px;
+  font-family: var(--f-text);
+  font-variation-settings: "CASL" 1, "slnt" -8, "MONO" 0;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--ink2);
+}
+
+.note__arrow {
+  flex: none;
+  width: 20px;
+  height: 26px;
+  margin-top: 1px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Prints: a riso sheet with two inks, halftone, overprint and misregistration. */
+.print__sheet {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  transform: rotate(var(--tilt));
+  transform-origin: 50% 50%;
+  animation: settle 360ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  transition: transform 220ms ease;
+  /* Pixel corner: a stepped top-right notch, paint only. */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    calc(100% - 12px) 4px,
+    calc(100% - 8px) 4px,
+    calc(100% - 8px) 8px,
+    calc(100% - 4px) 8px,
+    calc(100% - 4px) 12px,
+    100% 12px,
+    100% 100%,
+    0 100%
+  );
+}
+
+.print:hover .print__sheet,
+.print:focus-visible .print__sheet {
+  transform: rotate(calc(var(--tilt) * 0.4)) translate(var(--nudge-xs), calc(var(--nudge-xs) * -1));
+}
+
+@keyframes settle {
+  from {
+    transform: rotate(calc(var(--tilt) + 0.6deg)) translateY(4px);
+  }
+  to {
+    transform: rotate(var(--tilt)) translateY(0);
+  }
+}
+
+.print__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.print__art .p-paper {
+  fill: var(--card);
+  stroke: var(--rule);
+  stroke-width: 1.2;
+}
+
+.print__art .p-ink {
+  fill: var(--ink);
+}
+
+.print__art .p-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.print__art .p-hair {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.print__art .p-dot-ink {
+  fill: var(--ink);
+}
+
+.print__art .p-dot-spot {
+  fill: var(--spot);
+}
+
+/* Second ink: the project accent. Offset by --misreg, overprinted (multiply in light, screen in dark). */
+.print__art .p-layer-spot {
+  mix-blend-mode: multiply;
+  transform: translate(var(--misreg), calc(var(--misreg) * -0.7));
+}
+
+.print__art .p-spot {
+  fill: var(--spot);
+  stroke: var(--spot);
+  stroke-width: var(--ink-bleed);
+  stroke-linejoin: round;
+}
+
+.print__art .p-spot-line {
+  fill: none;
+  stroke: var(--spot);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.print__art .p-spot-hair {
+  fill: none;
+  stroke: var(--spot);
+  stroke-width: 1.2;
+}
+
+.print__art .p-dark {
+  fill: var(--paper);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .print__art .p-layer-spot {
+    mix-blend-mode: screen;
+  }
+}
+
+:root[data-theme="dark"] .print__art .p-layer-spot {
+  mix-blend-mode: screen;
+}
+
+/* Motion: one settle on load for prints, hover nudges. Everything stops under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .print__sheet,
+  .print:hover .print__sheet,
+  .print:focus-visible .print__sheet {
+    animation: none;
+    transition: none;
+  }
+}
