@@ -265,7 +265,7 @@
   font-variation-settings: "CASL" 1, "slnt" -8, "MONO" 0;
   font-size: 17px;
   line-height: 1.35;
-  color: var(--ink2);
+  color: var(--ink-2);
 }
 
 .note__arrow {

@@ -149,7 +149,7 @@ body::before {
   font-size: 15px;
   line-height: 1.5;
   letter-spacing: 0.01em;
-  color: var(--ink2);
+  color: var(--ink-2);
 }
 
 .eyebrow {
@@ -482,7 +482,7 @@ html:has(#system:target) .view--system {
 .dialog dt {
   font-variation-settings: "MONO" 1;
   font-size: 15px;
-  color: var(--ink2);
+  color: var(--ink-2);
   margin-bottom: 2px;
 }
 

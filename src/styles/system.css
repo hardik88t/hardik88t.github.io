@@ -74,7 +74,7 @@
 
 .psych {
   font-size: 16px;
-  color: var(--ink2);
+  color: var(--ink-2);
 }
 
 .sub {
@@ -83,7 +83,7 @@
   font-variation-settings: "MONO" 1;
   font-size: 15px;
   font-weight: 500;
-  color: var(--ink2);
+  color: var(--ink-2);
 }
 
 .swatches {
@@ -114,7 +114,7 @@
 
 .swatch__use {
   font-size: 15px;
-  color: var(--ink2);
+  color: var(--ink-2);
   line-height: 1.4;
 }
 
@@ -139,7 +139,7 @@
 .ratios thead th {
   font-variation-settings: "MONO" 1;
   font-size: 14px;
-  color: var(--ink2);
+  color: var(--ink-2);
   font-weight: 500;
 }
 
@@ -390,7 +390,7 @@
   .ratios td::before {
     content: attr(data-label) " ";
     font-variation-settings: "MONO" 1;
-    color: var(--ink2);
+    color: var(--ink-2);
     font-size: 14px;
   }
 }

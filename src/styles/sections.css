@@ -81,7 +81,7 @@
   margin-top: 10px;
   font-variation-settings: "MONO" 1;
   font-size: 15px;
-  color: var(--ink2);
+  color: var(--ink-2);
 }
 
 /* The canvas entry point under the work heading: one hand-underlined link. */
@@ -399,7 +399,7 @@
 
 .contact__status {
   min-height: 1.5em;
-  color: var(--ink2);
+  color: var(--ink-2);
   font-size: 16px;
 }
 
