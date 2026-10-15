@@ -1,0 +1,62 @@
+---
+import Arrow from './Arrow.astro';
+import { content } from '../lib/content';
+
+const { person, headlines, experience, education } = content;
+
+const links = [
+  { label: 'LinkedIn', href: person.links.linkedin },
+  { label: 'GitHub', href: person.links.github },
+  { label: 'CV (PDF)', href: person.links.cv },
+];
+---
+<section class="section contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <p class="kicker">Contact</p>
+    <h2 id="contact-title" class="h2">{headlines.studio}</h2>
+
+    <div class="contact-grid">
+      <div>
+        <a class="email" href={`mailto:${person.email}`}>{person.email}</a>
+
+        <div class="email-actions">
+          <button type="button" class="btn" data-copy={person.email} aria-describedby="copy-status">
+            Copy email
+          </button>
+          <p id="copy-status" class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+        </div>
+
+        <ul class="contact-links">
+          {links.map((l) => (
+            <li>
+              <a href={l.href} target="_blank" rel="noopener noreferrer">
+                {l.label} <Arrow dir="out" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="contact-facts">
+        <section aria-labelledby="experience-title">
+          <h3 id="experience-title" class="label">Experience</h3>
+          <ul class="experience">
+            {experience.map((e) => (
+              <li>
+                <span class="org">{e.org}</span>
+                <span class="sep" aria-hidden="true">·</span>
+                <span class="role">{e.role}</span>
+                <span class="period">{e.period}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <p class="education">
+          <span class="label">Education</span>
+          {education.org} · {education.degree} · {education.year}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

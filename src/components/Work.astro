@@ -1,0 +1,71 @@
+---
+import Arrow from './Arrow.astro';
+import SectionHead from './SectionHead.astro';
+import { ProjectPreview } from './ProjectPreview';
+import { workProjects } from '../lib/content';
+
+// Each row is a native <details>, so it works without JavaScript. The hover preview is the same
+// mock the canvas shows, rendered at build time into the row's empty band; desktop hover only, decorative.
+// "View screens" and the canvas links open the overlay (scripts/canvas.ts) and work as plain hash links without it.
+---
+<section class="section" id="projects" aria-labelledby="work-title">
+  <div class="wrap">
+    <SectionHead kicker="Selected work" id="work-title" title="Projects" />
+
+    <ol class="work-list" id="work-list">
+      {workProjects.map((p) => (
+        <li class="work-item" style={`--tone: ${p.accent}`}>
+          <details>
+            <summary>
+              <span class="work-meta">
+                <span class="work-year">{p.year}</span>
+                <span class="work-type">{p.type}</span>
+              </span>
+              <h3 class="work-title">{p.title}</h3>
+              <span class="work-one">{p.oneLiner}</span>
+              <span class="work-toggle" aria-hidden="true">
+                <svg viewBox="0 0 20 20" focusable="false"><path class="v" d="M10 4v12" /><path d="M4 10h12" /></svg>
+              </span>
+            </summary>
+
+            <div class="work-case">
+              {p.anonymized && p.client && (
+                <p class="work-client"><span class="label">Client</span>{p.client}</p>
+              )}
+              <dl class="case-lines">
+                <div>
+                  <dt>Challenge</dt>
+                  <dd>{p.challenge}</dd>
+                </div>
+                <div>
+                  <dt>Approach</dt>
+                  <dd>{p.approach}</dd>
+                </div>
+                <div>
+                  <dt>Outcome</dt>
+                  <dd>{p.outcome}</dd>
+                </div>
+              </dl>
+              <p class="work-stack mono">{p.stack.join(' · ')}</p>
+              <a class="cta work-view" href={`#work-${p.slug}`} data-canvas-open>
+                View screens <Arrow dir="right" />
+              </a>
+            </div>
+          </details>
+
+          <div class="work-preview">
+            <ProjectPreview slug={p.slug} />
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <p class="work-explore">
+      <a class="cta" href="#work" data-canvas-open>
+        <span class="explore-wide">Explore all work on the canvas</span>
+        <span class="explore-narrow">Browse all screens</span>
+        <Arrow dir="right" />
+      </a>
+    </p>
+  </div>
+</section>

@@ -1,0 +1,487 @@
+/* Footnote: AI research assistant with citations and a sources panel. Design size 1280 x 800. IBM Plex Sans. */
+
+.root {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr) 380px;
+  width: 1280px;
+  height: 800px;
+  overflow: hidden;
+  background: #fafaf9;
+  color: #1c1917;
+  font-family: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* Sidebar */
+.side {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+  background: #f4f3f1;
+  border-right: 1px solid #e7e5e4;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 2px 6px 16px;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.brandName {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.newChat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #e0ddd9;
+  border-radius: 10px;
+  background: #ffffff;
+  font-weight: 600;
+  color: #292524;
+}
+
+.label {
+  margin-top: 18px;
+  padding: 0 8px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #78716c;
+}
+
+.folder,
+.doc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 8px;
+  color: #292524;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.folder {
+  font-weight: 600;
+}
+
+.doc {
+  padding-left: 26px;
+  color: #44403c;
+}
+
+.doc span,
+.folder span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.docOn {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px #e7e5e4;
+  color: #1c1917;
+  font-weight: 600;
+}
+
+.recent {
+  height: 30px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #44403c;
+}
+
+.recentOn {
+  background: #e9e6e2;
+  font-weight: 600;
+  color: #1c1917;
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 12px 6px 2px;
+  border-top: 1px solid #e7e5e4;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e7e5e4;
+  color: #44403c;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.meName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.meRole {
+  font-size: 12px;
+  color: #78716c;
+}
+
+/* Chat */
+.chat {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 24px;
+  border-bottom: 1px solid #ebe8e5;
+}
+
+.chatTitle {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.docCount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #f0eeeb;
+  color: #57534e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  color: #57534e;
+}
+
+.thread {
+  flex: 1;
+  min-height: 0;
+  padding: 26px 32px 0;
+}
+
+.userMsg {
+  margin-left: auto;
+  width: max-content;
+  max-width: 470px;
+  padding: 11px 16px;
+  border-radius: 18px 18px 4px 18px;
+  background: #1c1917;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.answer {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.aMark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  margin-top: 1px;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.aBody {
+  min-width: 0;
+}
+
+.aText {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #1c1917;
+}
+
+.cite {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin: 0 2px 0 3px;
+  padding: 0 4px;
+  border-radius: 5px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: 4px;
+}
+
+.aMeta {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: #78716c;
+}
+
+.followUps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.followUps span {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid #e0ddd9;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 13px;
+  color: #44403c;
+}
+
+.composer {
+  padding: 14px 32px 20px;
+  border-top: 1px solid #ebe8e5;
+  background: #fafaf9;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 8px 0 16px;
+  border: 1px solid #d6d3d1;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.05);
+}
+
+.placeholder {
+  flex: 1;
+  color: #78716c;
+  font-size: 15px;
+}
+
+.send {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #78716c;
+}
+
+/* Sources panel */
+.sources {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 18px 20px 18px;
+  background: #ffffff;
+  border-left: 1px solid #e7e5e4;
+}
+
+.srcHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.srcTitle {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.srcCount {
+  font-size: 12px;
+  color: #78716c;
+  font-variant-numeric: tabular-nums;
+}
+
+.viewer {
+  margin-top: 14px;
+  border: 1px solid #e7e5e4;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fbfaf9;
+}
+
+.vHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #ebe8e5;
+}
+
+.vName {
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vPage {
+  font-size: 12px;
+  color: #78716c;
+  white-space: nowrap;
+}
+
+.vBody {
+  padding: 16px 16px 18px;
+}
+
+.vMeta {
+  margin-top: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #78716c;
+}
+
+.vMeta:first-child {
+  margin-top: 0;
+}
+
+.vPara {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #292524;
+}
+
+.hl {
+  background: rgba(239, 68, 68, 0.14);
+  color: #1c1917;
+  padding: 1px 2px;
+  border-radius: 3px;
+  box-shadow: inset 0 -2px 0 #ef4444;
+}
+
+.chipRef {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 5px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: 2px;
+}
+
+.srcListLabel {
+  margin-top: 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #78716c;
+}
+
+.srcRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 2px;
+  border-bottom: 1px solid #efedea;
+  color: #78716c;
+}
+
+.srcRow > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.srcNum {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.srcName {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1c1917;
+}
+
+.srcPage {
+  font-size: 12px;
+  color: #78716c;
+}
+
+.userMsgGap {
+  margin-top: 28px;
+}

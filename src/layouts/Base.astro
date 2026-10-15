@@ -1,0 +1,51 @@
+---
+// Fonts are self-hosted through fontsource. Only the latin subsets are requested at runtime
+// (unicode-range keeps the other subsets from downloading unless a page needs them).
+import '@fontsource-variable/archivo/standard.css';
+import '@fontsource-variable/source-serif-4/standard.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import '../styles/tokens.css';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+// Inline favicon (data URI) so the build has no extra root-level asset to relativize.
+const favicon =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial' font-weight='700' font-size='13' fill='%23F8F9FB'%3EHT%3C/text%3E%3C/svg%3E";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F8F9FB" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D0F14" />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <!-- Applies a stored theme choice before first paint. Storage may be blocked, hence the try. -->
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/site.ts';
+      import { initCanvas } from '../scripts/canvas';
+      initCanvas();
+    </script>
+  </body>
+</html>

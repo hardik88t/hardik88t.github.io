@@ -1,0 +1,479 @@
+/* Paper Studio: question bank plus typeset A4 preview. Design size 1280 x 800. IBM Plex Sans. */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+  height: 800px;
+  overflow: hidden;
+  background: #f3f4f6;
+  color: #16181d;
+  font-family: 'IBM Plex Sans Variable', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top bar */
+.top {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 10px;
+  height: 56px;
+  padding: 0 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.back {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  color: #374151;
+}
+
+.docMeta {
+  margin-left: 6px;
+}
+
+.docTitle {
+  font-size: 14px;
+  font-weight: 620;
+}
+
+.docSub {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.draft {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.ghost {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1f2937;
+  font-weight: 560;
+}
+
+.aiBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: #f59e0b;
+  color: #2b1d00;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 1px 2px rgba(120, 70, 0, 0.25);
+}
+
+.body {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 372px minmax(0, 1fr);
+  min-height: 0;
+}
+
+/* Question list */
+.list {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 16px 16px 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+}
+
+.listHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.listHead p {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.listHead span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  margin-top: 12px;
+  padding: 0 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  color: #6b7280;
+}
+
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.filters span {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+
+.fOn {
+  background: #16181d !important;
+  border-color: #16181d !important;
+  color: #ffffff !important;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px solid #fce7b5;
+  border-radius: 12px;
+  background: #fff8ea;
+}
+
+.sumText {
+  font-weight: 650;
+  color: #8a5300;
+  font-variant-numeric: tabular-nums;
+}
+
+.q {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.qSel {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+
+.qTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.qNum {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: #16181d;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.qTopic {
+  color: #6b7280;
+}
+
+.qMarks {
+  margin-left: auto;
+  color: #374151;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+
+.grip {
+  display: grid;
+  grid-template-columns: 3px 3px;
+  gap: 2.5px;
+  margin-left: 2px;
+}
+
+.grip i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #9ca3af;
+}
+
+.qText {
+  margin-top: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.qBottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11.5px;
+  color: #6b7280;
+}
+
+.diff {
+  display: flex;
+  gap: 3px;
+}
+
+.diff i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e5e7eb;
+}
+
+.diff .dOn {
+  background: #374151;
+}
+
+/* Preview */
+.preview {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #e9ebef;
+}
+
+.pvBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 18px;
+  border-bottom: 1px solid #dde0e5;
+  background: #f3f4f6;
+}
+
+.pvLabel {
+  font-size: 12.5px;
+  color: #4b5563;
+}
+
+.zoom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  font-weight: 600;
+  color: #374151;
+}
+
+.zoom b {
+  min-width: 36px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.stageWrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 22px;
+  overflow: hidden;
+}
+
+.pageScale {
+  position: relative;
+  width: 445px;
+  height: 629px;
+}
+
+.pageScale > div {
+  transform: scale(0.5605);
+  transform-origin: 0 0;
+}
+
+/* A4 page, design size 794 x 1123 */
+.page {
+  position: relative;
+  width: 794px;
+  height: 1123px;
+  padding: 56px 62px;
+  background: #ffffff;
+  color: #111111;
+  font-size: 13px;
+  line-height: 1.55;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 22px 40px -22px rgba(0, 0, 0, 0.4);
+  text-align: left;
+}
+
+.school {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.exam {
+  text-align: center;
+  font-size: 13.5px;
+  margin-top: 2px;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 12.5px;
+}
+
+.rule {
+  height: 2px;
+  margin-top: 10px;
+  background: #111111;
+}
+
+.rule2 {
+  height: 0.6px;
+  margin-top: 3px;
+  background: #111111;
+}
+
+.fields {
+  display: flex;
+  gap: 28px;
+  margin-top: 16px;
+  font-size: 12.5px;
+}
+
+.field {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.line {
+  display: inline-block;
+  height: 16px;
+  border-bottom: 1px solid #111111;
+}
+
+.instr {
+  margin-top: 16px;
+  font-size: 11.5px;
+  font-style: italic;
+  color: #333333;
+}
+
+.sec {
+  margin-top: 20px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #999999;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pq {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 36px;
+  margin-top: 12px;
+}
+
+.qn {
+  font-weight: 700;
+}
+
+.qm {
+  text-align: right;
+  color: #333333;
+  font-variant-numeric: tabular-nums;
+}
+
+.v {
+  font-style: italic;
+}
+
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 2px;
+  font-size: 0.92em;
+  line-height: 1.05;
+}
+
+.frac > span:first-child {
+  padding: 0 3px;
+  border-bottom: 1px solid #111111;
+}
+
+.frac > span:last-child {
+  padding: 0 3px;
+}
+
+.opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+  margin-top: 8px;
+  padding-left: 26px;
+}
+
+.ruled {
+  margin: 6px 0 0 26px;
+}
+
+.ruled i {
+  display: block;
+  height: 26px;
+  border-bottom: 1px solid #9a9a9a;
+}
+
+.footer {
+  position: absolute;
+  left: 62px;
+  right: 62px;
+  bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px solid #999999;
+  font-size: 11px;
+  color: #444444;
+}
