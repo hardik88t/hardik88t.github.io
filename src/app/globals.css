@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Colour is semantic: the four task states (queued, running,
+ * review, merged) plus failed. Dark is the default; the light theme follows
+ * prefers-color-scheme and can be forced with data-theme on <html>.
+ */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0a0f1a;
+  --panel: #0f1626;
+  --panel-2: #131d31;
+  --line: #1c2638;
+  --line-strong: #2a3650;
+  --fg: #e6ebf5;
+  --muted: #8b97ad;
+
+  --s-queued: #6b7a90;
+  --s-running: #3d8bff;
+  --s-review: #9b7bff;
+  --s-merged: #3dd6a3;
+  --s-failed: #ff6b6b;
+
+  --ink-queued: #9aa6ba;
+  --ink-running: #6aa8ff;
+  --ink-review: #b49dff;
+  --ink-merged: #5fe3b5;
+  --ink-failed: #ff8a8a;
+
+  --glow: rgba(61, 139, 255, 0.2);
+  --grid: rgba(139, 151, 173, 0.11);
+  --shade: rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #f6f7fb;
+    --panel: #ffffff;
+    --panel-2: #f0f3f9;
+    --line: #e1e6ef;
+    --line-strong: #c9d1df;
+    --fg: #0e1524;
+    --muted: #55627a;
+
+    --s-queued: #6b7a90;
+    --s-running: #1d6bd8;
+    --s-review: #6a4bd6;
+    --s-merged: #0e9f73;
+    --s-failed: #d6404a;
+
+    --ink-queued: #4f5c72;
+    --ink-running: #1d6bd8;
+    --ink-review: #6a4bd6;
+    --ink-merged: #0b6e50;
+    --ink-failed: #b3262c;
+
+    --glow: rgba(29, 107, 216, 0.14);
+    --grid: rgba(85, 98, 122, 0.13);
+    --shade: rgba(15, 21, 36, 0.12);
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --panel-2: #f0f3f9;
+  --line: #e1e6ef;
+  --line-strong: #c9d1df;
+  --fg: #0e1524;
+  --muted: #55627a;
+
+  --s-queued: #6b7a90;
+  --s-running: #1d6bd8;
+  --s-review: #6a4bd6;
+  --s-merged: #0e9f73;
+  --s-failed: #d6404a;
+
+  --ink-queued: #4f5c72;
+  --ink-running: #1d6bd8;
+  --ink-review: #6a4bd6;
+  --ink-merged: #0b6e50;
+  --ink-failed: #b3262c;
+
+  --glow: rgba(29, 107, 216, 0.14);
+  --grid: rgba(85, 98, 122, 0.13);
+  --shade: rgba(15, 21, 36, 0.12);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+
+  --color-s-queued: var(--s-queued);
+  --color-s-running: var(--s-running);
+  --color-s-review: var(--s-review);
+  --color-s-merged: var(--s-merged);
+  --color-s-failed: var(--s-failed);
+
+  --color-ink-queued: var(--ink-queued);
+  --color-ink-running: var(--ink-running);
+  --color-ink-review: var(--ink-review);
+  --color-ink-merged: var(--ink-merged);
+  --color-ink-failed: var(--ink-failed);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --animate-caret: caret 1s steps(2, start) infinite;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--s-running) 35%, transparent);
+    color: var(--fg);
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--s-running);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  .display {
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 25% 15%, #000 25%, transparent 78%);
+    mask-image: radial-gradient(ellipse 85% 75% at 25% 15%, #000 25%, transparent 78%);
+  }
+
+  .glow {
+    background: radial-gradient(closest-side, var(--glow), transparent 100%);
+  }
+
+  .surface {
+    background: var(--panel);
+    border: 1px solid var(--line);
+  }
+
+  .hairline-x > * + * {
+    border-top: 1px solid var(--line);
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes caret {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
