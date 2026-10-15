@@ -1,0 +1,526 @@
+/* Base: reset, type, layout, and the elements that stay perfect (buttons, focus, dialogs, nav). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-text);
+  font-size: 17px;
+  line-height: 1.6;
+  font-variation-settings: "CASL" 0, "MONO" 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+@media (min-width: 720px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+a {
+  color: var(--blue);
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.icon-arrow {
+  width: 1.15em;
+  height: 0.7em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: 8px;
+  z-index: 10;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Grain: fixed, behind all content, so it never reduces text contrast or moves anything. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 1.2 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Wrapper: 16px phone gutter, wider from 720px. */
+.wrap {
+  width: min(100% - 32px, 1120px);
+  margin-inline: auto;
+}
+
+@media (min-width: 720px) {
+  .wrap {
+    width: min(100% - 80px, 1120px);
+  }
+}
+
+@media (min-width: 1100px) {
+  .wrap {
+    width: min(100% - 120px, 1120px);
+  }
+}
+
+.section {
+  padding-block: 28px;
+  scroll-margin-top: 16px;
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: 112px;
+  }
+}
+
+.mono {
+  font-family: var(--f-text);
+  font-variation-settings: "MONO" 1, "CASL" 0;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--ink2);
+}
+
+.eyebrow {
+  margin-bottom: 10px;
+}
+
+/* Headings: Fraunces, with a seeded WONK / SOFT set inline (see imperfect.css / headingAxes). */
+h1,
+h2,
+h3 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  color: var(--ink);
+  text-wrap: balance;
+  letter-spacing: -0.012em;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 1.3rem + 2.4vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 1.3rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Perfect: solid, straight, aligned, high contrast. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--primary:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.btn--quiet {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--quiet:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Header: one flex row. On phones the nav wraps onto its own line. */
+.site-header {
+  padding-top: 4px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 12px;
+  min-height: 48px;
+}
+
+.header__name {
+  position: relative;
+  display: inline-block;
+  margin-right: auto;
+  font-family: var(--f-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+/* The "a" sits a hair below the baseline. */
+.nudge {
+  position: relative;
+  top: 0.06em;
+}
+
+/* Hand-drawn pink flick under the wordmark. Decoration only. */
+.name-mark {
+  position: relative;
+  display: inline-block;
+}
+
+/* The flick is an SVG, a replaced element. With width:auto it takes its own 300px, so it is sized here
+   in em from the text box instead. The overshoot is at most 0.15em on each side. */
+.name-mark .name-mark__flick {
+  left: -0.05em;
+  bottom: -0.3em;
+  width: calc(100% + 0.1em);
+  max-width: none;
+  height: 0.5em;
+  color: var(--pink);
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .name-mark .name-mark__flick {
+    mix-blend-mode: screen;
+  }
+}
+
+:root[data-theme="dark"] .name-mark .name-mark__flick {
+  mix-blend-mode: screen;
+}
+
+/* Hand-drawn hairline under the header: a wobbly 1px line, low opacity, 1px short of the edge. */
+.header-rule {
+  display: block;
+  width: calc(100% - 1px);
+  height: 8px;
+  margin-top: 8px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  opacity: 0.3;
+  overflow: visible;
+}
+
+.header__nav {
+  order: 2;
+  width: 100%;
+}
+
+.header > .theme-toggle {
+  order: 1;
+}
+
+.header__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-inline: -10px;
+}
+
+.header__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 10px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.header__nav a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (min-width: 720px) {
+  .header {
+    min-height: 56px;
+    flex-wrap: nowrap;
+  }
+
+  .header__nav {
+    order: 1;
+    width: auto;
+  }
+
+  .header > .theme-toggle {
+    order: 2;
+  }
+
+  .header__nav ul {
+    margin-inline: 0;
+  }
+
+  .header__nav a {
+    padding: 0 14px;
+  }
+
+  .header__nav ul {
+    gap: 0 4px;
+  }
+}
+
+/* Theme toggle: fixed width so "Dark" and "Light" never move the layout. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 112px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  font-variation-settings: "MONO" 1;
+}
+
+.theme-toggle:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.theme-toggle__icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.theme-toggle__icon .fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Views: the portfolio by default, the system view on #system. JS sets data-view; the :target rules are the no-JS path. */
+.view--system {
+  display: none;
+}
+
+html[data-view="system"] .view--portfolio,
+html:has(#system:target) .view--portfolio {
+  display: none;
+}
+
+html[data-view="system"] .view--system,
+html:has(#system:target) .view--system {
+  display: block;
+}
+
+/* Footer. */
+.site-footer {
+  padding-block: 32px 28px;
+  border-top: 1px solid var(--rule);
+  margin-top: 16px;
+}
+
+.site-footer .wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.footer__system {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-family: var(--f-display);
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+  align-self: start;
+}
+
+.footer__system:hover {
+  color: var(--blue);
+}
+
+/* Dialog: perfect, native <dialog> with focus and Escape handled by the browser. */
+.dialog {
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 0;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.dialog::backdrop {
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+.dialog__inner {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.dialog__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.dialog__head h3 {
+  font-size: 1.7rem;
+  line-height: 1.15;
+}
+
+.dialog__lede {
+  font-size: 18px;
+}
+
+.dialog dl {
+  display: grid;
+  gap: 14px;
+}
+
+.dialog dt {
+  font-variation-settings: "MONO" 1;
+  font-size: 15px;
+  color: var(--ink2);
+  margin-bottom: 2px;
+}
+
+.dialog dd {
+  margin: 0;
+}
+
+.dialog__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  list-style: none;
+}
+
+.dialog__stack li {
+  padding: 4px 9px;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  font-size: 15px;
+  font-variation-settings: "MONO" 1;
+}
+
+.dialog__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.dialog__close {
+  min-width: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

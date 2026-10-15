@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Fraunces"; src: url("{{FRAUNCES}}") format("woff2"); font-weight: 400 700; font-style: normal; }
+  @font-face { font-family: "Recursive"; src: url("{{RECURSIVE}}") format("woff2"); font-weight: 400 700; font-style: normal; }
+  :root { --paper: #F6F6F3; --ink: #18181C; --ink2: #55565E; --pink: #FF48B0; --pink-ink: #D1008A; --rule: #D9D9D2; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: var(--paper); color: var(--ink); }
+  .frame { position: relative; width: 1200px; height: 630px; padding: 64px 80px; box-sizing: border-box; }
+  .name { position: absolute; left: 80px; top: 58px; font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 34px;
+    font-variation-settings: "SOFT" 50, "WONK" 0; letter-spacing: -0.01em; }
+  .name .flick { position: absolute; left: -0.05em; width: calc(100% + 0.1em); bottom: -0.3em; height: 0.5em; color: var(--pink); }
+  .name .a { position: relative; top: 0.06em; }
+  .headline { position: absolute; left: 80px; top: 142px; margin: 0; font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-size: 96px; line-height: 1.12; letter-spacing: -0.02em; font-variation-settings: "SOFT" 50, "WONK" 0; }
+  .headline .line { display: block; white-space: nowrap; }
+  .edit { position: relative; display: inline-block; }
+  .edit .strike { position: absolute; left: -0.04em; right: -0.04em; top: 56%; height: 0.11em; background: var(--pink); transform: rotate(-3deg); border-radius: 2px; }
+  .edit .fix { position: absolute; left: 50%; bottom: 1.08em; transform: translateX(-50%) rotate(-4deg); color: var(--pink-ink);
+    font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 0.58em; white-space: nowrap; }
+  .foot { position: absolute; left: 80px; right: 80px; bottom: 60px; border-top: 2px solid var(--ink); padding-top: 22px;
+    display: flex; justify-content: space-between; align-items: baseline; font-family: "Recursive", system-ui, sans-serif;
+    font-size: 26px; letter-spacing: 0.01em; color: var(--ink); }
+  .foot .muted { color: var(--ink2); }
+  .foot .mono { font-variation-settings: "MONO" 1; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="name">Hardik Th<span class="a">a</span>nth<svg class="flick" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M3 7 C40 3 90 10 140 6 S190 5 197 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></div>
+  <h1 class="headline">
+    <span class="line">{{LINE1}}</span>
+    <span class="line">{{LINE2}}</span>
+    <span class="line">{{LINE3}} <span class="edit"><span class="strike" aria-hidden="true"></span><span class="fix">{{CORRECTION}}</span>{{STRUCK}}</span>.</span>
+  </h1>
+  <div class="foot">
+    <span class="mono">{{TITLE}} <span class="muted">·</span> apps and web</span>
+    <span class="muted mono">{{HOST}}</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import Wordmark from './Wordmark.astro';
+import { headingAxes } from '../lib/seed';
+
+// The wordmark (Wordmark.astro) takes Fraunces with seeded WONK/SOFT axes from this header's seed.
+const axes = headingAxes('header-name');
+---
+<header class="site-header">
+  <div class="wrap header">
+    <a class="header__name" href="#top" style={`font-variation-settings:${axes}`}><Wordmark /></a>
+    <nav class="header__nav" aria-label="Main">
+      <ul>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#system">The system</a></li>
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+  <div class="wrap">
+    <svg class="header-rule" viewBox="0 0 1000 8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M0 4.2 C120 2.4 260 5.6 430 4 S760 2.6 1000 4.8" /></svg>
+  </div>
+</header>

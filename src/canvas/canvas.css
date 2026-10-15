@@ -1,0 +1,674 @@
+/* The work canvas overlay: the v2 canvas look inside the page. Dot grid, white frames with a 1 px rule,
+   Instrument Sans chrome in floating pills, zoom bar and minimap, and sticky notes in the site's highlight
+   yellow. It is always light (a white studio wall), in both site themes. No tilts, no grain, no riso: the
+   screens are shown perfect and the page frames them. Every rule is scoped under .cv-overlay, so the page's
+   global rules (headings, body, svg) do not reach the chrome or the mock screens. */
+
+.cv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  color-scheme: light;
+  /* Light values for everything below, whatever the page theme. The wordmark reads these tokens. */
+  --ink: #15161a;
+  --ink-2: #3f434c;
+  --ink-3: #5c616c;
+  --line: #dde0e5;
+  --paper: #ffffff;
+  --bg: #eceded;
+  --dot: #d5d7dc;
+  --pink: #ff48b0;
+  --blue: #0070b5;
+  --focus: #0070b5;
+  --highlight: #ffe800;
+  --highlight-ink: #18181c;
+  --shadow-pill: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-frame: 0 1px 2px rgba(16, 24, 40, 0.06), 0 14px 36px -14px rgba(16, 24, 40, 0.22);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Instrument Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-variation-settings: normal;
+  -webkit-font-smoothing: antialiased;
+  animation: cv-in 200ms ease-out both;
+}
+
+@keyframes cv-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-overlay {
+    animation: none;
+  }
+}
+
+/* The page scrolls nothing while the overlay is open. Its scroll position is kept. */
+html.cv-lock {
+  overflow: hidden;
+}
+
+.cv-overlay:focus {
+  outline: none;
+}
+
+/* Inside the overlay the page's text rules are reset, so the chrome and the mock screens keep their own type. */
+.cv-overlay :where(h1, h2, h3, p, ul, ol, dl, dd, figure) {
+  margin: 0;
+}
+
+.cv-overlay :where(h1, h2, h3) {
+  font: inherit;
+  color: inherit;
+  letter-spacing: normal;
+  text-wrap: wrap;
+}
+
+.cv-overlay svg {
+  max-width: none;
+}
+
+.cv-overlay button {
+  font: inherit;
+  color: inherit;
+}
+
+.cv-overlay .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.cv-overlay [hidden] {
+  display: none !important;
+}
+
+.cv-overlay .cv-desk,
+.cv-overlay .cv-m {
+  position: absolute;
+  inset: 0;
+}
+
+.cv-overlay .cv-m {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Top bar: floating pills (wordmark, switcher, Close) ---------- */
+.cv-overlay .cv-top {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.cv-overlay .cv-pill {
+  pointer-events: auto;
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-pill);
+  white-space: nowrap;
+}
+
+.cv-overlay .cv-pill--close {
+  padding: 0 4px;
+}
+
+/* The wordmark, as in the page header, sized for the pill. */
+.cv-overlay .cv-wordmark {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cv-overlay .cv-switch {
+  pointer-events: auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.cv-overlay .cv-switch-track {
+  display: flex;
+  gap: 2px;
+  max-width: 100%;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  box-shadow: var(--shadow-pill);
+}
+
+.cv-overlay .cv-switch-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cv-overlay .cv-switch-track button {
+  flex: none;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 14.5px;
+  font-weight: 560;
+  color: var(--ink-3);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.cv-overlay .cv-switch-track button:hover {
+  color: var(--ink);
+  background: #f0f1f3;
+}
+
+.cv-overlay .cv-switch-track button[aria-current='true'] {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.cv-overlay .cv-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.cv-overlay .cv-close:hover {
+  background: #f0f1f3;
+}
+
+.cv-overlay .cv-close svg {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+/* ---------- Skeleton: the frame shown at once while the overlay code loads ---------- */
+.cv-overlay.cv-skeleton {
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, var(--dot) 1.1px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.cv-overlay .cv-skeleton-brand {
+  width: 190px;
+}
+
+.cv-overlay .cv-skeleton-frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(62vw, 960px);
+  aspect-ratio: 16 / 10;
+  transform: translate(-50%, -50%);
+  background: var(--paper);
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 14px;
+  box-shadow: var(--shadow-frame);
+}
+
+/* ---------- Stage: the desktop canvas ---------- */
+.cv-overlay .cv-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, var(--dot) 1.1px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  outline: none;
+}
+
+.cv-overlay .cv-stage.is-grabbing,
+.cv-overlay .cv-stage.is-grabbing * {
+  cursor: grabbing !important;
+}
+
+.cv-overlay .cv-world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* Label row above each frame: title on the left, caption on the right. */
+.cv-overlay .cv-label {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding-bottom: 14px;
+  white-space: nowrap;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.cv-overlay .cv-label-name {
+  flex: none;
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.cv-overlay .cv-caption {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  font-size: 17px;
+  color: var(--ink-3);
+}
+
+.cv-overlay .cv-frame {
+  position: absolute;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 14px;
+  box-shadow: var(--shadow-frame);
+  cursor: default;
+}
+
+/* Sticky note: the site's highlight yellow, to the right of its frame. No tilt. */
+.cv-overlay .cv-note {
+  position: absolute;
+  margin: 0;
+  padding: 20px 22px 22px;
+  background: var(--highlight);
+  color: var(--highlight-ink);
+  border-radius: 3px;
+  box-shadow: 0 2px 0 rgba(90, 60, 0, 0.06), 0 18px 28px -16px rgba(70, 48, 0, 0.5);
+  font-size: 19px;
+  line-height: 1.32;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  user-select: text;
+}
+
+.cv-overlay .cv-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 9;
+  margin: 0;
+  transform: translateX(-50%);
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(21, 22, 26, 0.88);
+  color: #ffffff;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Minimap above the zoom bar, both bottom right. */
+.cv-overlay .cv-tools {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.cv-overlay .cv-mini {
+  position: relative;
+  pointer-events: auto;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-pill);
+  cursor: pointer;
+}
+
+.cv-overlay .cv-mini-frame {
+  position: absolute;
+  border-radius: 2px;
+  background: #d6d9df;
+}
+
+.cv-overlay .cv-mini-frame.is-active {
+  background: #aeb4bf;
+}
+
+.cv-overlay .cv-mini-view {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: rgba(21, 22, 26, 0.05);
+  pointer-events: none;
+}
+
+.cv-overlay .cv-zoom {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 52px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-pill);
+}
+
+.cv-overlay .cv-zoom button {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.cv-overlay .cv-zoom button:hover {
+  background: #f0f1f3;
+}
+
+.cv-overlay .cv-zoom .cv-zoom-fit {
+  min-width: 0;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cv-overlay .cv-zoom-value {
+  min-width: 56px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Phones and tablets: swipe gallery and viewer ---------- */
+.cv-overlay .cv-top--m {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  flex: none;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(236, 237, 239, 0.94);
+  border-bottom: 1px solid rgba(21, 22, 26, 0.06);
+}
+
+.cv-overlay .cv-top--m .cv-pill {
+  height: 44px;
+  padding: 0 14px;
+}
+
+.cv-overlay .cv-top--m .cv-pill--close {
+  padding: 0 4px;
+}
+
+.cv-overlay .cv-m-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px 16px 16px;
+}
+
+.cv-overlay .cv-m-title {
+  font-family: inherit;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.cv-overlay .cv-m-hint {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--ink-3);
+}
+
+/* Horizontal gallery: scroll-snap, edge to edge, inner scroll only. */
+.cv-overlay .cv-gallery {
+  display: flex;
+  gap: 14px;
+  margin: auto -16px;
+  padding: 4px 16px 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cv-overlay .cv-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.cv-overlay .cv-gallery:focus-visible {
+  border-radius: 16px;
+}
+
+.cv-overlay .cv-slide {
+  flex: 0 0 min(84vw, 340px);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 600px) {
+  .cv-overlay .cv-slide {
+    flex-basis: min(60vw, 560px);
+  }
+}
+
+.cv-overlay .cv-slide-frame {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 16px;
+  box-shadow: var(--shadow-pill), 0 12px 26px -18px rgba(16, 24, 40, 0.35);
+  cursor: pointer;
+  text-align: left;
+}
+
+.cv-overlay .cv-fit {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cv-overlay .cv-fit-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 50%;
+  pointer-events: none;
+}
+
+.cv-overlay .cv-slide-meta {
+  margin-top: 14px;
+  padding: 0 2px;
+}
+
+.cv-overlay .cv-slide-title {
+  font-family: inherit;
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.cv-overlay .cv-slide-caption {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.cv-overlay .cv-m-note {
+  align-self: flex-start;
+  max-width: 100%;
+  margin: 14px 0 0;
+  padding: 14px 16px 16px;
+  border-radius: 3px;
+  background: var(--highlight);
+  color: var(--highlight-ink);
+  font-size: 17px;
+  line-height: 1.38;
+  font-weight: 500;
+  box-shadow: 0 2px 0 rgba(90, 60, 0, 0.06), 0 14px 22px -16px rgba(70, 48, 0, 0.5);
+}
+
+.cv-overlay .cv-dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding-top: 8px;
+}
+
+.cv-overlay .cv-dots button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.cv-overlay .cv-dots button span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #aeb4bf;
+}
+
+.cv-overlay .cv-dots button[aria-current='true'] span {
+  width: 10px;
+  height: 10px;
+  background: var(--ink);
+}
+
+/* The full-screen screen: its own bar, the design size of the frame, scrolls both ways. */
+.cv-overlay .cv-viewer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.cv-overlay .cv-viewer-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  padding: 0 12px 0 16px;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--line);
+}
+
+.cv-overlay .cv-viewer-title {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  color: var(--ink-3);
+}
+
+.cv-overlay .cv-viewer-title strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.cv-overlay .cv-viewer-hint {
+  flex: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--ink-3);
+  border-bottom: 1px solid rgba(21, 22, 26, 0.06);
+}
+
+.cv-overlay .cv-viewer-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cv-overlay .cv-viewer-stage {
+  position: relative;
+  margin: 0 auto;
+}

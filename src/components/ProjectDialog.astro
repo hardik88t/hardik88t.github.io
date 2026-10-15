@@ -1,0 +1,61 @@
+---
+// Perfect dialog for one project: challenge, approach, outcome, stack.
+// Anonymized projects show the generic client and never a link. Status and needsConfirm are never shown.
+import type { Project } from '../lib/types';
+interface Props {
+  project: Project;
+}
+const { project: p } = Astro.props;
+const id = `dlg-${p.slug}`;
+const titleId = `${id}-title`;
+const github = p.links?.github;
+---
+<dialog id={id} class="dialog" aria-labelledby={titleId}>
+  <div class="dialog__inner">
+    <div class="dialog__head">
+      <div>
+        <p class="mono">{p.type} · {p.year}</p>
+        <h3 id={titleId}>{p.title}</h3>
+      </div>
+      <button type="button" class="btn btn--quiet dialog__close" data-close>Close</button>
+    </div>
+    <p class="dialog__lede">{p.oneLiner}</p>
+    <dl>
+      <div>
+        <dt>The challenge</dt>
+        <dd>{p.challenge}</dd>
+      </div>
+      <div>
+        <dt>The approach</dt>
+        <dd>{p.approach}</dd>
+      </div>
+      <div>
+        <dt>The outcome</dt>
+        <dd>{p.outcome}</dd>
+      </div>
+      {p.sticky && (
+        <div>
+          <dt>The design decision</dt>
+          <dd>{p.sticky}</dd>
+        </div>
+      )}
+    </dl>
+    <div>
+      <p class="mono">Stack</p>
+      <ul class="dialog__stack" role="list">
+        {p.stack.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+    <p>
+      <a class="btn btn--primary dialog__view" href={`#work-${p.slug}`} data-canvas-open>View screens →</a>
+    </p>
+    {(p.anonymized || github) && (
+      <div class="dialog__foot">
+        {p.anonymized && p.client ? <p class="mono">Client: {p.client}</p> : <span />}
+        {github && (
+          <a class="link-hand" href={github} rel="noopener noreferrer">Code on GitHub</a>
+        )}
+      </div>
+    )}
+  </div>
+</dialog>

@@ -1,0 +1,427 @@
+/* System view (#system). Same rules as the portfolio: straight text, imperfect decoration. */
+
+.system-header {
+  padding-top: 12px;
+}
+
+.back-link {
+  min-height: 44px;
+  font-size: 16px;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.system .sys-section {
+  padding-block: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.sys-hero {
+  border-top: 0;
+  padding-top: 32px;
+}
+
+.wordmark {
+  font-family: var(--f-display);
+  font-size: clamp(3.4rem, 1.9rem + 10vw, 11rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 30, "WONK" 1;
+  margin: 10px 0 0.42em;
+}
+
+/* The kerning gap: reads "imperfect" first, "im perfect" on a second look. */
+.kern {
+  margin-right: 0.06em;
+}
+
+.sys-sub {
+  max-width: 34em;
+}
+
+.sys-rule {
+  font-size: clamp(1.8rem, 1.1rem + 3.4vw, 4.2rem);
+  line-height: 1.08;
+  font-weight: 460;
+  max-width: 17em;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+}
+
+.principles {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+}
+
+.principles p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.principles li {
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+.principles h3 {
+  margin-bottom: 6px;
+}
+
+.principles p + p {
+  margin-top: 10px;
+}
+
+.psych {
+  font-size: 16px;
+  color: var(--ink2);
+}
+
+.sub {
+  margin: 24px 0 12px;
+  font-family: var(--f-text);
+  font-variation-settings: "MONO" 1;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink2);
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 14px;
+  list-style: none;
+}
+
+.swatch {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+
+.swatch__chip {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+  border: 1px solid var(--ink);
+  background: var(--chip, none);
+}
+
+.swatch__name {
+  font-weight: 600;
+}
+
+.swatch__use {
+  font-size: 15px;
+  color: var(--ink2);
+  line-height: 1.4;
+}
+
+.table-wrap {
+  margin-top: 4px;
+}
+
+.ratios {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.ratios th,
+.ratios td {
+  padding: 10px 8px 10px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ratios thead th {
+  font-variation-settings: "MONO" 1;
+  font-size: 14px;
+  color: var(--ink2);
+  font-weight: 500;
+}
+
+.ratios tbody th {
+  font-weight: 600;
+}
+
+.specimens {
+  display: grid;
+  gap: 10px;
+}
+
+.spec {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.spec--display {
+  font-family: var(--f-display);
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.tokens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 14px;
+}
+
+.tok {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-width: 0;
+}
+
+.tok__demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  padding: 8px;
+  border: 1px dashed var(--rule);
+}
+
+.tok__plate {
+  display: block;
+  width: min(118px, 80%);
+  height: 46px;
+  background: var(--card);
+  border: 1.2px solid var(--ink);
+  transform: rotate(var(--tilt));
+}
+
+.tok__nudge {
+  display: block;
+  width: 44px;
+  height: 44px;
+  background: var(--ink);
+}
+
+.tok__misreg {
+  font-family: var(--f-display);
+  font-size: 34px;
+  color: var(--ink);
+  text-shadow: var(--misreg) var(--misreg) 0 var(--pink);
+}
+
+.tok__grain {
+  background: transparent;
+}
+
+.tok__bleed {
+  font-family: var(--f-display);
+  font-size: 34px;
+  color: var(--ink);
+  -webkit-text-stroke: var(--ink-bleed) var(--blue);
+}
+
+.tok figcaption {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Components: a demo box, then the name, the note and the why. */
+.comps {
+  display: grid;
+  gap: 26px;
+  list-style: none;
+}
+
+.comp__demo {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  margin-bottom: 6px;
+}
+
+.comp__demo--print {
+  padding: 16px;
+}
+
+.comp h3 {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.comp p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.comp .mono {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.print--demo {
+  width: 230px;
+  cursor: default;
+}
+
+.print--demo .print__sheet {
+  animation: none;
+}
+
+.edit-demo {
+  margin: 0;
+  font-family: var(--f-display);
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+.rule-demo {
+  width: calc(100% - 24px);
+  height: 40px;
+  margin-left: 24px;
+  position: relative;
+}
+
+.rule-demo::before {
+  top: 0;
+}
+
+.rule-demo::after {
+  display: block;
+  height: calc(100% - 1px);
+  top: 1px;
+}
+
+.kintsugi-demo {
+  width: 100%;
+  max-width: 300px;
+  padding: 18px 20px;
+  margin: 0;
+}
+
+.kintsugi-demo p {
+  position: relative;
+  z-index: 0;
+}
+
+.note--demo {
+  margin: 0;
+}
+
+.checklist {
+  display: grid;
+  gap: 4px;
+  list-style: none;
+  font-size: 16px;
+}
+
+.checklist li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 12px;
+}
+
+.checklist__mark {
+  width: 14px;
+  height: 14px;
+  margin-top: 6px;
+  background: var(--ink);
+  border-radius: 1px;
+}
+
+.sys-foot {
+  padding-bottom: 24px;
+}
+
+/* Phone: swatches in three columns (usage notes live on the desktop view), and the ratio table
+   becomes stacked rows, so nothing needs to scroll sideways. */
+@media (max-width: 719px) {
+  .swatches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .swatch__use {
+    display: none;
+  }
+
+  .ratios,
+  .ratios tbody,
+  .ratios tr,
+  .ratios th,
+  .ratios td {
+    display: block;
+    width: 100%;
+  }
+
+  .ratios thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .ratios tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ratios td,
+  .ratios tbody th {
+    padding: 0;
+    border: 0;
+  }
+
+  .ratios td[data-label] {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* The "Use" column is documentation for the desktop view; the phone keeps the numbers. */
+  .ratios td:last-child {
+    display: none;
+  }
+
+  .ratios td::before {
+    content: attr(data-label) " ";
+    font-variation-settings: "MONO" 1;
+    color: var(--ink2);
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 720px) {
+  .swatches {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .specimens {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+  }
+
+  .spec--display {
+    font-size: 44px;
+  }
+}
+
+@media (min-width: 900px) {
+  .comps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 36px;
+  }
+
+  .principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+  }
+
+  .principles li:last-child {
+    grid-column: 1 / -1;
+  }
+}

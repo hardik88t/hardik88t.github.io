@@ -1,0 +1,8 @@
+---
+// The site wordmark: "Hardik Thanth" in Fraunces, the "a" a hair low, and the pink flick under it.
+// One markup for the page header, the system view and (mirrored in React) the canvas bar. The flick is
+// sized from the text box in em, so it follows the name at every size and never runs past it.
+import { variant } from '../lib/seed';
+const flick = ['a', 'b', 'c'][variant('header-flick', 3)] ?? 'a';
+---
+<span class="name-mark">Hardik Th<span class="nudge">a</span>nth<svg class="name-mark__flick mark" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href={`#m-underline-${flick}`}></use></svg></span>

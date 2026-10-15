@@ -1,0 +1,37 @@
+{
+  "name": "v5-imperfect-canvas",
+  "type": "module",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Perfect Imperfect (v5): the v3 page with the v2 design canvas of real product screens as a lazily mounted full-screen overlay",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "check": "astro check",
+    "build": "astro check && astro build && node scripts/relativize.mjs",
+    "preview": "astro preview --host 127.0.0.1",
+    "icons": "python3 tools/icons/make_source.py && node tools/icons/build.mjs",
+    "og": "node tools/og/build.mjs",
+    "verify:seo": "node tools/verify/seo.mjs"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@fontsource-variable/nunito-sans": "^5.3.0",
+    "astro": "5.18.2",
+    "motion": "^12.43.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@fontsource-variable/fraunces": "5.3.0",
+    "@fontsource-variable/recursive": "5.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "5.9.3"
+  }
+}
