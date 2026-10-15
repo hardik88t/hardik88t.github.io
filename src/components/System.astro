@@ -1,0 +1,201 @@
+---
+// The system view: the concept, tokens and components, shown with the same rules the portfolio follows.
+// Contrast numbers are computed at build time from the same palette the CSS uses.
+import { light, dark } from '../lib/palette';
+import { contrast } from '../lib/contrast';
+import { headingAxes, tilt, variant } from '../lib/seed';
+import PrintArt from './PrintArt.astro';
+import Edit from './Edit.astro';
+
+const r = (fg: string, bg: string) => contrast(fg, bg).toFixed(1) + ':1';
+const swatches = [
+  { name: 'paper', hex: light.paper, use: 'Background. Cool off-white.' },
+  { name: 'ink', hex: light.ink, use: 'Text, buttons, linework.' },
+  { name: 'ink-2', hex: light.ink2, use: 'Secondary text.' },
+  { name: 'rule', hex: light.rule, use: 'Hairlines. Decoration only.' },
+  { name: 'riso blue', hex: light.blue, use: 'Links and focus (AA text).' },
+  { name: 'pink', hex: light.pink, use: 'Strokes and flicks. Decoration only.' },
+  { name: 'pink ink', hex: light.pinkInk, use: 'Handwritten correction text (AA).' },
+  { name: 'yellow', hex: light.yellow, use: 'Highlight behind ink text.' },
+  { name: 'kintsugi gold', hex: light.gold, use: 'Repair lines. Never text.' },
+];
+const ratios = [
+  { label: 'pink ink on paper (correction)', fg: light.pinkInk, bgL: light.paper, bgD: dark.paper, fgD: dark.pinkInk, use: 'Handwritten correction text' },
+  { label: 'ink on highlight', fg: light.onYellow, bgL: light.highlight, bgD: dark.highlight, fgD: dark.onYellow, use: 'Highlight text' },
+  { label: 'ink on paper', fg: light.ink, bgL: light.paper, bgD: dark.paper, fgD: dark.ink, use: 'Body text' },
+  { label: 'ink-2 on paper', fg: light.ink2, bgL: light.paper, bgD: dark.paper, fgD: dark.ink2, use: 'Secondary text' },
+  { label: 'riso blue on paper', fg: light.blue, bgL: light.paper, bgD: dark.paper, fgD: dark.blue, use: 'Links, focus' },
+  { label: 'ink on yellow', fg: light.onYellow, bgL: light.yellow, bgD: dark.yellow, fgD: dark.onYellow, use: 'Highlight text' },
+  { label: 'ink on pink', fg: light.onPink, bgL: light.pink, bgD: dark.pink, fgD: dark.onPink, use: 'Correction text' },
+  { label: 'pink on paper', fg: light.pink, bgL: light.paper, bgD: dark.paper, fgD: dark.pink, use: 'Decoration only, never text' },
+  { label: 'gold on paper', fg: light.gold, bgL: light.paper, bgD: dark.paper, fgD: dark.gold, use: 'Hairlines only, never text' },
+];
+const comps = [
+  { name: 'Button', note: 'Perfect. Solid ink, nothing rotates.', why: 'Free: a border and a colour.' },
+  { name: 'Link', note: 'Straight text, hand-drawn underline.', why: 'Free: one SVG stroke under the text.' },
+  { name: 'Print card', note: 'Riso sheet, two inks. Caption stays straight.', why: 'Free: a transform on a wrapper.' },
+  { name: 'Margin note', note: 'Casual Recursive with a hand arrow.', why: 'Free: static text and one SVG arrow.' },
+  { name: 'Edit', note: 'A pink pen strike, a caret and a handwritten correction. Screen readers hear only the correction.', why: 'Free: SVG strokes and reserved space, no reflow.' },
+  { name: 'Rule', note: 'A hairline that stops 1px short.', why: 'Free: a 1px pseudo-element.' },
+  { name: 'Kintsugi repair', note: 'A gold hairline shows the repair.', why: 'Free: an SVG stroke, never text.' },
+  { name: 'Dialog', note: 'Perfect. Escape closes, focus returns.', why: 'Free: nothing imperfect in it.' },
+];
+const checks = [
+  'No layout shift: transforms, paint and SVG only.',
+  'No JS for imperfections: seeds run at build time.',
+  'AA contrast: every text pair is printed above.',
+  'Deterministic: the same slug gives the same tilt.',
+  'Reduced motion: the settle and nudges switch off.',
+  'At most about three imperfections per viewport.',
+];
+---
+<header class="site-header system-header">
+  <div class="wrap header">
+    <a class="header__name" href="#top">Hardik Th<span class="nudge">a</span>nth<svg class="header__flick mark" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#m-underline-a"></use></svg></a>
+    <a class="btn btn--quiet back-link" href="#top"><svg class="icon-arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M19 6H2M7 1L2 6l5 5" /></svg>Back to portfolio</a>
+  </div>
+</header>
+
+<main class="system" aria-labelledby="system-title" id="system-main">
+  <div class="wrap">
+    <section class="sys-section sys-hero" aria-labelledby="system-title">
+      <p class="mono">Perfect Imperfect · a design system</p>
+      <h1 id="system-title" class="wordmark display-misreg" tabindex="-1"><span class="kern">im</span>perfect</h1>
+      <p class="mono sys-sub">Two words: i'm perfect. The gap is the idea, shown plainly.</p>
+    </section>
+
+    <section class="sys-section" aria-labelledby="rule-title">
+      <h2 id="rule-title" class="sys-rule" style={`font-variation-settings:${headingAxes('rule')}`}>If an imperfection causes a problem, it isn't the imperfection.</h2>
+    </section>
+
+    <section class="sys-section" aria-labelledby="principles-title">
+      <h2 id="principles-title">Principles</h2>
+      <ol class="principles" role="list">
+        <li><h3>Deliberate</h3><p>Seeded at build time from each slug. The same page on every visit.</p></li>
+        <li><h3>Free</h3><p>Transforms, paint and SVG only. No shift, no JS, no blur on text.</p></li>
+        <li><h3>Budgeted</h3><p>About three noticeable imperfections per viewport.</p></li>
+        <li><h3>Accessibility is never imperfect</h3><p>Semantics, focus, contrast and screen-reader text stay perfect.</p></li>
+        <li>
+          <h3>Perfection is reserved for what matters</h3>
+          <p>Buttons, focus rings, fields, email, numbers and dialogs stay straight and solid.</p>
+          <p class="psych"><strong>Isolation effect (Von Restorff).</strong> The one straight element is the one people press.</p>
+          <p class="psych"><strong>Pratfall effect.</strong> A small, honest flaw makes a competent person likeable. Kintsugi shows repairs in gold.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="sys-section" aria-labelledby="tokens-title">
+      <h2 id="tokens-title">Tokens</h2>
+      <h3 class="sub">Colour, riso inks on paper</h3>
+      <ul class="swatches" role="list">
+        {swatches.map((s, i) => (
+          <li class="swatch">
+            <span class="swatch__chip" style={`background:${s.hex};border-radius:${['42% 58% 51% 49% / 55% 46% 54% 45%', '58% 42% 46% 54% / 44% 56% 44% 56%', '47% 53% 56% 44% / 50% 42% 58% 50%', '53% 47% 44% 56% / 46% 58% 42% 54%'][i % 4]}`} aria-hidden="true"></span>
+            <span class="swatch__name">{s.name}</span>
+            <span class="mono">{s.hex}</span>
+            <span class="swatch__use">{s.use}</span>
+          </li>
+        ))}
+      </ul>
+
+      <h3 class="sub">Contrast, computed at build time</h3>
+      <div class="table-wrap">
+        <table class="ratios">
+          <thead><tr><th scope="col">Pair</th><th scope="col">Light</th><th scope="col">Dark</th><th scope="col">Use</th></tr></thead>
+          <tbody>
+            {ratios.map((row) => (
+              <tr>
+                <th scope="row">{row.label}</th>
+                <td data-label="Light">{r(row.fg, row.bgL)}</td>
+                <td data-label="Dark">{r(row.fgD, row.bgD)}</td>
+                <td>{row.use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">Type, two variable families</h3>
+      <div class="specimens">
+        <p class="spec spec--display" style="font-variation-settings:'WONK' 0, 'SOFT' 40">Fraunces, WONK 0: Perfect imperfect</p>
+        <p class="spec spec--display" style="font-variation-settings:'WONK' 1, 'SOFT' 60">Fraunces, WONK 1: Perfect imperfect</p>
+        <p class="spec" style="font-variation-settings:'CASL' 0, 'MONO' 0">Recursive, CASL 0: Good software feels obvious.</p>
+        <p class="spec" style="font-variation-settings:'CASL' 1, 'slnt' -8">Recursive, CASL 1, slnt -8: Good software feels obvious.</p>
+        <p class="spec mono" style="font-variation-settings:'MONO' 1">Recursive, MONO 1: Ahmedabad, India · 2026</p>
+      </div>
+
+      <h3 class="sub">Imperfection tokens</h3>
+      <div class="tokens-grid">
+        <figure class="tok"><span class="tok__demo"><span class="tok__plate" style="--tilt:var(--tilt-xs)"></span></span><figcaption class="mono">--tilt-xs 0.35deg</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__plate" style="--tilt:var(--tilt-sm)"></span></span><figcaption class="mono">--tilt-sm 0.8deg</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__plate" style="--tilt:var(--tilt-md)"></span></span><figcaption class="mono">--tilt-md 1.6deg</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__nudge" style="transform:translate(var(--nudge-xs),0)"></span></span><figcaption class="mono">--nudge-xs 1px</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__nudge" style="transform:translate(var(--nudge-sm),0)"></span></span><figcaption class="mono">--nudge-sm 3px</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__nudge" style="transform:translate(var(--nudge-md),0)"></span></span><figcaption class="mono">--nudge-md 7px</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__misreg">Print</span></span><figcaption class="mono">--misreg 1.5px</figcaption></figure>
+        <figure class="tok"><span class="tok__demo tok__grain"></span><figcaption class="mono">--grain 0.06</figcaption></figure>
+        <figure class="tok"><span class="tok__demo"><span class="tok__bleed">Ink</span></span><figcaption class="mono">--ink-bleed 0.6px</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="sys-section" aria-labelledby="components-title">
+      <h2 id="components-title">Components</h2>
+      <ul class="comps" role="list">
+        <li class="comp">
+          <div class="comp__demo"><a class="btn btn--primary" href="#top">Start a project</a></div>
+          <h3>{comps[0]?.name}</h3><p>{comps[0]?.note}</p><p class="mono">{comps[0]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo"><a class="link-hand" href="#top">See the work<svg class="mark mark--underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><use href={`#m-underline-${['a','b','c'][variant('sys-link', 3)] ?? 'a'}`}></use></svg></a></div>
+          <h3>{comps[1]?.name}</h3><p>{comps[1]?.note}</p><p class="mono">{comps[1]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo comp__demo--print"><span class="print print--demo" style={`--spot:#6366F1;--tilt:${tilt('system:print')};`}><span class="print__sheet"><PrintArt slug="dhi" /></span></span></div>
+          <h3>{comps[2]?.name}</h3><p>{comps[2]?.note}</p><p class="mono">{comps[2]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo"><p class="note note--demo"><svg class="note__arrow" viewBox="0 0 24 30" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M9 28 C7 19 11 12 17 5 M12 9 L17 4 L19 11" /></svg><span>Start here if the screen feels off.</span></p></div>
+          <h3>{comps[3]?.name}</h3><p>{comps[3]?.note}</p><p class="mono">{comps[3]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo"><p class="edit-demo">Build it for the <Edit word="perfect" correction="human" seed="edit:system" /> user.</p></div>
+          <h3>{comps[4]?.name}</h3><p>{comps[4]?.note}</p><p class="mono">{comps[4]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo"><div class="rule-demo hairline-short" aria-hidden="true"></div></div>
+          <h3>{comps[5]?.name}</h3><p>{comps[5]?.note}</p><p class="mono">{comps[5]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo"><div class="plate kintsugi-demo"><p>A repaired card.</p><svg class="card__repair" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="kintsugi-line" d="M99 0 L95 12 L100 26 L96 40 L100 56 L95 70 L99 86 L96 100" /></svg></div></div>
+          <h3>{comps[6]?.name}</h3><p>{comps[6]?.note}</p><p class="mono">{comps[6]?.why}</p>
+        </li>
+        <li class="comp">
+          <div class="comp__demo"><button type="button" class="btn btn--quiet" data-open-dialog="dlg-system-demo">Open the dialog</button></div>
+          <h3>{comps[7]?.name}</h3><p>{comps[7]?.note}</p><p class="mono">{comps[7]?.why}</p>
+        </li>
+      </ul>
+      <dialog id="dlg-system-demo" class="dialog" aria-labelledby="dlg-system-demo-title">
+        <div class="dialog__inner">
+          <div class="dialog__head">
+            <h3 id="dlg-system-demo-title">A perfect dialog</h3>
+            <button type="button" class="btn btn--quiet dialog__close" data-close>Close</button>
+          </div>
+          <p>Straight, solid, high contrast. Escape closes it and focus returns to the button.</p>
+        </div>
+      </dialog>
+    </section>
+
+    <section class="sys-section" aria-labelledby="checklist-title">
+      <h2 id="checklist-title">Checklist</h2>
+      <ul class="checklist" role="list">
+        {checks.map((c) => (
+          <li><span class="checklist__mark" aria-hidden="true"></span>{c}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="sys-section sys-foot">
+      <a class="btn btn--primary" href="#top"><svg class="icon-arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M19 6H2M7 1L2 6l5 5" /></svg>Back to portfolio</a>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,36 @@
+---
+// One project as a riso print: a button (Tap or Enter opens its dialog) with a caption.
+// The rotation sits on the decorative sheet only. The button and caption stay straight, so the
+// focus ring is straight and the text is never rotated.
+import PrintArt from './PrintArt.astro';
+import { tilt, nudge } from '../lib/seed';
+
+interface Props {
+  slug: string;
+  title: string;
+  type: string;
+  oneLiner: string;
+  accent: string;
+  style?: string;
+}
+const { slug, title, type, oneLiner, accent, style } = Astro.props;
+const seed = `print:${slug}`;
+---
+<button
+  type="button"
+  class="print"
+  data-open-dialog={`dlg-${slug}`}
+  aria-haspopup="dialog"
+  style={`--spot:${accent};--tilt:${tilt(seed)};--nudge-x:${nudge(seed)};${style ?? ''}`}
+>
+  <span class="print__sheet" aria-hidden="true">
+    <PrintArt slug={slug} />
+  </span>
+  <span class="print__caption">
+    <span class="print__head">
+      <span class="print__title">{title}</span>
+      <span class="print__type mono">{type}</span>
+    </span>
+    <span class="print__line">{oneLiner}</span>
+  </span>
+</button>

@@ -1,0 +1,43 @@
+---
+import content from '../data/content-v2.json';
+import ProjectPrint from './ProjectPrint.astro';
+import ProjectDialog from './ProjectDialog.astro';
+import type { Project } from '../lib/types';
+import { headingAxes } from '../lib/seed';
+
+// The six projects in this concept. Footnote and kiln-ui are concept placeholders and are left out.
+const featured = ['wholesale-os', 'medjot', 'paper-studio', 'fieldbook', 'dhi', 'net-watch'];
+const projects = featured
+  .map((slug) => content.projects.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p)) as unknown as Project[];
+
+// Hand-set desktop collage on a 12-column grid: uneven spans and offsets, and one print that
+// breaks its column by 14px (ml). Phone ignores this and uses a single column.
+const place: Record<string, { col: number; span: number; drop: number; ml?: number }> = {
+  'wholesale-os': { col: 1, span: 7, drop: 0 },
+  medjot: { col: 9, span: 4, drop: 120 },
+  'paper-studio': { col: 2, span: 5, drop: 36 },
+  fieldbook: { col: 8, span: 5, drop: 96 },
+  dhi: { col: 1, span: 8, drop: 40 },
+  'net-watch': { col: 10, span: 3, drop: 48, ml: -14 },
+};
+---
+<section id="work" class="section" aria-labelledby="work-title">
+  <header class="section-head hairline-short">
+    <p class="mono eyebrow">Selected work</p>
+    <h2 id="work-title" style={`font-variation-settings:${headingAxes('work-title')}`}>Six projects, from web apps to a desktop tool.</h2>
+    <p class="aside">Client names are kept private, so those projects are described instead.</p>
+  </header>
+  <ul class="works work__list" role="list">
+    {projects.map((p) => {
+      const pl = place[p.slug] ?? { col: 1, span: 12, drop: 0 };
+      const style = `--col:${pl.col};--span:${pl.span};--drop:${pl.drop}px;${pl.ml ? `--ml:${pl.ml}px;` : ''}`;
+      return (
+        <li class="work__item" style={style}>
+          <ProjectPrint slug={p.slug} title={p.title} type={p.type} oneLiner={p.oneLiner} accent={p.accent} />
+        </li>
+      );
+    })}
+  </ul>
+  {projects.map((p) => <ProjectDialog project={p} />)}
+</section>

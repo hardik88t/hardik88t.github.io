@@ -1,0 +1,439 @@
+/* Portfolio sections. Phone first; the asymmetric 12-column layouts start at 900px. */
+
+/* Hero */
+.hero {
+  padding-top: 24px;
+  padding-bottom: 32px;
+}
+
+.hero__meta {
+  margin-bottom: 14px;
+  min-height: 1.5em;
+}
+
+/* Fixed three-line break: the owner wants the phrasing to land as three beats. */
+.hero__line {
+  display: block;
+}
+
+.hero__title {
+  font-size: clamp(1.9rem, 1.2rem + 3.8vw, 5.4rem);
+  line-height: 1.12;
+  font-weight: 460;
+  letter-spacing: -0.022em;
+  margin-bottom: 18px;
+  font-variation-settings: "SOFT" 40, "WONK" 0;
+}
+
+.hero__bio {
+  font-size: 17px;
+  max-width: 34em;
+  margin-bottom: 26px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 72px;
+    padding-bottom: 120px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+
+  .hero__meta {
+    grid-column: 1 / -1;
+  }
+
+  .hero__title {
+    grid-column: 1 / span 10;
+    font-size: clamp(3.4rem, 2rem + 4vw, 6.4rem);
+  }
+
+  .hero__bio {
+    grid-column: 4 / span 6;
+    font-size: 19px;
+  }
+
+  .hero__actions {
+    grid-column: 4 / span 6;
+  }
+}
+
+/* Work: prints on a phone column, an asymmetric collage on desktop. */
+.section-head {
+  position: relative;
+}
+
+.work__intro {
+  max-width: 34em;
+  margin-bottom: 56px;
+  font-size: 18px;
+}
+
+.aside {
+  margin-top: 10px;
+  font-variation-settings: "MONO" 1;
+  font-size: 15px;
+  color: var(--ink2);
+}
+
+.work__list {
+  display: grid;
+  gap: 22px;
+  list-style: none;
+  margin-top: 32px;
+}
+
+/* Phone: the sheet alternates left and right at 74% width; the caption keeps the full column. */
+.work__item .print__sheet {
+  width: 64%;
+}
+
+.work__item:nth-child(even) .print__sheet {
+  margin-left: auto;
+}
+
+.work__item:nth-child(3n + 2) {
+  margin-top: 6px;
+}
+
+.print {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.print__caption {
+  display: grid;
+  gap: 2px;
+  padding-top: 12px;
+}
+
+.print__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 12px;
+}
+
+.print__title {
+  font-family: var(--f-display);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.print__type {
+  margin-top: 0;
+}
+
+.print__line {
+  font-size: 16px;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
+@media (min-width: 900px) {
+  .work__intro {
+    margin-bottom: 88px;
+  }
+
+  .section-head {
+    padding-top: 28px;
+  }
+
+  .work__list {
+    margin-top: 0;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 28px;
+    row-gap: 72px;
+  }
+
+  .work__item .print__sheet,
+  .work__item:nth-child(even) .print__sheet {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .work__item,
+  .work__item:nth-child(3n + 2) {
+    width: auto;
+    justify-self: stretch;
+    grid-column: var(--col) / span var(--span);
+    margin-top: var(--drop);
+    margin-left: var(--ml, 0);
+  }
+
+  .print__title {
+    font-size: 1.9rem;
+  }
+}
+
+/* About: what I do, then how I work. */
+.about__what {
+  position: relative;
+  margin-bottom: 44px;
+}
+
+.services {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.services li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 4px 10px;
+}
+
+.services p {
+  font-size: 16px;
+}
+
+.services__num {
+  font-family: var(--f-text);
+  font-variation-settings: "CASL" 1, "slnt" -6, "MONO" 0;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink);
+  padding-top: 4px;
+}
+
+.services h3 {
+  margin-bottom: 6px;
+}
+
+.services p {
+  max-width: 32em;
+}
+
+.services .tags {
+  margin-top: 8px;
+}
+
+.about__how {
+  position: relative;
+  padding-top: 8px;
+}
+
+.about__how h2 {
+  margin-bottom: 16px;
+}
+
+@media (min-width: 900px) {
+  .about {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 28px;
+  }
+
+  .about__what {
+    grid-column: 1 / span 12;
+    margin-bottom: 120px;
+  }
+
+  .about__what h2 {
+    margin-left: -0.5em;
+  }
+
+  .about__what .services {
+    width: 58%;
+    gap: 52px;
+  }
+
+  .about__what .services li {
+    position: relative;
+  }
+
+  .about__what .services li + li {
+    margin-top: 0;
+  }
+
+  .about__how {
+    grid-column: 1 / span 12;
+  }
+
+  .about__how h2 {
+    margin-bottom: 52px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 36px;
+  }
+
+  .card:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .card:nth-child(2) {
+    margin-top: 28px;
+  }
+
+  .card:nth-child(3) {
+    margin-top: -8px;
+  }
+}
+
+@media (min-width: 1100px) {
+  /* Margin notes sit in the right margin of their service, with the arrow pointing left at it. */
+  .about__what .services li .note {
+    position: absolute;
+    left: calc(100% + 28px);
+    top: 4px;
+    width: 230px;
+    margin-top: 0;
+  }
+
+  .about__what .services li .note__arrow {
+    position: absolute;
+    left: -46px;
+    top: 6px;
+    transform: rotate(-72deg);
+  }
+}
+
+.services .note {
+  font-size: 17px;
+}
+
+/* Contact */
+.contact {
+  padding-bottom: 56px;
+}
+
+.contact h2 {
+  max-width: 14em;
+  margin-bottom: 18px;
+  font-size: clamp(1.7rem, 1.3rem + 2vw, 3.2rem);
+}
+
+.letter {
+  --tilt: calc(var(--tilt-xs) * -1);
+  max-width: 640px;
+  padding: 22px 20px 20px;
+  margin-bottom: 26px;
+  margin-inline: 4px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.letter p + p {
+  margin-top: 14px;
+}
+
+.letter__salutation {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+}
+
+.signature {
+  width: 200px;
+  height: 64px;
+  margin-top: 10px;
+  color: var(--blue);
+}
+
+.signature path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact__email {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.email {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  word-break: break-all;
+  font-variation-settings: "MONO" 0;
+}
+
+.email:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.email-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.copy-btn {
+  min-width: 11em;
+}
+
+.contact__status {
+  min-height: 1.5em;
+  color: var(--ink2);
+  font-size: 16px;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  list-style: none;
+}
+
+.contact__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.contact__meta {
+  margin-top: 18px;
+}
+
+@media (min-width: 900px) {
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 28px;
+    align-items: start;
+  }
+
+  .contact h2 {
+    grid-column: 1 / span 12;
+    margin-bottom: 44px;
+  }
+
+  .letter {
+    grid-column: 1 / span 7;
+    margin-left: -4px;
+  }
+
+  .contact__aside {
+    grid-column: 9 / span 4;
+    padding-top: 12px;
+  }
+}

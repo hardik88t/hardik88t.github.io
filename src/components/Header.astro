@@ -1,0 +1,26 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { headingAxes, variant } from '../lib/seed';
+
+// Wordmark: the name in Fraunces with seeded WONK/SOFT, the "a" a hair below the baseline,
+// and a small hand-drawn pink flick under it. The same on every visit (seeded at build time).
+const flick = ['a', 'b', 'c'][variant('header-flick', 3)] ?? 'a';
+const axes = headingAxes('header-name');
+---
+<header class="site-header">
+  <div class="wrap header">
+    <a class="header__name" href="#top" style={`font-variation-settings:${axes}`}>Hardik Th<span class="nudge">a</span>nth<svg class="header__flick mark" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href={`#m-underline-${flick}`}></use></svg></a>
+    <nav class="header__nav" aria-label="Main">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#system">The system</a></li>
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+  <div class="wrap">
+    <svg class="header-rule" viewBox="0 0 1000 8" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M0 4.2 C120 2.4 260 5.6 430 4 S760 2.6 1000 4.8" /></svg>
+  </div>
+</header>

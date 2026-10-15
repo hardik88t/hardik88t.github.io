@@ -1,0 +1,58 @@
+---
+import content from '../data/content-v2.json';
+import { headingAxes, tilt, variant } from '../lib/seed';
+
+const { services, principles } = content;
+// At most two margin notes. Each is a usage hint, not a claim about clients.
+const notes: Record<string, string> = {
+  web: 'Pick one, or mix two.',
+  design: 'Start here if the screen feels off.',
+};
+// Small curved arrows pointing up (phones: at the item above). Desktop rotates them to point left.
+const noteArrows = [
+  'M9 28 C7 19 11 12 17 5 M12 9 L17 4 L19 11',
+  'M6 27 C9 18 16 14 16 4 M10 9 L16 3 L21 9',
+  'M10 28 C6 20 12 10 18 6 M13 11 L18 5 L20 12',
+];
+---
+<section id="about" class="section about" aria-labelledby="about-title">
+  <div class="about__what">
+    <h2 id="about-title" style={`font-variation-settings:${headingAxes('about-title')}`}>What I do</h2>
+    <ol class="services" role="list">
+      {services.map((s, i) => (
+        <li>
+          <span class="services__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{s.title}</h3>
+            <p>{s.line}</p>
+            <p class="mono tags">{s.tags.join(' · ')}</p>
+            {notes[s.id] && (
+              <p class="note">
+                <svg class="note__arrow" viewBox="0 0 24 30" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d={noteArrows[variant(`note:${s.id}`, 3)] ?? noteArrows[0]} /></svg>
+                <span>{notes[s.id]}</span>
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <div class="about__how">
+    <h2 id="how-title" style={`font-variation-settings:${headingAxes('how-title')}`}>How I work</h2>
+    <ul class="cards" role="list">
+      {principles.map((pr, i) => (
+        <li class={`card plate card--${i + 1}`} style={`--tilt:${tilt(`card:${i}`)}`}>
+          <div class="card__body">
+            <h3>{pr.title}</h3>
+            <p>{pr.body}</p>
+          </div>
+          {i === 2 && (
+            <svg class="card__repair" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path class="kintsugi-line" d="M99 0 L95 12 L100 26 L96 40 L100 56 L95 70 L99 86 L96 100" />
+            </svg>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

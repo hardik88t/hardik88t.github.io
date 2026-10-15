@@ -1,0 +1,38 @@
+---
+import content from '../data/content-v2.json';
+import Edit from './Edit.astro';
+import { headingAxes, variant } from '../lib/seed';
+import { availabilityText } from '../lib/availability';
+
+const { person, bio } = content;
+const hlPhrase = 'from the first sketch to a production release';
+const [bioA = '', bioB = ''] = bio.short.split(hlPhrase);
+const underline = ['a', 'b', 'c'][variant('hero-underline', 3)] ?? 'a';
+const avail = person.availability;
+const availText = availabilityText(avail);
+---
+<section class="hero" aria-labelledby="hero-title">
+  <p class="mono hero__meta"><span id="availability" data-mode={avail.mode} data-lead={avail.leadWeeks}>{availText}</span></p>
+  <script is:inline>
+    (function () {
+      var el = document.getElementById('availability');
+      if (!el || el.getAttribute('data-mode') !== 'auto') return;
+      var lead = parseFloat(el.getAttribute('data-lead')) || 6;
+      var t = new Date(Date.now() + lead * 7 * 864e5);
+      var m = t.getMonth();
+      var season = m < 4 ? 'early' : m < 8 ? 'mid' : 'late';
+      var text = 'Taking on new projects for ' + season + ' ' + t.getFullYear();
+      if (el.textContent !== text) el.textContent = text;
+    })();
+  </script>
+  <h1 id="hero-title" class="hero__title display-misreg" style={`font-variation-settings:${headingAxes('hero-title')}`}>
+    <span class="hero__line">I design and build </span>
+    <span class="hero__line">apps and web </span>
+    <span class="hero__line">that feel <Edit word="perfect" correction="human" seed="edit:hero" />.</span>
+  </h1>
+  <p class="hero__bio">{bioA}<span class="hl">{hlPhrase}</span>{bioB}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="mailto:hardik88t@gmail.com?subject=Project%20enquiry">Start a project</a>
+    <a class="link-hand" href="#work">See the work<svg class="mark mark--underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><use href={`#m-underline-${underline}`}></use></svg></a>
+  </div>
+</section>
