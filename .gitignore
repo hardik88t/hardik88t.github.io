@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+build/
+out/
+
+# framework caches
+.astro/
+.svelte-kit/
+.next/
+.vercel/
+.wrangler/
+
+# local env / logs
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store

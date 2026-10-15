@@ -1,0 +1,47 @@
+---
+import Arrow from './Arrow.astro';
+import { content } from '../lib/content';
+
+const { profile } = content;
+
+const links = [
+  { label: 'LinkedIn', href: profile.links.linkedin },
+  { label: 'GitHub', href: profile.links.github },
+  { label: 'CV (PDF)', href: profile.links.cv },
+  { label: 'Avinya IT', href: profile.links.business },
+];
+---
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <p class="kicker">06 — Contact</p>
+    <h2 id="contact-title" class="h2">Start a project</h2>
+    <p class="deck">Tell me what you are building, who it is for and when you need it.</p>
+
+    <div class="contact-grid">
+      <div class="email-block">
+        <p class="label">Email</p>
+        <p class="email">{profile.email}</p>
+        <div class="email-actions">
+          <button type="button" class="btn" data-copy={profile.email} aria-describedby="copy-status">
+            Copy email
+          </button>
+          <a class="link" href={`mailto:${profile.email}`}>Write an email <Arrow /></a>
+        </div>
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+      </div>
+
+      <div class="contact-links-wrap">
+        <ul class="contact-links">
+          {links.map((l) => (
+            <li>
+              <a href={l.href} target="_blank" rel="noopener noreferrer">
+                {l.label} <Arrow dir="out" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="contact-note">{profile.availability}. {profile.timezone}.</p>
+      </div>
+    </div>
+  </div>
+</section>

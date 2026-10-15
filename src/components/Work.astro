@@ -1,0 +1,106 @@
+---
+import Arrow from './Arrow.astro';
+import SectionHead from './SectionHead.astro';
+import { labelFor, orderedProjects, projectLinks } from '../lib/content';
+
+// Each row is a native <details>: it works without JavaScript. Hover or focus shows the
+// decorative colour-field preview (pure CSS, desktop pointers only).
+---
+<section class="section" id="work" aria-labelledby="work-title">
+  <div class="wrap">
+    <SectionHead
+      kicker="02 — Selected work"
+      id="work-title"
+      title="Selected work"
+      deck="Featured first. Hover or focus a row for a preview, open it for the case study."
+    />
+
+    <ol class="work-list">
+      {orderedProjects.map((p) => {
+        const links = projectLinks(p);
+        return (
+          <li class:list={['work-item', !p.featured && 'work-item--more']} style={`--tone: ${p.accent}`}>
+            <details class="work-details">
+              <summary>
+                <span class="work-year mono">{p.year}</span>
+                <span class="work-toggle" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" focusable="false"><path d="M10 3v14M3 10h14" /></svg>
+                </span>
+                <h3 class="work-title">{p.title}</h3>
+                <span class="work-one">{p.oneLiner}</span>
+                <span class="work-tags">
+                  {p.categories.map((c) => (
+                    <span class="tag">{labelFor(c)}</span>
+                  ))}
+                  {p.featured && <span class="tag tag--accent">Featured</span>}
+                  {p.anonymized && <span class="tag">Anonymised</span>}
+                </span>
+              </summary>
+
+              <div class="work-case">
+                <div class="case-main">
+                  <p class="case-desc">{p.description}</p>
+                  <h4 class="label case-h">Highlights</h4>
+                  <ul class="case-highlights">
+                    {p.highlights.map((h) => (
+                      <li>{h}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <dl class="case-meta">
+                  <div>
+                    <dt class="label">Role</dt>
+                    <dd>{p.role}</dd>
+                  </div>
+                  <div>
+                    <dt class="label">Year</dt>
+                    <dd>{p.year}</dd>
+                  </div>
+                  <div class="case-stack">
+                    <dt class="label">Stack</dt>
+                    <dd>
+                      <ul>
+                        {p.stack.map((s) => (
+                          <li>{s}</li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="case-links-wrap">
+                    <dt class="label">Links</dt>
+                    <dd>
+                      {links.length > 0 ? (
+                        <ul class="case-links">
+                          {links.map((l) => (
+                            <li>
+                              <a class="link" href={l.href} target="_blank" rel="noopener noreferrer">
+                                {l.label} <Arrow dir="out" />
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <span>{p.anonymized ? 'Details anonymised.' : 'No public link.'}</span>
+                      )}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </details>
+
+            <div class="work-preview" aria-hidden="true">
+              <div class="wf">
+                <i class="wf-bar"></i>
+                <i class="wf-hero"></i>
+                <i class="wf-side"></i>
+                <i class="wf-row"></i>
+              </div>
+              <span class="work-preview-label">{p.year} · {labelFor(p.categories[0] ?? '')}</span>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</section>

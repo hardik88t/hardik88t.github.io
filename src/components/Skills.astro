@@ -1,0 +1,31 @@
+---
+import SectionHead from './SectionHead.astro';
+import { content } from '../lib/content';
+
+const groups = Object.entries(content.profile.skills);
+---
+<section class="section" id="skills" aria-labelledby="skills-title">
+  <div class="wrap">
+    <SectionHead
+      kicker="04 — Stack and skills"
+      id="skills-title"
+      title="Stack and skills"
+      deck="Grouped by discipline."
+    />
+
+    <dl class="skill-index">
+      {groups.map(([name, items]) => (
+        <div class="skill-row">
+          <dt class="mono">{name}</dt>
+          <dd>
+            <ul class="skill-items">
+              {items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

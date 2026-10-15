@@ -1,0 +1,46 @@
+---
+// The delivery pipeline. Real HTML text, with SVG tracks that draw themselves as the
+// reader scrolls (see the animation-timeline block in site.css). Without scroll-driven
+// animations, or with reduced motion, every path rests fully drawn.
+import { content } from '../lib/content';
+
+const stages = content.agentic.pipeline;
+const last = String(stages.length).padStart(2, '0');
+---
+<figure class="pipeline" aria-labelledby="pipeline-caption">
+  <div class="stages-wrap">
+    <svg class="track-row track-row--1" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="track-base" d="M0 1.5H100" pathLength="100" />
+      <path class="track-draw" d="M0 1.5H100" pathLength="100" />
+    </svg>
+    <svg class="track-row track-row--2" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="track-base" d="M0 1.5H100" pathLength="100" />
+      <path class="track-draw" d="M0 1.5H100" pathLength="100" />
+    </svg>
+
+    <ol class="stages">
+      {stages.map((stage, i) => (
+        <li class="stage">
+          {i < stages.length - 1 && (
+            <svg class="seg" viewBox="0 0 12 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path class="seg-base" d="M6 0V100" pathLength="100" />
+              <path class="seg-draw" d="M6 0V100" pathLength="100" />
+            </svg>
+          )}
+          <p class="stage-num mono">{String(i + 1).padStart(2, '0')} / {last}</p>
+          <h3 class="stage-title">{stage.title}</h3>
+          <p class="stage-label">{stage.label}</p>
+          <p class="stage-detail">{stage.detail}</p>
+          <ul class="stage-artifacts">
+            {stage.artifacts.map((a) => (
+              <li>{a}</li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <figcaption id="pipeline-caption">
+    Figure 1. The delivery pipeline, from issue to deploy, with the artifacts behind each stage.
+  </figcaption>
+</figure>

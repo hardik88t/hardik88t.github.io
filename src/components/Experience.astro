@@ -1,0 +1,61 @@
+---
+import { content, yearOf } from '../lib/content';
+
+const { profile } = content;
+// about[1] is used in the workflow essay; the other two paragraphs introduce the career here.
+const intro = [profile.about[0], profile.about[2]].filter((p): p is string => typeof p === 'string');
+---
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">05 — Experience</p>
+      <h2 id="experience-title" class="h2">Experience</h2>
+    </header>
+
+    <div class="grid about">
+      <h3 class="c-label label">About</h3>
+      <div class="c-body about-body">
+        {intro.map((p) => (
+          <p>{p}</p>
+        ))}
+      </div>
+    </div>
+
+    <ol class="timeline">
+      {profile.experience.map((job) => (
+        <li class="tl-item">
+          <p class="tl-year">
+            {yearOf(job.from)}
+            <span class="tl-year-range mono">{job.from} – {job.to}</span>
+          </p>
+          <div class="tl-body">
+            <h3 class="tl-role">{job.role}</h3>
+            <p class="tl-meta mono">{job.company} · {job.location}</p>
+            <ul class="tl-highlights">
+              {job.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+            <ul class="tl-stack" aria-label="Stack">
+              {job.stack.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))}
+      {profile.education.map((ed) => (
+        <li class="tl-item">
+          <p class="tl-year">
+            {yearOf(ed.from)}
+            <span class="tl-year-range mono">{ed.from} – {ed.to}</span>
+          </p>
+          <div class="tl-body">
+            <h3 class="tl-role">{ed.institution}</h3>
+            <p class="tl-meta mono">Education · {ed.degree}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

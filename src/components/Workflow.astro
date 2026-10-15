@@ -1,0 +1,120 @@
+---
+import Pipeline from './Pipeline.astro';
+import { content } from '../lib/content';
+
+const { agentic, profile } = content;
+
+// Margin notes show three headline figures; the full set sits in "The numbers" band below.
+const figureLabels = ['commits', 'squash-merged PRs', 'test files'];
+const keyFigures = figureLabels
+  .map((label) => agentic.metrics.find((m) => m.label === label))
+  .filter((m): m is NonNullable<typeof m> => m !== undefined);
+const merged = agentic.metrics.find((m) => m.label === 'squash-merged PRs');
+
+// Sample tasks are Conventional Commit subjects: "type(scope): summary". Split off the type.
+const splitTask = (task: string) => {
+  const at = task.indexOf(':');
+  return at > 0 ? { kind: task.slice(0, at + 1), rest: task.slice(at + 1) } : { kind: '', rest: task };
+};
+---
+<section class="section" id="workflow" aria-labelledby="workflow-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="kicker">01 — {agentic.title}</p>
+      <h2 id="workflow-title" class="h2">How I run a software studio with AI agents</h2>
+    </header>
+
+    <div class="grid">
+      <div class="c-essay">
+        <p class="lede">{agentic.thesis}</p>
+        <p class="prose">{agentic.summary}</p>
+        <p class="prose">{profile.about[1]}</p>
+        <p class="prose agents-line">
+          <span class="label">Agents in the fleet</span>
+          {agentic.agents.join(', ')}.
+        </p>
+
+        {merged && (
+          <figure class="pullquote">
+            <p class="pq-num">{merged.value}</p>
+            <blockquote>
+              <p>{merged.label}, {merged.context}.</p>
+            </blockquote>
+          </figure>
+        )}
+      </div>
+
+      <aside class="c-side sidenotes" aria-label="Guardrails and key figures">
+        <div>
+          <h3 class="label">Guardrails</h3>
+          <ol class="guardrails">
+            {agentic.guardrails.map((g) => (
+              <li>{g}</li>
+            ))}
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="label">Key figures</h3>
+          <ul class="key-figures">
+            {keyFigures.map((m) => (
+              <li>
+                <span class="fig-value">{m.value}</span>
+                <span class="fig-label label">{m.label}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="scope" style="margin-top: 1rem">{agentic.scope}</p>
+        </div>
+      </aside>
+    </div>
+
+    <Pipeline />
+
+    <section class="numbers" aria-labelledby="numbers-title">
+      <header class="band-head">
+        <h3 id="numbers-title" class="label">The numbers</h3>
+        <p class="scope">{agentic.scope}</p>
+      </header>
+      <ul class="metrics">
+        {agentic.metrics.map((m) => (
+          <li class="metric">
+            <span class="metric-value">{m.value}{m.unit && <span class="metric-unit">{m.unit}</span>}</span>
+            <span class="metric-label">{m.label}</span>
+            <span class="metric-context">{m.context}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="grid tooling">
+      <div class="c-label tooling-intro">
+        <h3>Tools I built</h3>
+      </div>
+      <dl class="c-body tools">
+        {agentic.tooling.map((t) => (
+          <div class="tool">
+            <dt>{t.name}</dt>
+            <dd>{t.detail}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="grid log-block">
+      <h3>Sample tasks, as commits</h3>
+      <p class="scope">Subjects in Conventional Commit form.</p>
+      <ol class="log">
+        {agentic.sampleTasks.map((task) => {
+          const { kind, rest } = splitTask(task);
+          return (
+            <li>
+              {kind && <span class="log-kind">{kind} </span>}
+              {rest}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </div>
+</section>

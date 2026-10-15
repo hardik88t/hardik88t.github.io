@@ -1,0 +1,31 @@
+---
+import SectionHead from './SectionHead.astro';
+import { content } from '../lib/content';
+
+const { services } = content;
+---
+<section class="section" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <SectionHead
+      kicker="03 — Services for clients"
+      id="services-title"
+      title="Services"
+      deck="Four areas I take on for clients."
+    />
+
+    <ol class="toc">
+      {services.map((s, i) => (
+        <li class="toc-item">
+          <p class="toc-num mono">{String(i + 1).padStart(2, '0')}</p>
+          <h3 class="toc-title">{s.title}</h3>
+          <p class="toc-pitch">{s.pitch}</p>
+          <ul class="toc-list">
+            {s.includes.map((x) => (
+              <li>{x}</li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

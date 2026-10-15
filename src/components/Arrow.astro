@@ -1,0 +1,12 @@
+---
+// Inline arrow icon. Drawn as SVG so it never falls back to a system glyph.
+interface Props {
+  dir?: 'right' | 'down' | 'out';
+}
+
+const { dir = 'right' } = Astro.props;
+const cls = dir === 'down' ? 'arrow arrow--down' : dir === 'out' ? 'arrow arrow--out' : 'arrow';
+---
+<svg class={cls} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+  <path d="M2.5 8h10.5M9 4.25 12.75 8 9 11.75" />
+</svg>

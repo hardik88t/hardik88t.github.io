@@ -1,0 +1,754 @@
+{
+  "_meta": {
+    "note": "Single source of truth for all portfolio prototypes. Every number here is verified from repositories (Avinya monorepo snapshot, Jul-Sep 2026). Do not add facts.",
+    "updated": "2026-10-14"
+  },
+  "profile": {
+    "name": "Hardik Thanth",
+    "shortName": "Hardik",
+    "monogram": "HT",
+    "location": "Ahmedabad, India",
+    "timezone": "IST (UTC+5:30)",
+    "role": "Full-stack developer at Avinya IT",
+    "availability": "Open to client projects and remote roles",
+    "headline": "I ship production web and native apps with a fleet of AI agents.",
+    "headlineAlternates": [
+      "One developer. A fleet of agents. Production-grade apps.",
+      "Studio-level output from one accountable developer.",
+      "I design the product, write the rules, and let agents do the typing."
+    ],
+    "sub": "Full-stack developer at Avinya IT. I design the product, encode the rules in AGENTS.md, and orchestrate coding agents through a gated pipeline of isolated worktrees, independent AI review and CI, so clients get studio-level output from one accountable person.",
+    "about": [
+      "I build web apps, internal tools and desktop and mobile apps end to end: product thinking, UI/UX in Figma, a typed full-stack codebase, tests and deployment.",
+      "Most of my implementation work is done by AI coding agents that I direct. My job is architecture, the rules agents must follow, review and judgement. The tooling around that loop (worktree isolation, merge gates, agent skills) is something I built and keep refining.",
+      "Before Avinya IT I worked on Python and Node.js microservices with Kafka and PostgreSQL at Rapidops, and I have freelanced since 2022."
+    ],
+    "email": "hardik88t@gmail.com",
+    "links": {
+      "github": "https://github.com/hardik88t",
+      "linkedin": "https://linkedin.com/in/hardik88t",
+      "cv": "https://hardik88t.tiiny.site/cv-full-stack-dev.pdf",
+      "business": "https://avinya.it"
+    },
+    "experience": [
+      {
+        "company": "Avinya IT",
+        "role": "Full-stack Developer",
+        "from": "Aug 2025",
+        "to": "Present",
+        "location": "Ahmedabad, India",
+        "highlights": [
+          "Build and run a monorepo of 4 production apps and 5 shared packages on Cloudflare Workers, Postgres and React, using an agent-driven workflow.",
+          "Architect full-stack solutions for international clients with React and Node.js.",
+          "Improved application performance by 30% through state management and API optimisation."
+        ],
+        "stack": [
+          "TypeScript",
+          "React",
+          "TanStack Start",
+          "Cloudflare Workers",
+          "PostgreSQL",
+          "Drizzle"
+        ]
+      },
+      {
+        "company": "Rapidops Inc.",
+        "role": "Jr. Software Developer",
+        "from": "Aug 2024",
+        "to": "Aug 2025",
+        "location": "Ahmedabad, India",
+        "highlights": [
+          "Engineered backend microservices in Python and Node.js with Kafka for event-driven architecture.",
+          "Designed and documented high-performance REST APIs for data integration.",
+          "Optimised complex PostgreSQL queries, reducing response time for critical modules."
+        ],
+        "stack": [
+          "Python",
+          "Node.js",
+          "Kafka",
+          "PostgreSQL",
+          "REST"
+        ]
+      },
+      {
+        "company": "Rapidops Inc.",
+        "role": "Software Developer Intern",
+        "from": "Jan 2024",
+        "to": "Jul 2024",
+        "location": "Ahmedabad, India",
+        "highlights": [
+          "Database schema design and data modelling on production codebases.",
+          "Containerised deployment workflows with Docker; unit testing and debugging."
+        ],
+        "stack": [
+          "Docker",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "company": "Freelance",
+        "role": "Freelance Software Developer",
+        "from": "Jan 2022",
+        "to": "Aug 2025",
+        "location": "Remote",
+        "highlights": [
+          "Delivered end-to-end web solutions for clients across the full development lifecycle.",
+          "Turned business requirements into technical roadmaps and working prototypes."
+        ],
+        "stack": [
+          "React",
+          "Next.js",
+          "Node.js"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "Dharmsinh Desai University",
+        "degree": "B.Tech, Computer Engineering",
+        "from": "2019",
+        "to": "2024"
+      }
+    ],
+    "skills": {
+      "Frontend & UI": [
+        "React 19",
+        "Next.js",
+        "TanStack Start / Router / Query",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Radix / Base UI",
+        "Storybook",
+        "Vue / Nuxt"
+      ],
+      "Design & UX": [
+        "Figma",
+        "Design systems",
+        "Accessibility (Storybook a11y)",
+        "Interaction design",
+        "Responsive layout"
+      ],
+      "Backend & data": [
+        "Node.js",
+        "TypeScript",
+        "Python",
+        "tRPC",
+        "REST APIs",
+        "Kafka",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "Redis",
+        "MongoDB"
+      ],
+      "Cloud & DevOps": [
+        "Cloudflare Workers",
+        "Neon Postgres",
+        "Docker",
+        "GitHub Actions",
+        "Turborepo + pnpm",
+        "Linux"
+      ],
+      "Native & desktop": [
+        "Tauri 2",
+        "Kotlin + Jetpack Compose",
+        "Chrome extensions (MV3)"
+      ],
+      "AI & agents": [
+        "Claude Code",
+        "OpenCode",
+        "Google Antigravity",
+        "T3 Code",
+        "Gemini CLI",
+        "Cursor",
+        "CodeRabbit",
+        "Vercel AI SDK",
+        "OpenAI API",
+        "PyTorch"
+      ],
+      "Quality": [
+        "Vitest",
+        "Playwright",
+        "fast-check",
+        "knip",
+        "dependency-cruiser",
+        "lefthook"
+      ]
+    }
+  },
+  "agentic": {
+    "title": "Agent-driven development",
+    "thesis": "One developer running a fleet of coding agents like an engineering team: every task isolated, every change gated, every merge verified.",
+    "summary": "All of Avinya's products live in one pnpm + Turborepo monorepo built so agents can work in parallel without colliding. Each task gets its own git worktree, database and ports. AGENTS.md files and a library of agent skills carry the architecture and the non-negotiable rules. Code must pass the same gates locally and in CI, a fresh reviewer agent attests to the exact commit, and a merge script refuses anything that does not match.",
+    "scope": "Avinya monorepo, July to September 2026",
+    "agents": [
+      "Claude Code",
+      "OpenCode",
+      "Antigravity",
+      "T3 Code",
+      "Gemini CLI",
+      "CodeRabbit"
+    ],
+    "pipeline": [
+      {
+        "id": "spec",
+        "title": "Spec",
+        "label": "Issue to tickets",
+        "detail": "Work starts as an issue from a template. Agent skills (to-spec, to-tickets) turn it into small, claimable tickets.",
+        "artifacts": [
+          "Issue templates",
+          "to-spec / to-tickets skills"
+        ]
+      },
+      {
+        "id": "isolate",
+        "title": "Isolate",
+        "label": "Worktree per task",
+        "detail": "Each task gets a fresh git worktree with its own database, ports and env files, so several agents build in parallel without stepping on each other.",
+        "artifacts": [
+          "worktree-setup.mjs",
+          "worktree-stash.mjs"
+        ]
+      },
+      {
+        "id": "context",
+        "title": "Context",
+        "label": "AGENTS.md + skills",
+        "detail": "Agents load the root and package AGENTS.md files, then the matching skill, before touching code. Invariants such as integer money and tenant isolation are written for machines.",
+        "artifacts": [
+          "11 context files",
+          "51 agent skills"
+        ]
+      },
+      {
+        "id": "build",
+        "title": "Build",
+        "label": "Agent ships a vertical slice",
+        "detail": "Schema, domain, server, UI and tests land together. Migrations are generated, never hand-edited. One concern per Conventional Commit.",
+        "artifacts": [
+          "Drizzle migrations",
+          "Conventional Commits"
+        ]
+      },
+      {
+        "id": "gates",
+        "title": "Gates",
+        "label": "Local gates mirror CI",
+        "detail": "Pre-commit and pre-push run a secret scan, typecheck, lint, unused-code checks, 17 dependency-boundary rules and the full test suite against a real Postgres. CI runs the same scripts.",
+        "artifacts": [
+          "lefthook",
+          "knip",
+          "dependency-cruiser",
+          "varlock"
+        ]
+      },
+      {
+        "id": "review",
+        "title": "Review",
+        "label": "Fresh-agent review",
+        "detail": "An independent reviewer agent that never saw the author's session reviews the PR and attests to one exact commit SHA. Any new push invalidates the attestation.",
+        "artifacts": [
+          "pr-review skill",
+          "CodeRabbit"
+        ]
+      },
+      {
+        "id": "merge",
+        "title": "Merge",
+        "label": "SHA-bound merge gate",
+        "detail": "merge:ready refuses to merge unless the attestation SHA equals the head, CI is green and the PR is mergeable, then squash-merges that exact commit.",
+        "artifacts": [
+          "merge-ready.mjs",
+          "update-branches workflow"
+        ]
+      },
+      {
+        "id": "ship",
+        "title": "Ship",
+        "label": "Deploy only what changed",
+        "detail": "Change detection deploys only the apps a merge touched to Cloudflare. A preview label spins up per-PR preview apps and database branches.",
+        "artifacts": [
+          "changed-apps.sh",
+          "preview workflow"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "value": 139,
+        "label": "commits",
+        "context": "one author, Jul to Sep 2026"
+      },
+      {
+        "value": 4,
+        "label": "production apps",
+        "context": "plus 5 shared packages in one monorepo"
+      },
+      {
+        "value": 63,
+        "label": "squash-merged PRs",
+        "context": "each through the merge gate"
+      },
+      {
+        "value": 51,
+        "label": "agent skills",
+        "context": "loaded on demand by agents"
+      },
+      {
+        "value": 127,
+        "label": "test files",
+        "context": "31k lines of tests"
+      },
+      {
+        "value": 75,
+        "label": "Storybook stories",
+        "context": "with the a11y addon"
+      },
+      {
+        "value": 17,
+        "label": "dependency rules",
+        "context": "architecture enforced in CI"
+      },
+      {
+        "value": 147,
+        "unit": "k",
+        "label": "lines of TypeScript",
+        "context": "hand-written, excluding tests"
+      },
+      {
+        "value": 91,
+        "label": "commits in September",
+        "context": "peak of 16 in one day"
+      }
+    ],
+    "guardrails": [
+      "Every task in its own worktree, database and ports",
+      "Invariants first: data integrity, tenant isolation, transactions, idempotency",
+      "Secret scan on every commit",
+      "Strict TypeScript, lint and unused-code checks as errors",
+      "17 dependency-boundary rules (no cross-app imports, no cycles)",
+      "Tests against a real Postgres before every push",
+      "Independent AI review bound to a commit SHA",
+      "Agents may not claim a gate passed unless they ran it"
+    ],
+    "tooling": [
+      {
+        "name": "Worktree toolkit",
+        "detail": "Scripts that give each agent its own worktree, database, ports and a race-free stash."
+      },
+      {
+        "name": "merge:ready",
+        "detail": "A merge gate that checks review attestation, CI and mergeability against the same commit."
+      },
+      {
+        "name": "pr:sync + update-branches",
+        "detail": "Keeps every open PR current with main and re-runs CI on the new head."
+      },
+      {
+        "name": "agx",
+        "detail": "A 3.4k-line Python CLI for the Antigravity agent IDE: session sync, search, diff, backup and dev-port tunnels."
+      },
+      {
+        "name": "Agent skills library",
+        "detail": "51 skills for specs, tickets, PR authoring, review and review response."
+      }
+    ],
+    "sampleTasks": [
+      "feat(ui): pricing table with plan toggle",
+      "fix(auth): refresh token race on tab resume",
+      "test(e2e): checkout happy path",
+      "feat(db): org-scoped invoices table",
+      "refactor(api): extract tRPC billing router",
+      "docs(agents): AGENTS.md rules for payments",
+      "perf(web): virtualise orders table",
+      "fix(a11y): focus trap in command palette",
+      "feat(native): offline queue for sync",
+      "chore(ci): cache turbo outputs"
+    ]
+  },
+  "services": [
+    {
+      "id": "web-apps",
+      "title": "Web applications",
+      "pitch": "SaaS products, dashboards and internal tools, built full-stack and deployed to the edge.",
+      "includes": [
+        "React / Next.js / TanStack Start",
+        "Postgres + typed APIs",
+        "Auth, roles and multi-tenancy",
+        "Cloudflare or Vercel deployment"
+      ]
+    },
+    {
+      "id": "ui-ux",
+      "title": "UI/UX and design systems",
+      "pitch": "Interfaces that feel calm and fast, with a component system your team can keep extending.",
+      "includes": [
+        "Figma to production",
+        "shadcn / Radix component libraries",
+        "Storybook and accessibility checks",
+        "Motion and micro-interactions"
+      ]
+    },
+    {
+      "id": "native",
+      "title": "Desktop and mobile apps",
+      "pitch": "Cross-platform desktop apps with Tauri and native Android with Kotlin and Compose, sharing your web stack where it makes sense.",
+      "includes": [
+        "Tauri 2 desktop apps",
+        "Kotlin + Jetpack Compose",
+        "Offline-first data",
+        "Release builds and store metadata"
+      ]
+    },
+    {
+      "id": "ai-agents",
+      "title": "AI features and agent workflows",
+      "pitch": "LLM features inside your product, and the agent-driven delivery pipeline I use, set up for your team.",
+      "includes": [
+        "AI SDK / OpenAI integrations",
+        "RAG and document AI",
+        "AGENTS.md, skills and review gates",
+        "Worktree-based parallel agent setup"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "avinya-platform",
+      "title": "Avinya platform",
+      "oneLiner": "A monorepo of 4 production apps and 5 shared packages, built by one developer orchestrating coding agents.",
+      "description": "The engine behind Avinya IT: a multi-tenant wholesale distribution platform with offline order capture, an exam-prep workspace that drafts documents with AI and compiles them with Typst in the browser, a clinical notes workspace and an internal admin app, all sharing auth, UI and tooling packages. The repository is designed for agents: worktree isolation, AGENTS.md context, agent skills, local gates that mirror CI, independent AI review and a SHA-bound merge gate. Only the apps a merge touches are deployed.",
+      "categories": [
+        "agentic",
+        "web-app",
+        "ui-ux"
+      ],
+      "stack": [
+        "TanStack Start",
+        "React 19",
+        "Cloudflare Workers",
+        "Neon Postgres",
+        "Drizzle",
+        "tRPC",
+        "Better Auth",
+        "shadcn / Base UI",
+        "Storybook",
+        "Playwright",
+        "AI SDK",
+        "Typst WASM"
+      ],
+      "role": "Architect, orchestrator and reviewer",
+      "year": "2026",
+      "highlights": [
+        "139 commits, 63 merged PRs, 1 author",
+        "127 test files, 75 Storybook stories",
+        "Per-PR preview environments"
+      ],
+      "links": {},
+      "anonymized": true,
+      "featured": true,
+      "accent": "#3D8BFF"
+    },
+    {
+      "slug": "dhi",
+      "title": "Dhi",
+      "oneLiner": "A desktop LLM wiki that ingests your documents and grows a linked knowledge graph.",
+      "description": "Tauri 2 desktop app with a React 19 front end. Documents go through a persistent LLM ingest queue and become linked notes in a Milkdown editor, visualised as a knowledge graph with community detection. Includes a Chrome clipper extension, property-based tests with fast-check, CI and cross-platform release builds.",
+      "categories": [
+        "desktop",
+        "ai",
+        "ui-ux"
+      ],
+      "stack": [
+        "Tauri 2",
+        "React 19",
+        "Vite",
+        "Milkdown",
+        "Sigma.js / graphology",
+        "Vitest",
+        "fast-check"
+      ],
+      "role": "Solo developer",
+      "year": "2026",
+      "highlights": [
+        "Graph view with Louvain communities",
+        "Persistent ingest queue",
+        "Release builds for Linux and Windows"
+      ],
+      "links": {
+        "github": "https://github.com/hardik88t/dhi"
+      },
+      "anonymized": false,
+      "featured": true,
+      "accent": "#9B7BFF"
+    },
+    {
+      "slug": "net-watch",
+      "title": "Net Watch",
+      "oneLiner": "A native Android app that records network drops and 'dead air' on a timeline you can export.",
+      "description": "Kotlin and Jetpack Compose app with a background monitoring service, a Room database and an event timeline that flags connectivity drops and dead-air periods. Ships F-Droid / fastlane metadata, unit and instrumented tests, and product docs.",
+      "categories": [
+        "native-mobile"
+      ],
+      "stack": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Room",
+        "Foreground service",
+        "F-Droid / fastlane"
+      ],
+      "role": "Solo developer",
+      "year": "2026",
+      "highlights": [
+        "Background monitoring service",
+        "Exportable event timeline",
+        "F-Droid ready"
+      ],
+      "links": {
+        "github": "https://github.com/hardik88t/net-watch"
+      },
+      "anonymized": false,
+      "featured": true,
+      "accent": "#3DD6A3"
+    },
+    {
+      "slug": "agx",
+      "title": "agx",
+      "oneLiner": "A CLI that keeps the Antigravity agent IDE and CLI in sync, searchable and backed up.",
+      "description": "Python CLI (Typer + Rich) for Google Antigravity: bidirectional session index sync, full-text transcript search, trajectory diffing, backups and restores, a doctor health check and zero-touch subdomain tunnels for local dev ports. Three releases in two weeks, tag-built binaries for Linux, macOS and Windows.",
+      "categories": [
+        "agentic",
+        "cli"
+      ],
+      "stack": [
+        "Python",
+        "Typer",
+        "Rich",
+        "SQLite",
+        "uv",
+        "PyInstaller",
+        "Cloudflare Tunnel"
+      ],
+      "role": "Solo developer",
+      "year": "2026",
+      "highlights": [
+        "v0.3.0, 3 releases in 2 weeks",
+        "34 tests",
+        "Cross-platform binaries"
+      ],
+      "links": {
+        "github": "https://github.com/hardik88t/agx"
+      },
+      "anonymized": false,
+      "featured": true,
+      "accent": "#F5A524"
+    },
+    {
+      "slug": "medjot",
+      "title": "MedJot",
+      "oneLiner": "An offline-first clinic notebook that lets a solo doctor record a visit faster than a paper register.",
+      "description": "Mobile-first PWA where all data stays on the device (IndexedDB with live queries). Chip-based symptom capture with learned autocomplete over a pre-seeded dictionary of 100+ symptoms and 200+ medicines, a cmdk command palette, a dashboard for follow-ups and payments, PDF receipts on a letterhead, and backup and restore. Installable, with an update dialog.",
+      "categories": [
+        "web-app",
+        "ui-ux",
+        "native-mobile"
+      ],
+      "stack": [
+        "React 19",
+        "Vite",
+        "TanStack Router",
+        "Dexie (IndexedDB)",
+        "Tailwind v4",
+        "shadcn on Base UI",
+        "Workbox PWA",
+        "Recharts",
+        "Vitest"
+      ],
+      "role": "Product design and development",
+      "year": "2026",
+      "highlights": [
+        "Works fully offline",
+        "Command palette + learned autocomplete",
+        "Installable PWA"
+      ],
+      "links": {},
+      "anonymized": false,
+      "featured": true,
+      "accent": "#2EC4B6"
+    },
+    {
+      "slug": "anvika",
+      "title": "Anvika",
+      "oneLiner": "An admin and client dashboard for managing client data with real-time sync.",
+      "description": "Next.js application designed in Figma and built with shadcn/ui: an admin dashboard and a client portal for managing client data, with real-time syncing on a Supabase (PostgreSQL) backend.",
+      "categories": [
+        "web-app",
+        "ui-ux"
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "shadcn/ui",
+        "Supabase",
+        "Figma"
+      ],
+      "role": "Design and full-stack development",
+      "year": "2025",
+      "highlights": [
+        "Figma to production",
+        "Admin + client portals",
+        "Real-time sync"
+      ],
+      "links": {
+        "live": "https://anvika.vercel.app"
+      },
+      "anonymized": true,
+      "featured": false,
+      "accent": "#FF6B6B"
+    },
+    {
+      "slug": "tabbb",
+      "title": "tabbb",
+      "oneLiner": "A Chrome new-tab page that groups your open tabs and makes closing them satisfying.",
+      "description": "Manifest V3 extension with a domain card grid, duplicate detection and 'save for later'. Closing a group plays a synthesised swoosh (Web Audio API) and confetti. A small study in delight as a UX feature.",
+      "categories": [
+        "ui-ux",
+        "web-app"
+      ],
+      "stack": [
+        "Chrome MV3",
+        "JavaScript",
+        "Web Audio API",
+        "CSS"
+      ],
+      "role": "Design and development",
+      "year": "2026",
+      "highlights": [
+        "Duplicate tab detection",
+        "Synthesised sound design",
+        "Zero dependencies"
+      ],
+      "links": {
+        "github": "https://github.com/hardik88t/tabbb"
+      },
+      "anonymized": false,
+      "featured": false,
+      "accent": "#E8A317"
+    },
+    {
+      "slug": "cryptonow",
+      "title": "CryptoNow",
+      "oneLiner": "A crypto market dashboard with live prices, charts, trending coins and news.",
+      "description": "Next.js 15 dashboard on CoinGecko data with a cached API client and a daily request guard, a markets table, price charts with Recharts, and trending and news pages, built with shadcn/ui.",
+      "categories": [
+        "web-app",
+        "data-viz"
+      ],
+      "stack": [
+        "Next.js 15",
+        "TypeScript",
+        "Tailwind",
+        "shadcn/ui",
+        "Recharts"
+      ],
+      "role": "Solo developer",
+      "year": "2025",
+      "highlights": [
+        "Cached API client with request budget",
+        "Markets table + charts"
+      ],
+      "links": {
+        "github": "https://github.com/hardik88t/cryptonow"
+      },
+      "anonymized": false,
+      "featured": false,
+      "accent": "#3557E0"
+    },
+    {
+      "slug": "tantr",
+      "title": "Tantr",
+      "oneLiner": "An agentic learning and file-organisation app where agents must ask before they change anything.",
+      "description": "Agents work through a four-phase mutation protocol: read-only audit, manifest, human approval, then idempotent execution with hash verification. Deletions become quarantine, every batch has an undo script, and agents read and answer human annotations through a SQLite feedback loop.",
+      "categories": [
+        "agentic",
+        "web-app"
+      ],
+      "stack": [
+        "React",
+        "Vite",
+        "Node.js",
+        "SQLite"
+      ],
+      "role": "Solo developer",
+      "year": "2026",
+      "highlights": [
+        "Human-approval mutation protocol",
+        "Undo script per batch"
+      ],
+      "links": {},
+      "anonymized": false,
+      "featured": false,
+      "accent": "#8A3FA0"
+    },
+    {
+      "slug": "client-sites",
+      "title": "Business websites",
+      "oneLiner": "Booking, catalogue and studio websites for healthcare, food and wellness businesses.",
+      "description": "A hospital site with appointment booking (React, Express, Zod, Drizzle on Neon), a food e-commerce catalogue with cart, comparison and quote requests (Next.js 15, Tailwind 4, Framer Motion), and a wellness studio site with a guided breathing exercise and an accessibility page (Nuxt 4, Vuetify).",
+      "categories": [
+        "website",
+        "ui-ux"
+      ],
+      "stack": [
+        "React",
+        "Next.js 15",
+        "Nuxt 4",
+        "Express",
+        "Drizzle",
+        "Tailwind 4",
+        "Framer Motion"
+      ],
+      "role": "Design and development",
+      "year": "2025",
+      "highlights": [
+        "Appointment booking",
+        "Quote-request cart",
+        "Accessibility page"
+      ],
+      "links": {},
+      "anonymized": true,
+      "featured": false,
+      "accent": "#3E8E6E"
+    },
+    {
+      "slug": "adhyai",
+      "title": "AdhyAI",
+      "oneLiner": "Turns study notes into rewritten, summarised or expanded material with LLMs.",
+      "description": "Python app with a layered architecture (services, repositories, Alembic migrations), a Streamlit UI, an OpenRouter adapter with rate limiting, Kubernetes manifests and CI.",
+      "categories": [
+        "ai",
+        "web-app"
+      ],
+      "stack": [
+        "Python",
+        "Streamlit",
+        "SQLAlchemy",
+        "Alembic",
+        "OpenRouter",
+        "Kubernetes"
+      ],
+      "role": "Solo developer",
+      "year": "2026",
+      "highlights": [
+        "Rate-limited LLM adapter",
+        "K8s manifests + CI"
+      ],
+      "links": {
+        "github": "https://github.com/hardik88t/AdhyAI"
+      },
+      "anonymized": false,
+      "featured": false,
+      "accent": "#5C6B63"
+    }
+  ],
+  "footer": "Designed and built with an agent swarm, orchestrated by Hardik."
+}

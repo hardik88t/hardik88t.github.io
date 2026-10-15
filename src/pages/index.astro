@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+import Hero from '../components/Hero.astro';
+import Workflow from '../components/Workflow.astro';
+import Work from '../components/Work.astro';
+import Services from '../components/Services.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { content } from '../lib/content';
+
+const { profile } = content;
+---
+<Base title={`${profile.name}, ${profile.role}`} description={profile.headline}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Masthead />
+  <main id="main">
+    <Hero />
+    <Workflow />
+    <Work />
+    <Services />
+    <Skills />
+    <Experience />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

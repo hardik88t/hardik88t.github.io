@@ -1,0 +1,50 @@
+---
+import Arrow from './Arrow.astro';
+import { content } from '../lib/content';
+
+const { profile } = content;
+
+// One highlighted phrase in the headline, taken from the content's own wording.
+const phrase = 'a fleet of AI agents';
+const at = profile.headline.indexOf(phrase);
+const lead = at >= 0 ? profile.headline.slice(0, at) : profile.headline;
+const trail = at >= 0 ? profile.headline.slice(at + phrase.length) : '';
+---
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="kicker eyebrow">{profile.role}</p>
+    <h1 id="hero-title" class="hero-title">
+      {lead}{at >= 0 && <mark>{phrase}</mark>}{trail}
+    </h1>
+
+    <div class="grid hero-foot">
+      <div class="c-right">
+        <p class="standfirst">{profile.sub}</p>
+        <ul class="ctas">
+          <li><a class="cta cta--primary" href="#contact">Start a project <Arrow /></a></li>
+          <li><a class="cta" href="#workflow">See the agent workflow <Arrow dir="down" /></a></li>
+          <li>
+            <a class="cta" href={profile.links.cv} target="_blank" rel="noopener noreferrer">
+              Read the CV (PDF) <Arrow dir="out" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <dl class="hero-meta">
+      <div>
+        <dt class="label">Based in</dt>
+        <dd>{profile.location}</dd>
+      </div>
+      <div>
+        <dt class="label">Time zone</dt>
+        <dd>{profile.timezone}</dd>
+      </div>
+      <div>
+        <dt class="label">Availability</dt>
+        <dd>{profile.availability}</dd>
+      </div>
+    </dl>
+  </div>
+</section>

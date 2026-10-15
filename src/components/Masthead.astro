@@ -1,0 +1,56 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { content } from '../lib/content';
+
+const { profile } = content;
+
+const sections = [
+  { href: '#workflow', label: 'Workflow' },
+  { href: '#work', label: 'Work' },
+  { href: '#services', label: 'Services' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<header class="masthead">
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" aria-label={`${profile.name}, back to top`}>
+      <span class="monogram" aria-hidden="true">{profile.monogram}</span>
+      <span class="wordmark-name">{profile.name}</span>
+      <span class="wordmark-tag">Software studio of one (plus agents)</span>
+    </a>
+
+    <nav class="nav-inline" aria-label="Primary">
+      <ul>
+        {sections.map((s) => (
+          <li><a href={s.href}>{s.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="bar-end">
+      <ThemeToggle />
+      <details class="nav-mobile">
+        <summary>
+          <span class="when-closed">Menu</span>
+          <span class="when-open">Close</span>
+        </summary>
+        <div class="menu-panel">
+          <nav aria-label="Primary (mobile)">
+            <ol class="menu-list">
+              {sections.map((s, i) => (
+                <li>
+                  <a href={s.href}>
+                    <span class="menu-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
