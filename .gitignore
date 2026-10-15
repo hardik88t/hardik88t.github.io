@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.astro/
+.svelte-kit/
+.next/
+out/
+*.log
+.DS_Store
