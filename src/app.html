@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta
+			name="description"
+			content="Hardik Thanth, full-stack developer at Avinya IT. Production web and native apps built by one developer orchestrating a fleet of AI coding agents."
+		/>
+		<meta name="theme-color" content="#EEF1F5" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#14171C" media="(prefers-color-scheme: dark)" />
+		<link
+			rel="icon"
+			href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23161A22'/%3E%3Ctext x='16' y='21' font-family='Arial,sans-serif' font-size='13' font-weight='800' text-anchor='middle' fill='%23EEF1F5'%3EHT%3C/text%3E%3Ccircle cx='25' cy='7' r='2.5' fill='%232E5BFF'/%3E%3C/svg%3E"
+		/>
+		<script>
+			// Runs before first paint: restores the viewer's theme and view choice (per-browser only),
+			// and starts in Read-as-a-page for reduced-motion users unless they chose otherwise.
+			(function () {
+				var d = document.documentElement;
+				var view = null;
+				try {
+					var t = localStorage.getItem('hos-theme');
+					if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+					view = localStorage.getItem('hos-view');
+				} catch (e) {}
+				if (view !== 'os' && view !== 'page') {
+					var reduced = false;
+					try {
+						reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+					} catch (e) {}
+					view = reduced ? 'page' : 'os';
+				}
+				d.setAttribute('data-view', view);
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

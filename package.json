@@ -1,0 +1,26 @@
+{
+  "name": "sveltekit-agent-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HardikOS: a desktop + phone-home-screen portfolio prototype for Hardik Thanth.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --host 127.0.0.1 --port 3002 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 3002 --strictPort",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings"
+  },
+  "dependencies": {
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource/martian-mono": "^5.3.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.7"
+  }
+}

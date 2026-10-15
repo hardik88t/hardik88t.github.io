@@ -1,0 +1,421 @@
+/* ------------------------------------------------------------------
+   HardikOS design tokens. Every colour in the app comes from here.
+   Light is the default; dark follows the system unless the viewer picks
+   one (html[data-theme]). Project accents are set per item as --p.
+------------------------------------------------------------------- */
+:root {
+	--font-ui: 'Figtree Variable', 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--font-mono: 'Martian Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono',
+		monospace;
+
+	--r-xs: 6px;
+	--r-sm: 9px;
+	--r-md: 12px;
+	--r-lg: 16px;
+	--r-win: 14px;
+	--gutter: 16px;
+	--touch: 44px;
+	--ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--menu-h: 28px;
+	--dock-zone: 92px;
+
+	/* light (default) */
+	--desk: #eef1f5;
+	--desk-2: #e4e9f1;
+	--win: #ffffff;
+	--win-2: #f6f8fb;
+	--win-line: #d9dee7;
+	--line: #e4e8ef;
+	--ink: #161a22;
+	--ink-2: #4b5468;
+	--ink-3: #626c80;
+	--accent: #2e5bff;
+	--accent-ink: #2148e6;
+	--accent-soft: #e6ecff;
+	--on-accent: #ffffff;
+	--focus: #2e5bff;
+	--ok: #137a52;
+	--ok-dot: #1fbf85;
+	--chip: #f1f4f9;
+	--chip-line: #e0e5ee;
+	--menubar: rgba(255, 255, 255, 0.72);
+	--dock: rgba(255, 255, 255, 0.58);
+	--dock-line: rgba(255, 255, 255, 0.85);
+	--shadow-win: 0 1px 1px rgba(16, 24, 40, 0.06), 0 10px 28px rgba(16, 24, 40, 0.1),
+		0 34px 70px rgba(16, 24, 40, 0.12);
+	--shadow-soft: 0 1px 2px rgba(16, 24, 40, 0.06), 0 6px 18px rgba(16, 24, 40, 0.07);
+	--shadow-dock: 0 1px 1px rgba(16, 24, 40, 0.06), 0 14px 36px rgba(16, 24, 40, 0.16);
+	--mesh-a: #cddfff;
+	--mesh-b: #f6e5d3;
+	--mesh-c: #cdf0e3;
+	--mesh-d: #e6dcff;
+
+	/* terminal stays dark in both themes */
+	--term-bg: #0e1218;
+	--term-line: #222a36;
+	--term-ink: #d5dce8;
+	--term-dim: #8a94a7;
+	--term-accent: #8db0ff;
+	--term-ok: #6ee2ae;
+	--term-warn: #f5c36b;
+	--term-err: #ff9b9b;
+	--term-head: #f2f5fb;
+	--white: #ffffff;
+	--term-chips: #0b0e13;
+	--term-chip: #151b24;
+	--term-chip-line: #2a3340;
+	--term-chip-ok: #245c47;
+
+	/* window traffic lights */
+	--light-close: #ff5f57;
+	--light-min: #febc2e;
+	--light-zoom: #28c840;
+
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--desk: #14171c;
+		--desk-2: #1a1e25;
+		--win: #1c2027;
+		--win-2: #171b22;
+		--win-line: #2c333e;
+		--line: #2a303a;
+		--ink: #edf0f5;
+		--ink-2: #b9c1ce;
+		--ink-3: #9aa3b4;
+		--accent: #7c9cff;
+		--accent-ink: #a7bcff;
+		--accent-soft: #232d48;
+		--on-accent: #0b1020;
+		--focus: #8fa9ff;
+		--ok: #6fd9a9;
+		--ok-dot: #3ddc97;
+		--chip: #242a33;
+		--chip-line: #323a46;
+		--menubar: rgba(28, 32, 39, 0.74);
+		--dock: rgba(28, 32, 39, 0.6);
+		--dock-line: rgba(255, 255, 255, 0.08);
+		--shadow-win: 0 1px 1px rgba(0, 0, 0, 0.3), 0 12px 30px rgba(0, 0, 0, 0.36),
+			0 40px 80px rgba(0, 0, 0, 0.4);
+		--shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.25);
+		--shadow-dock: 0 1px 1px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.45);
+		--mesh-a: #22345c;
+		--mesh-b: #3a2d33;
+		--mesh-c: #1d3b37;
+		--mesh-d: #2b2750;
+		color-scheme: dark;
+	}
+}
+
+:root[data-theme='dark'] {
+	--desk: #14171c;
+	--desk-2: #1a1e25;
+	--win: #1c2027;
+	--win-2: #171b22;
+	--win-line: #2c333e;
+	--line: #2a303a;
+	--ink: #edf0f5;
+	--ink-2: #b9c1ce;
+	--ink-3: #9aa3b4;
+	--accent: #7c9cff;
+	--accent-ink: #a7bcff;
+	--accent-soft: #232d48;
+	--on-accent: #0b1020;
+	--focus: #8fa9ff;
+	--ok: #6fd9a9;
+	--ok-dot: #3ddc97;
+	--chip: #242a33;
+	--chip-line: #323a46;
+	--menubar: rgba(28, 32, 39, 0.74);
+	--dock: rgba(28, 32, 39, 0.6);
+	--dock-line: rgba(255, 255, 255, 0.08);
+	--shadow-win: 0 1px 1px rgba(0, 0, 0, 0.3), 0 12px 30px rgba(0, 0, 0, 0.36),
+		0 40px 80px rgba(0, 0, 0, 0.4);
+	--shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.25);
+	--shadow-dock: 0 1px 1px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.45);
+	--mesh-a: #22345c;
+	--mesh-b: #3a2d33;
+	--mesh-c: #1d3b37;
+	--mesh-d: #2b2750;
+	color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	background: var(--desk);
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	min-height: 100dvh;
+	background: var(--desk);
+	color: var(--ink);
+	font-family: var(--font-ui);
+	font-size: 16px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote {
+	margin: 0;
+}
+
+ul,
+ol {
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	color: var(--accent-ink);
+	text-underline-offset: 3px;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+}
+
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+	border-radius: var(--r-xs);
+}
+
+::selection {
+	background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.mono {
+	font-family: var(--font-mono);
+	letter-spacing: -0.01em;
+}
+
+.sr-only {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.skip-link {
+	position: fixed;
+	top: 8px;
+	left: 8px;
+	z-index: 1000;
+	padding: 10px 16px;
+	border-radius: var(--r-sm);
+	background: var(--ink);
+	color: var(--desk);
+	font-weight: 600;
+	text-decoration: none;
+	transform: translateY(-160%);
+	transition: transform 180ms var(--ease-out);
+}
+
+.skip-link:focus-visible {
+	transform: translateY(0);
+	outline-offset: 0;
+}
+
+/* ------------------------------------------------------------------
+   Shared controls
+------------------------------------------------------------------- */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: var(--touch);
+	padding: 10px 18px;
+	border-radius: 999px;
+	border: 1px solid var(--chip-line);
+	background: var(--win);
+	color: var(--ink);
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	transition:
+		background-color 160ms ease,
+		border-color 160ms ease,
+		transform 120ms ease;
+}
+
+.btn:hover {
+	border-color: color-mix(in srgb, var(--ink) 30%, var(--chip-line));
+}
+
+.btn:active {
+	transform: scale(0.98);
+}
+
+.btn-primary {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: var(--on-accent);
+}
+
+.btn-primary:hover {
+	background: color-mix(in srgb, var(--accent) 88%, var(--ink));
+	border-color: color-mix(in srgb, var(--accent) 88%, var(--ink));
+}
+
+.btn-quiet {
+	background: transparent;
+	border-color: transparent;
+	color: var(--accent-ink);
+	padding-inline: 10px;
+}
+
+.btn-quiet:hover {
+	background: var(--accent-soft);
+	border-color: transparent;
+}
+
+.btn-sm {
+	min-height: var(--touch);
+	padding: 8px 14px;
+	font-size: 13.5px;
+}
+
+.link-arrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: var(--touch);
+	font-weight: 600;
+	color: var(--accent-ink);
+	text-decoration: none;
+}
+
+.link-arrow:hover {
+	text-decoration: underline;
+}
+
+.chip {
+	display: inline-flex;
+	align-items: center;
+	min-height: 26px;
+	padding: 3px 10px;
+	border-radius: 999px;
+	background: var(--chip);
+	border: 1px solid var(--chip-line);
+	color: var(--ink-2);
+	font-size: 12.5px;
+	font-weight: 500;
+	line-height: 1.2;
+	white-space: nowrap;
+}
+
+.eyebrow {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+	line-height: 1.4;
+}
+
+.dot-live {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--ok-dot);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok-dot) 22%, transparent);
+	flex: none;
+}
+
+.tabular {
+	font-variant-numeric: tabular-nums;
+}
+
+.check-list {
+	display: grid;
+	gap: 10px;
+}
+
+.check-list li {
+	display: grid;
+	grid-template-columns: 18px 1fr;
+	gap: 10px;
+	align-items: start;
+	color: var(--ink-2);
+	font-size: 15px;
+}
+
+.check-list svg {
+	margin-top: 4px;
+	color: var(--ok);
+}
+
+/* ------------------------------------------------------------------
+   Mode switch: linear page is the no-JS baseline, hidden before
+   hydration only when the viewer's stored choice is the OS.
+------------------------------------------------------------------- */
+html[data-view='os'] .read-page {
+	display: none;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion: keep state changes, drop the movement.
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 1ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 1ms !important;
+		scroll-behavior: auto !important;
+	}
+}
