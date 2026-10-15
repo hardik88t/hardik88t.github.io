@@ -1,0 +1,25 @@
+---
+// The index of all eight projects as compact cards: a horizontally swipeable strip of each project's
+// riso prints, a title, a note and a case-study link. This is the phone view of #work and the no-JS view.
+import { cases, pad } from '../lib/cases';
+import Print from './Print.astro';
+---
+<ol class="work-cards" role="list">
+  {cases.map((c) => (
+    <li class="work-card">
+      <div class="work-card__strip" role="list" aria-label={`Screens of ${c.title}`}>
+        {c.extra.board.pins.map((p, i) => (
+          <div class={`work-card__shot${p.phone ? " work-card__shot--phone" : ""}`} role="listitem">
+            <Print name={p.name} phone={p.phone} seedKey={`card:${c.slug}:${i}`} sizes="72vw" fix={i === 0 ? 'tape' : 'none'} />
+          </div>
+        ))}
+      </div>
+      <div class="work-card__body">
+        <p class="mono">{pad(c.index)} · {c.type} · {c.year}</p>
+        <h3 class="work-card__title"><a href={`#work-${c.slug}`}>{c.title}</a></h3>
+        <p class="work-card__line">{c.oneLiner}</p>
+        <p class="work-card__more"><a class="link-hand" href={`#work-${c.slug}`}>Case study<svg class="mark mark--underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><use href="#m-underline-a"></use></svg></a></p>
+      </div>
+    </li>
+  ))}
+</ol>

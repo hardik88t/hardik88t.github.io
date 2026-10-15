@@ -1,0 +1,15 @@
+---
+// Two self-hosted variable fonts, subset and instanced by scripts/subset-fonts.py:
+// Fraunces (opsz, wght 400-700, SOFT, WONK) and Recursive (wght 400-700, CASL, MONO, slnt; CRSV pinned).
+// Own @font-face rules with font-display: optional: a late font never swaps in, so nothing shifts.
+import frauncesUrl from '../fonts/fraunces-subset.woff2?url';
+import recursiveUrl from '../fonts/recursive-subset.woff2?url';
+
+const css = [
+  `@font-face{font-family:"Fraunces";src:url("${frauncesUrl}") format("woff2");font-weight:400 700;font-style:normal;font-display:optional;}`,
+  `@font-face{font-family:"Recursive";src:url("${recursiveUrl}") format("woff2");font-weight:400 700;font-style:normal;font-display:optional;}`,
+].join('');
+---
+<link rel="preload" href={frauncesUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href={recursiveUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+<style is:inline set:html={css}></style>

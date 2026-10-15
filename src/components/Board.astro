@@ -1,0 +1,60 @@
+---
+// The pinboard markup (desktop, with JS). Eight clusters on a 3 x 3 grid; the ninth slot is a sticky note
+// that opens the contact email. Each cluster: two or three riso prints pinned with tape, a handwritten
+// title, one margin note and a case study link. scripts/pinboard.ts makes it pannable and zoomable.
+import { cases, pad } from '../lib/cases';
+import Print from './Print.astro';
+
+const WORLD = { w: 2600, h: 1820 };
+const BOX = { w: 640, h: 440 };
+const at = (i: number) => ({ x: 120 + (i % 3) * 800, y: 120 + Math.floor(i / 3) * 560 });
+const noteAt = at(8);
+const mail = 'mailto:hardik88t@gmail.com?subject=Project%20enquiry';
+---
+<div class="board-wrap">
+  <div class="board" data-board tabindex="0" role="region" aria-roledescription="pinboard" aria-label="Pinboard of eight projects. Drag to pan. Control and wheel zoom. Left and right arrows move between projects. Zero fits the board. The index below lists the same projects.">
+    <div class="board__world" data-world style={`width:${WORLD.w}px;height:${WORLD.h}px`}>
+      {cases.map((c, i) => {
+        const p = at(i);
+        const t = c.extra.board.title;
+        return (
+          <div class="cluster" data-cluster={i} style={`left:${p.x}px;top:${p.y}px;width:${BOX.w}px;height:${BOX.h}px`}>
+            {c.extra.board.pins.map((pin, j) => (
+              <div class="cluster__pin" style={`left:${pin.x}px;top:${pin.y}px;width:${pin.w}px;--r:${pin.r}deg;z-index:${j + 1}`}>
+                <Print name={pin.name} phone={pin.phone} proofSet={`${c.slug}:board`} proofIndex={j} proofAlt={`${c.title}, ${pin.label}`} seedKey={`pin:${c.slug}:${j}`} fix="pin" />
+              </div>
+            ))}
+            <div class="cluster__title" style={`left:${t.x}px;top:${t.y}px;width:${t.w}px`}>
+              <p class="mono">{pad(i)} · {c.type} · {c.year}</p>
+              <h3><a href={`#work-${c.slug}`}>{c.title}</a></h3>
+              <p class="cluster__note">{c.extra.decision}</p>
+              <p><a class="link-hand" href={`#work-${c.slug}`}>Case study<svg class="mark mark--underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><use href="#m-underline-a"></use></svg></a></p>
+            </div>
+          </div>
+        );
+      })}
+      <div class="cluster cluster--note" style={`left:${noteAt.x}px;top:${noteAt.y}px;width:${BOX.w}px;height:${BOX.h}px`}>
+        <div class="sticky">
+          <p class="sticky__text">Something like this, for your product?</p>
+          <a class="btn btn--primary" href={mail}>Start a project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="board__bar">
+    <div class="board__zoom" role="group" aria-label="Zoom">
+      <button type="button" class="btn btn--quiet board__btn" data-zoom="out" aria-label="Zoom out">−</button>
+      <output class="mono board__level" data-zoom-label aria-live="polite">95%</output>
+      <button type="button" class="btn btn--quiet board__btn" data-zoom="in" aria-label="Zoom in">+</button>
+      <button type="button" class="btn btn--quiet board__btn" data-zoom="fit">Fit</button>
+    </div>
+    <p class="mono board__help">Drag to pan. Ctrl/Cmd + scroll to zoom. Arrow keys move between projects.</p>
+    <svg class="minimap" data-minimap viewBox={`0 0 ${WORLD.w} ${WORLD.h}`} aria-hidden="true" focusable="false">
+      {cases.map((_, i) => {
+        const p = at(i);
+        return <rect class="minimap__cluster" x={p.x} y={p.y} width={BOX.w} height={BOX.h} />;
+      })}
+      <rect class="minimap__view" data-view-rect x="0" y="0" width="100" height="100" />
+    </svg>
+  </div>
+</div>

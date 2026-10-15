@@ -1,0 +1,51 @@
+---
+// A contact sheet of six real screens. Frame 01 is circled, the way a photographer marks the best frame.
+// Sideways scrolling is native (scroll-snap, a visible scrollbar on desktop); the arrows are a convenience.
+// Frames are links to their case studies. The strip never auto-advances.
+import Print from './Print.astro';
+import { pad } from '../lib/cases';
+
+const frames = [
+  { slug: 'wholesale-os', name: 'wholesale-os', title: 'Wholesale OS', type: 'Web app', phone: false },
+  { slug: 'medjot', name: 'medjot--phone-1', title: 'MedJot', type: 'Web app (PWA)', phone: true },
+  { slug: 'paper-studio', name: 'paper-studio', title: 'Paper Studio', type: 'AI product', phone: false },
+  { slug: 'fieldbook', name: 'fieldbook--phone-2', title: 'Fieldbook', type: 'Mobile app', phone: true },
+  { slug: 'dhi', name: 'dhi', title: 'Dhi', type: 'Desktop app', phone: false },
+  { slug: 'net-watch', name: 'net-watch--phone-1', title: 'Net Watch', type: 'Android app', phone: true },
+];
+const SELECTED = 0;
+---
+<section class="sheet-wrap" aria-labelledby="sheet-title">
+  <div class="sheet-head">
+    <p class="mono eyebrow">Contact sheet</p>
+    <h2 id="sheet-title">Recent work, frame by frame</h2>
+  </div>
+  <div class="sheet-bar">
+    <button type="button" class="btn btn--quiet sheet-arrow" data-sheet-step="-1" aria-label="Scroll the contact sheet back">
+      <svg class="icon-arrow icon-arrow--left" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M19 6H2M7 1L2 6l5 5" /></svg>
+    </button>
+    <button type="button" class="btn btn--quiet sheet-arrow" data-sheet-step="1" aria-label="Scroll the contact sheet forward">
+      <svg class="icon-arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M1 6h17M13 1l5 5-5 5" /></svg>
+    </button>
+  </div>
+  <ul class="sheet" role="list" tabindex="0" aria-label="Contact sheet of six recent projects. Scroll sideways to see them all." data-sheet>
+    {frames.map((f, i) => (
+      <li class="frame">
+        <a class="frame__link" href={`#work-${f.slug}`}>
+          <span class="frame__media">
+            <Print name={f.name} phone={f.phone} fill eager={i < 3} seedKey={`sheet:${f.slug}`} fix="tape" sizes="(min-width: 900px) 300px, 62vw" />
+            {i === SELECTED && (
+              <svg class="frame__circle" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#m-circle-a"></use></svg>
+            )}
+          </span>
+          <span class="frame__cap">
+            <span class="frame__num mono">{pad(i)}</span>
+            <span class="frame__title">{f.title}</span>
+            <span class="frame__type mono">{f.type}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p class="sheet-more"><a class="link-hand" href="#work">Open the pinboard<svg class="mark mark--underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><use href="#m-underline-b"></use></svg></a></p>
+</section>

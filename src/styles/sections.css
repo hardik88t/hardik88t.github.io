@@ -1,0 +1,191 @@
+/* Portfolio sections. Phone first; the asymmetric 12-column layouts start at 900px. */
+
+/* Hero */
+.hero {
+  padding-top: 24px;
+  padding-bottom: 32px;
+}
+
+.hero__meta {
+  margin-bottom: 14px;
+  min-height: 1.5em;
+}
+
+/* Fixed three-line break at every width: the owner wants the headline to land as three beats. */
+.hero__line {
+  display: block;
+}
+
+.hero__title {
+  font-size: clamp(1.9rem, 1.2rem + 3.8vw, 5.4rem);
+  line-height: 1.12;
+  font-weight: 460;
+  letter-spacing: -0.022em;
+  margin-bottom: 18px;
+  font-variation-settings: "SOFT" 40, "WONK" 0;
+}
+
+.hero__bio {
+  font-size: 17px;
+  max-width: 34em;
+  margin-bottom: 26px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 72px;
+    padding-bottom: 120px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+
+  .hero__meta {
+    grid-column: 1 / -1;
+  }
+
+  .hero__title {
+    grid-column: 1 / span 10;
+    font-size: clamp(3.4rem, 2rem + 4vw, 6.4rem);
+  }
+
+  .hero__bio {
+    grid-column: 4 / span 6;
+    font-size: 19px;
+  }
+
+  .hero__actions {
+    grid-column: 4 / span 6;
+  }
+}
+
+/* Contact */
+.contact {
+  padding-bottom: 56px;
+}
+
+.contact h2 {
+  max-width: 14em;
+  margin-bottom: 18px;
+  font-size: clamp(1.7rem, 1.3rem + 2vw, 3.2rem);
+}
+
+.letter {
+  --tilt: calc(var(--tilt-xs) * -1);
+  max-width: 640px;
+  padding: 22px 20px 20px;
+  margin-bottom: 26px;
+  margin-inline: 4px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.letter p + p {
+  margin-top: 14px;
+}
+
+.letter__salutation {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+}
+
+.signature {
+  width: 200px;
+  height: 64px;
+  margin-top: 10px;
+  color: var(--blue);
+}
+
+.signature path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact__email {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.email {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  word-break: break-all;
+  font-variation-settings: "MONO" 0;
+}
+
+.email:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.email-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.copy-btn {
+  min-width: 11em;
+}
+
+.contact__status {
+  min-height: 1.5em;
+  color: var(--ink2);
+  font-size: 16px;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  list-style: none;
+}
+
+.contact__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.contact__meta {
+  margin-top: 18px;
+}
+
+@media (min-width: 900px) {
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 28px;
+    align-items: start;
+  }
+
+  .contact h2 {
+    grid-column: 1 / span 12;
+    margin-bottom: 44px;
+  }
+
+  .letter {
+    grid-column: 1 / span 7;
+    margin-left: -4px;
+  }
+
+  .contact__aside {
+    grid-column: 9 / span 4;
+    padding-top: 12px;
+  }
+}

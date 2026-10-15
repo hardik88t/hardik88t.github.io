@@ -1,0 +1,120 @@
+---
+// About: the story, how I work (three cards), the four services in detail, how a project goes (a pencil
+// flow), experience and education, and availability. Every fact comes from data/content-v2.json.
+import content from '../data/content-v2.json';
+import { availabilityText } from '../lib/availability';
+import { headingAxes, tilt } from '../lib/seed';
+import { caseById } from '../lib/cases';
+
+const { bio, person, services, principles, studio, experience, education } = content;
+const serviceFor = (offerId: string) => {
+  const map: Record<string, string> = { launch: 'web', mobile: 'mobile', ai: 'ai', system: 'design' };
+  return services.find((s) => s.id === map[offerId]);
+};
+const availText = availabilityText(person.availability);
+const mail = `mailto:${person.email}?subject=${encodeURIComponent('Project enquiry')}`;
+---
+<section id="about" class="view view--about" data-title="About · Hardik Thanth" aria-labelledby="about-title">
+  <div class="wrap about">
+    <header class="about__head">
+      <p class="mono eyebrow">About</p>
+      <h1 id="about-title" class="about__title" tabindex="-1" style={`font-variation-settings:${headingAxes('about-title')}`}>One person who designs, builds and owns the result.</h1>
+      <p class="about__story">{bio.medium}</p>
+    </header>
+
+    <section class="about__block" aria-labelledby="principles-title">
+      <h2 id="principles-title">How I work</h2>
+      <ul class="cards" role="list">
+        {principles.map((pr, i) => (
+          <li class={`card plate card--${i + 1}`} style={`--tilt:${tilt(`card:${i}`)}`}>
+            <div class="card__body">
+              <h3>{pr.title}</h3>
+              <p>{pr.body}</p>
+            </div>
+            {i === 2 && (
+              <svg class="card__repair" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path class="kintsugi-line" d="M99 0 L95 12 L100 26 L96 40 L100 56 L95 70 L99 86 L96 100" />
+              </svg>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="about__block" aria-labelledby="services-title">
+      <h2 id="services-title">Services in detail</h2>
+      <ol class="offers" role="list">
+        {studio.offers.map((o) => {
+          const svc = serviceFor(o.id);
+          const ex = caseById(o.example);
+          return (
+            <li class="offer">
+              <div class="offer__head">
+                <h3>{o.name}</h3>
+                <p class="mono">{o.for}</p>
+              </div>
+              <p class="offer__what">{o.what}</p>
+              <p class="mono offer__meta">{o.timeline}</p>
+              <ul class="offer__includes" role="list">
+                {o.includes.map((inc) => <li>{inc}</li>)}
+              </ul>
+              {svc && <p class="offer__tags mono">{svc.tags.join(' · ')}</p>}
+              {ex && (
+                <p class="offer__example">
+                  <span class="mono">Example:</span> <a class="link-hand" href={`#work-${ex.slug}`}>{ex.title}</a>
+                </p>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+      <p class="offer__retainer"><span class="mono">{studio.retainer.name}.</span> {studio.retainer.what}</p>
+    </section>
+
+    <section class="about__block about__flow" aria-labelledby="flow-title">
+      <h2 id="flow-title">How a project goes</h2>
+      <div class="flow">
+        <svg class="flow__doodle" viewBox="0 0 60 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="draw" pathLength="1" vector-effect="non-scaling-stroke" d="M30 4 C18 60 44 110 28 170 C14 226 46 270 30 330 C22 360 34 380 30 396" />
+          <path class="draw" pathLength="1" vector-effect="non-scaling-stroke" d="M22 318 L30 332 L38 318" />
+          <path class="draw" pathLength="1" vector-effect="non-scaling-stroke" d="M22 152 L28 170 L36 154" />
+        </svg>
+        <ol class="flow__steps" role="list">
+          {studio.steps.map((st, i) => (
+            <li class="flow__step">
+              <span class="flow__num mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{st.title}</h3>
+                <p>{st.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="about__block about__cv" aria-labelledby="cv-title">
+      <h2 id="cv-title">Experience and education</h2>
+      <ul class="xp" role="list">
+        {experience.map((x) => (
+          <li>
+            <p class="xp__role">{x.role}</p>
+            <p>{x.org}</p>
+            <p class="mono">{x.period}</p>
+          </li>
+        ))}
+        <li>
+          <p class="xp__role">{education.degree}</p>
+          <p>{education.org}</p>
+          <p class="mono">{education.year}</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="about__block about__avail" aria-labelledby="avail-title">
+      <h2 id="avail-title">Availability</h2>
+      <p class="stamp-line"><span data-avail data-mode={person.availability.mode} data-lead={person.availability.leadWeeks}>{availText}</span></p>
+      <p class="about__cta"><a class="btn btn--primary" href={mail}>Start a project</a></p>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+// #work: the index of projects. Phones and no-JS see the cards. Desktop with JS gets the pinboard and the table.
+import WorkCards from './WorkCards.astro';
+import Board from './Board.astro';
+import WorkIndex from './WorkIndex.astro';
+---
+<section class="view view--work" id="work" data-title="Work · Hardik Thanth" aria-labelledby="work-title">
+  <div class="wrap">
+    <header class="work-head">
+      <p class="mono eyebrow">Work</p>
+      <h1 id="work-title" tabindex="-1">Eight projects, from web apps to a desktop tool</h1>
+      <p class="work-head__intro">Client names are kept private, so those projects are described instead. Every screen opens its full-colour proof.</p>
+    </header>
+    <div class="work-views">
+      <WorkCards />
+      <Board />
+      <WorkIndex />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+// The proofreader's edit: the word struck through in pink riso ink, a caret below the line,
+// and the correction handwritten above. The strike is a filled, tapered pen path (not a CSS line).
+// Seeded per instance, so the hero and the system page differ slightly.
+// Screen readers: the struck word is aria-hidden, so only the correction is read.
+import { variant } from '../lib/seed';
+
+interface Props {
+  word: string;
+  correction: string;
+  seed: string;
+}
+const { word, correction, seed } = Astro.props;
+
+// 3 pen shapes in a 200 x 24 box. Uneven pressure: thick in the middle, lighter at the ends.
+const strokes = [
+  {
+    main: 'M-4 13.4 C26 8.6 60 15.2 104 10.8 S170 8.6 206 6.4 L205 8.6 C172 12.4 138 14.2 106 15.4 S46 17.2 -3 15.6 Z',
+    ret: null,
+  },
+  {
+    main: 'M-3 12.4 C34 16.2 76 8.6 118 11.4 S180 13.8 205 8.2 L204 10.2 C178 14.2 144 13.6 114 15.8 S40 15.6 -2 14.6 Z',
+    ret: 'M58 19.8 C92 18 124 21 152 18.6 S190 19 200 17.6 L199 19.8 C188 21.2 160 22 124 22.4 S78 22.2 58 21.2 Z',
+  },
+  {
+    main: 'M-3 12.4 C26 14.9 62 9.8 104 11.8 S170 10.9 205 7.6 L204 9.6 C176 13.4 144 14.4 108 15.8 S44 17.2 -2 15.8 Z',
+    ret: null,
+  },
+];
+const stroke = strokes[variant(seed, strokes.length)] ?? strokes[0]!;
+// Proofreader's caret, a filled tapered "^".
+const caret = 'M2.5 19.2 C8 13.4 11.2 8 14.2 2.2 L16.8 2.6 C18.6 8.4 22.2 13.8 27.6 19.6 L25.2 20 C20.8 15.6 17.6 11.4 15.6 7.6 C13 11.4 9.4 15.6 4.8 19.6 Z';
+---
+<span class="edit">
+  <span class="edit__old" aria-hidden="true">{word}<svg class="edit__strike" viewBox="0 0 200 24" preserveAspectRatio="none" focusable="false"><path d={stroke.main} />{stroke.ret && <path d={stroke.ret} />}</svg></span>
+  <svg class="edit__caret" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><path d={caret} /></svg>
+  <span class="edit__new">{correction}</span>
+</span>

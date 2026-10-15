@@ -1,0 +1,28 @@
+---
+// The proof lightbox: one native <dialog> shared by every screen. It shows the true-colour screenshot on a
+// paper mat with crop marks, with previous / next inside the same group, and Escape to close.
+// Opened by scripts/proof.ts (loaded on first click). Without JS, the screen links open the proof file.
+---
+<dialog id="proof-dialog" class="dialog proof" aria-labelledby="proof-title">
+  <div class="proof__inner">
+    <div class="proof__top">
+      <p class="proof__label" aria-hidden="true">PROOF — full colour</p>
+      <button type="button" class="btn btn--quiet proof__close" data-proof-close>Close</button>
+    </div>
+    <figure class="proof__mat">
+      <span class="proof__crop proof__crop--tl" aria-hidden="true"></span>
+      <span class="proof__crop proof__crop--tr" aria-hidden="true"></span>
+      <span class="proof__crop proof__crop--bl" aria-hidden="true"></span>
+      <span class="proof__crop proof__crop--br" aria-hidden="true"></span>
+      <img id="proof-img" class="proof__img" alt="" decoding="async" />
+      <figcaption class="proof__cap">
+        <span id="proof-title" class="proof__title"></span>
+        <span id="proof-count" class="mono"></span>
+      </figcaption>
+    </figure>
+    <div class="proof__nav">
+      <button type="button" class="btn btn--quiet" data-proof-prev>Previous screen</button>
+      <button type="button" class="btn btn--quiet" data-proof-next>Next screen</button>
+    </div>
+  </div>
+</dialog>

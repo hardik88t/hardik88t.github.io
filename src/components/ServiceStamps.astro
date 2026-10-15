@@ -1,0 +1,25 @@
+---
+// The four services as rubber stamps: a solid pink ink with a rough cut edge, a slight tilt, and a grain of
+// missing ink. Inside each: the service, its number and its three tags. Every stamp opens #about.
+import content from '../data/content-v2.json';
+import { tilt } from '../lib/seed';
+import { roughRect } from '../lib/rough';
+
+const { services } = content;
+---
+<section class="section stamps-wrap" aria-labelledby="services-title">
+  <p class="mono eyebrow">Services</p>
+  <h2 id="services-title">What I do</h2>
+  <ul class="stamps" role="list">
+    {services.map((s, i) => (
+      <li>
+        <a class="stamp" href="#about" style={`--tilt:${tilt(`stamp:${s.id}`, ['xs'])}`}>
+          <svg class="stamp__ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d={roughRect(`stamp:${s.id}`, 3, 9, 2.6)} /></svg>
+          <span class="stamp__num mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span class="stamp__title">{s.title}</span>
+          <span class="stamp__tags mono">{s.tags.join(' · ')}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>

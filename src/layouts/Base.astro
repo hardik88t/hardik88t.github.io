@@ -1,0 +1,55 @@
+---
+import '../styles/base.css';
+import '../styles/imperfect.css';
+import '../styles/sections.css';
+import '../styles/system.css';
+import '../styles/maximal.css';
+import Fonts from '../components/Fonts.astro';
+import { themeCss } from '../lib/palette';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Every view id on the page. The head script uses them to pick the view before first paint. */
+  views: string[];
+}
+const { title, description, views } = Astro.props;
+const tokens = themeCss();
+// Favicon: the "h" monogram in ink, with a pink flick, like the header wordmark.
+const icon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2318181C'/%3E%3Ctext x='15' y='23' font-family='Georgia,serif' font-size='22' font-weight='600' text-anchor='middle' fill='%23F6F6F3'%3Eh%3C/text%3E%3Cpath d='M19 26.5 q5 -2.4 9 -0.6' stroke='%23FF48B0' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141519" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href={icon} />
+    <Fonts />
+    <style is:inline set:html={tokens}></style>
+    <script is:inline set:html={`var VIEWS = ${JSON.stringify(views)};`}></script>
+    <style set:html={views.map((v) => `html[data-view="${v}"] #${v}{display:block}`).join('')}></style>
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('pi-theme');
+          if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+          document.documentElement.classList.add('js');
+          // Pick the view before first paint, so a deep link never flashes the home view.
+          var v = location.hash.slice(1);
+          if (v && VIEWS.indexOf(v) >= 0) document.documentElement.setAttribute('data-view', v);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

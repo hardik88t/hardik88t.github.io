@@ -1,0 +1,95 @@
+---
+// One case study. Header, a large mounted print, challenge / approach / outcome, what I did, 2 or 3 screens
+// (each opens its true-colour proof), one margin note, the stack as stamps, and prev / next.
+import Print from './Print.astro';
+import type { Case } from '../lib/cases';
+import { headingAxes, tilt } from '../lib/seed';
+
+interface Props {
+  c: Case;
+}
+const { c } = Astro.props;
+const e = c.extra;
+const github = c.links?.github;
+const mail = `mailto:hardik88t@gmail.com?subject=${encodeURIComponent(`Project like ${c.title}`)}`;
+---
+<section class="view view--case" id={`work-${c.slug}`} data-title={`${c.title} · Work · Hardik Thanth`} aria-labelledby={`case-${c.slug}-title`}>
+  <div class="wrap case">
+    <p class="case__back mono"><a class="link-hand" href="#work">All work<svg class="mark mark--underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><use href="#m-underline-c"></use></svg></a></p>
+
+    <div class="case__top">
+    <header class="case__head">
+      <p class="mono">{c.type} · {c.year} · Design and build</p>
+      <h1 id={`case-${c.slug}-title`} class="case__title" tabindex="-1" style={`font-variation-settings:${headingAxes(`case:${c.slug}`)}`}>{c.title}</h1>
+      <p class="case__line">{c.oneLiner}</p>
+      {(c.anonymized && c.client) || github ? (
+        <p class="case__meta mono">
+          {c.anonymized && c.client ? <span>Client: {c.client}</span> : null}
+          {github ? <a class="link-hand" href={github} rel="noopener noreferrer">Code on GitHub</a> : null}
+        </p>
+      ) : null}
+    </header>
+
+    <figure class={`case__hero${e.heroPhone ? ' case__hero--phone' : ''}`}>
+      <Print name={e.hero} phone={e.heroPhone} proofSet={`${c.slug}:hero`} proofIndex={0} proofAlt={`${c.title}, main screen`} seedKey={`hero:${c.slug}`} sizes="(min-width: 900px) 560px, 92vw" eager />
+      <figcaption class="mono case__caption">Riso print. The full-colour proof opens on click.</figcaption>
+    </figure>
+    </div>
+
+    <div class="case__story">
+      <section class="case__part">
+        <h2>The challenge</h2>
+        <p>{c.challenge}</p>
+      </section>
+      <section class="case__part">
+        <h2>The approach</h2>
+        <p>{c.approach}</p>
+      </section>
+      <section class="case__part">
+        <h2>The outcome</h2>
+        <p>{c.outcome}</p>
+      </section>
+    </div>
+
+    <section class="case__did" aria-labelledby={`did-${c.slug}`}>
+      <h2 id={`did-${c.slug}`}>What I did</h2>
+      <ol class="did-list" role="list">
+        {e.did.map((d) => <li>{d}</li>)}
+      </ol>
+    </section>
+
+    <section class="case__screens" aria-label={`Screens of ${c.title}`}>
+      <ul class="screens" role="list">
+        {e.screens.map((s, i) => (
+          <li class={`screen${s.phone ? ' screen--phone' : ''}`}>
+            <Print name={s.name} phone={s.phone} proofSet={`${c.slug}:screens`} proofIndex={i} proofAlt={`${c.title}, ${s.label}`} seedKey={`screen:${c.slug}:${i}`} fix={i % 2 ? 'tape' : 'none'} sizes={s.phone ? '(min-width: 900px) 260px, 60vw' : '(min-width: 900px) 520px, 92vw'} />
+            <p class="screen__label mono">{String(i + 1).padStart(2, '0')} · {s.label}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <aside class="case__note" aria-label="Design note">
+      <p class="note">
+        <svg class="note__arrow" viewBox="0 0 24 30" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M9 28 C7 19 11 12 17 5 M12 9 L17 4 L19 11" /></svg>
+        <span>{e.decision}</span>
+      </p>
+    </aside>
+
+    <ul class="case__stack" role="list" aria-label="Stack">
+      {c.stack.map((s, i) => <li class="tag mono" style={`--tilt:${tilt(`tag:${c.slug}:${i}`, ['xs'])}`}>{s}</li>)}
+    </ul>
+
+    <nav class="case__pager" aria-label="Case study navigation">
+      <a class="pager pager--prev" href={`#work-${c.prev?.slug}`}>
+        <span class="mono">Previous</span>
+        <span class="pager__title">{c.prev?.title}</span>
+      </a>
+      <a class="pager pager--next" href={`#work-${c.next?.slug}`}>
+        <span class="mono">Next</span>
+        <span class="pager__title">{c.next?.title}</span>
+      </a>
+    </nav>
+    <p class="case__start"><a class="btn btn--primary" href={mail}>Start a project like this</a></p>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+{
+  "name": "v4-screens-harness",
+  "private": true,
+  "type": "module",
+  "description": "Dev-only harness: renders the product mocks one at a time so capture.mjs can screenshot them for the riso pipeline. Not part of the site.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5179 --strictPort",
+    "build": "vite build",
+    "capture": "node capture.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "5.3.0",
+    "@fontsource-variable/nunito-sans": "5.3.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "5.9.3",
+    "vite": "6.4.4"
+  }
+}

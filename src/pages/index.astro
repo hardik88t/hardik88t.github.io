@@ -1,0 +1,50 @@
+---
+// One static page with views. The hash picks the view (#home, #work, #work-<slug>, #about, #system), and
+// :target does it with or without JS. JS adds titles, focus and scroll-to-top. Home is short on purpose.
+import Base from '../layouts/Base.astro';
+import Marks from '../components/Marks.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ContactSheet from '../components/ContactSheet.astro';
+import ServiceStamps from '../components/ServiceStamps.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import WorkView from '../components/WorkView.astro';
+import CaseView from '../components/CaseView.astro';
+import AboutView from '../components/AboutView.astro';
+import System from '../components/System.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { cases } from '../lib/cases';
+
+const viewIds = ['home', 'work', ...cases.map((c) => `work-${c.slug}`), 'about', 'system'];
+const description = 'Hardik Thanth: I design and build web and mobile apps. Eight projects with screens, case studies and The system: a design concept called Perfect Imperfect.';
+---
+<Base title="Hardik Thanth · Perfect Imperfect" description={description} views={viewIds}>
+  <Marks />
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header />
+  <main id="main" tabindex="-1">
+    <section class="view view--home" id="home" data-title="Hardik Thanth · Perfect Imperfect" aria-label="Home">
+      <div class="wrap">
+        <Hero />
+        <ContactSheet />
+        <ServiceStamps />
+        <p class="recent mono-free">
+          <span class="recent__label">Recently:</span>
+          <ul class="recent__list" role="list">
+            <li><a class="link-hand" href="#work-wholesale-os">Wholesale OS</a></li>
+            <li><a class="link-hand" href="#work-medjot">MedJot</a></li>
+            <li><a class="link-hand" href="#work-paper-studio">Paper Studio</a></li>
+          </ul>
+        </p>
+        <Contact />
+      </div>
+    </section>
+    <WorkView />
+    {cases.map((c) => <CaseView c={c} />)}
+    <AboutView />
+    <System />
+  </main>
+  <Footer />
+  <Lightbox />
+</Base>

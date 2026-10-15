@@ -1,0 +1,70 @@
+/* Device shell shared by the phone mocks. Screen content starts below the 52px status bar. */
+
+.phone {
+  position: relative;
+  flex: none;
+  width: 384px;
+  height: 800px;
+  padding: 10px;
+  border-radius: 58px;
+  background: #16171c;
+  box-shadow: 0 40px 70px -30px rgba(20, 22, 40, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.screen {
+  position: relative;
+  width: 364px;
+  height: 780px;
+  border-radius: 48px;
+  overflow: hidden;
+  background: #ffffff;
+  isolation: isolate;
+}
+
+.status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 8;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 26px 0 40px;
+  font-size: 15px;
+  font-weight: 700;
+  color: currentColor;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.sys {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  z-index: 9;
+  width: 112px;
+  height: 32px;
+  margin-left: -56px;
+  border-radius: 20px;
+  background: #000000;
+}
+
+.home {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 9;
+  width: 124px;
+  height: 5px;
+  margin-left: -62px;
+  border-radius: 99px;
+  background: #16171c;
+}

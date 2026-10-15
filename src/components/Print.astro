@@ -1,0 +1,83 @@
+---
+// One riso print: two inks on paper, stacked under a sheet behind it, fixed with tape or a pin. The night
+// version (riso-dark) is shown in the dark theme; both keep the same frame, so the theme never moves anything.
+// Decorative by default (alt ""). When proofSet is given, the whole sheet links to its true-colour proof:
+// a real link with no JS, and the lightbox with JS.
+import { Picture } from 'astro:assets';
+import { print, printDark, proof, widthsFor } from '../lib/screens';
+import { tilt } from '../lib/seed';
+
+interface Props {
+  name: string;
+  alt?: string;
+  phone?: boolean;
+  eager?: boolean;
+  fill?: boolean;
+  sizes?: string;
+  proofSet?: string;
+  proofIndex?: number;
+  proofAlt?: string;
+  fix?: 'tape' | 'pin' | 'none';
+  seedKey?: string;
+  class?: string;
+}
+const {
+  name,
+  alt = '',
+  phone = false,
+  eager = false,
+  fill = false,
+  sizes,
+  proofSet,
+  proofIndex = 0,
+  proofAlt = '',
+  fix = 'tape',
+  seedKey = name,
+  class: cls = '',
+} = Astro.props;
+
+const src = print(name);
+const srcDark = printDark(name);
+const pf = proof(name);
+const widths = widthsFor(src, phone ? [240, 480] : [480, 960]);
+const widthsDark = widthsFor(srcDark, phone ? [240, 480] : [480, 960]);
+const defaultSizes = phone ? '(min-width: 900px) 240px, 46vw' : '(min-width: 900px) 480px, 92vw';
+const ratio = (src.width / src.height).toFixed(4);
+const rot = tilt(`print:${seedKey}`, ['xs', 'sm']);
+const cls2 = ['print', phone ? 'print--phone' : '', fill ? 'print--fill' : '', cls].filter(Boolean).join(' ');
+---
+<figure class={cls2} style={`--ratio:${ratio};--tilt:${rot}`}>
+  <div class="print__sheet">
+    <span class="print__under" aria-hidden="true"></span>
+    <div class="print__frame">
+      {proofSet ? (
+        <a
+          class="print__link"
+          href={pf.src}
+          data-proof
+          data-proof-set={proofSet}
+          data-proof-index={proofIndex}
+          data-proof-alt={proofAlt}
+          aria-label={`Full-colour proof: ${proofAlt}`}
+        >
+          <span class="ph ph--light">
+            <Picture src={src} widths={widths} formats={['avif', 'webp']} sizes={sizes ?? defaultSizes} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+          </span>
+          <span class="ph ph--dark" aria-hidden="true">
+            <Picture src={srcDark} widths={widthsDark} formats={['avif', 'webp']} sizes={sizes ?? defaultSizes} alt="" loading="lazy" decoding="async" />
+          </span>
+        </a>
+      ) : (
+        <>
+          <span class="ph ph--light">
+            <Picture src={src} widths={widths} formats={['avif', 'webp']} sizes={sizes ?? defaultSizes} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+          </span>
+          <span class="ph ph--dark" aria-hidden="true">
+            <Picture src={srcDark} widths={widthsDark} formats={['avif', 'webp']} sizes={sizes ?? defaultSizes} alt="" loading="lazy" decoding="async" />
+          </span>
+        </>
+      )}
+    </div>
+    {fix !== 'none' && <span class={`fix fix--${fix}`} aria-hidden="true"></span>}
+  </div>
+</figure>

@@ -1,0 +1,24 @@
+---
+// Hand-drawn marks as an SVG symbol sprite. Three variants per shape, picked by seed at build time.
+// Used with <svg class="mark"><use href="#m-..."/></svg>. Decorative: always aria-hidden.
+---
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="stamp-rough" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <symbol id="m-underline-a" viewBox="0 0 200 12"><path vector-effect="non-scaling-stroke" d="M3 7 C40 3 90 10 140 6 S190 5 197 8" /></symbol>
+    <symbol id="m-underline-b" viewBox="0 0 200 12"><path vector-effect="non-scaling-stroke" d="M4 8 C60 4 120 9 196 5" /></symbol>
+    <symbol id="m-underline-c" viewBox="0 0 200 12"><path vector-effect="non-scaling-stroke" d="M2 6 C30 9 70 3 110 7 S170 9 198 4" /></symbol>
+    <symbol id="m-circle-a" viewBox="0 0 200 80"><path vector-effect="non-scaling-stroke" d="M170 14 C190 30 182 72 100 74 C30 76 4 52 8 30 C12 8 80 2 128 6 C162 9 188 22 178 36" /></symbol>
+    <symbol id="m-circle-b" viewBox="0 0 200 80"><path vector-effect="non-scaling-stroke" d="M22 20 C60 2 150 4 184 22 C200 40 186 74 100 76 C24 78 0 50 14 30" /></symbol>
+    <symbol id="m-circle-c" viewBox="0 0 200 80"><path vector-effect="non-scaling-stroke" d="M120 6 C170 10 196 40 180 62 C160 80 60 78 22 60 C2 48 6 18 60 8 C84 4 104 6 118 10" /></symbol>
+    <symbol id="m-arrow-a" viewBox="0 0 80 60"><path vector-effect="non-scaling-stroke" d="M6 48 C22 52 46 40 64 16 M52 14 L64 16 L60 28" /></symbol>
+    <symbol id="m-arrow-b" viewBox="0 0 80 60"><path vector-effect="non-scaling-stroke" d="M8 12 C30 4 48 30 40 52 M30 46 L40 53 L46 42" /></symbol>
+    <symbol id="m-arrow-c" viewBox="0 0 80 60"><path vector-effect="non-scaling-stroke" d="M6 40 Q40 6 70 30 M58 24 L70 31 L62 42" /></symbol>
+    <symbol id="m-bracket-a" viewBox="0 0 12 100"><path vector-effect="non-scaling-stroke" d="M9 2 H3 V98 H9" /></symbol>
+    <symbol id="m-bracket-b" viewBox="0 0 12 100"><path vector-effect="non-scaling-stroke" d="M8 3 C3 3 3 20 4 50 C4 80 3 96 8 97" /></symbol>
+    <symbol id="m-bracket-c" viewBox="0 0 12 100"><path vector-effect="non-scaling-stroke" d="M9 4 C5 10 4 24 4 50 C4 76 5 90 9 96" /></symbol>
+    <symbol id="m-strike-a" viewBox="0 0 200 20"><path vector-effect="non-scaling-stroke" d="M2 12 C50 9 120 11 198 8" /></symbol>
+    <symbol id="m-strike-b" viewBox="0 0 200 20"><path vector-effect="non-scaling-stroke" d="M3 10 C60 13 140 7 197 11" /></symbol>
+    <symbol id="m-strike-c" viewBox="0 0 200 20"><path vector-effect="non-scaling-stroke" d="M2 9 C80 12 130 8 199 10" /></symbol>
+  </defs>
+</svg>
