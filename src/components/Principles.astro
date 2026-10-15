@@ -1,0 +1,23 @@
+---
+import SectionHead from './SectionHead.astro';
+import { content } from '../lib/content';
+
+const { principles } = content;
+---
+<section class="section" id="approach" aria-labelledby="approach-title">
+  <div class="wrap">
+    <SectionHead kicker="Approach" id="approach-title" title="How I work" />
+
+    <ol class="principles">
+      {principles.map((p, i) => (
+        <li class="principle">
+          <span class="principle-num label" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <h3 class="principle-title">{p.title}</h3>
+            <p class="principle-body">{p.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

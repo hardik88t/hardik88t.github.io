@@ -1,0 +1,20 @@
+---
+import SectionHead from './SectionHead.astro';
+import { content } from '../lib/content';
+
+const { services } = content;
+---
+<section class="section" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <SectionHead kicker="Services" id="services-title" title="What I build" />
+
+    <ul class="services">
+      {services.map((s) => (
+        <li class="service">
+          <h3 class="service-title">{s.title}</h3>
+          <p class="service-line">{s.line}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

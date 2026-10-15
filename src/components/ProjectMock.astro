@@ -1,0 +1,1093 @@
+---
+// Code-drawn product mock for one project, built from the project's `visual` hint and its accent
+// (passed in as --tone on the parent row). Always a light UI palette, like a real screenshot.
+// Decorative only: shown on desktop hover by the work index, hidden everywhere else.
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+---
+<div class:list={['mock', `mock--${slug}`]} aria-hidden="true">
+  {slug === 'wholesale-os' && (
+    <div class="desk">
+      <div class="win"><i></i><i></i><i></i><span>wholesale.app / orders</span></div>
+      <div class="app">
+        <aside class="side">
+          <div class="brand"><b></b>Wholesale</div>
+          <span class="on">Orders</span>
+          <span>Stock</span>
+          <span>Invoices</span>
+          <span>Reps</span>
+          <span>Shops</span>
+        </aside>
+        <div class="main">
+          <div class="main-head"><strong>Orders</strong><span class="btn-mini">New order</span></div>
+          <table>
+            <thead>
+              <tr><th>Shop</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Patel Traders</td><td><span class="pill pill--run">Packed</span></td></tr>
+              <tr><td>Shah &amp; Sons</td><td><span class="pill pill--ok">Shipped</span></td></tr>
+              <tr><td>City Mart</td><td><span class="pill pill--wait">Pending</span></td></tr>
+              <tr><td>Rao Stores</td><td><span class="pill pill--grey">Invoiced</span></td></tr>
+            </tbody>
+          </table>
+          <div class="stock">
+            <p class="stock-title">Stock</p>
+            <div class="bar"><span>Basmati 5 kg</span><i style="--w: 78%"></i></div>
+            <div class="bar"><span>Sunflower oil 1 L</span><i style="--w: 46%"></i></div>
+            <div class="bar"><span>Sugar 1 kg</span><i class="low" style="--w: 12%"></i></div>
+          </div>
+        </div>
+        <aside class="drawer">
+          <p class="k">Invoice</p>
+          <p class="h">INV-2041</p>
+          <p class="sub">Patel Traders</p>
+          <p class="line"><span>Basmati × 20</span><span>7,600</span></p>
+          <p class="line"><span>Oil 1 L × 40</span><span>4,880</span></p>
+          <p class="line total"><span>Total</span><span>12,480</span></p>
+          <p class="send">Send invoice</p>
+        </aside>
+      </div>
+    </div>
+  )}
+
+  {slug === 'medjot' && (
+    <div class="phones">
+      <div class="phone">
+        <p class="ph-title">New visit</p>
+        <p class="ph-field"><span>Patient</span><b>Ramesh P., 42</b></p>
+        <p class="ph-label">Symptoms</p>
+        <div class="chips">
+          <span class="chip on">Fever</span>
+          <span class="chip on">Cough</span>
+          <span class="chip">Headache</span>
+          <span class="chip">Sore throat</span>
+          <span class="chip on">Body ache</span>
+        </div>
+        <span class="ph-btn">Add medicines</span>
+      </div>
+      <div class="phone">
+        <p class="ph-title">Medicines</p>
+        <div class="search">Para<i class="caret"></i></div>
+        <ul class="suggest">
+          <li><b>Para</b>cetamol 500 mg<small>Tablet, 1 strip</small></li>
+          <li><b>Para</b>cetamol 650 mg<small>Tablet, 1 strip</small></li>
+          <li><b>Para</b>cetamol syrup<small>120 ml bottle</small></li>
+          <li><b>Para</b>cetamol 250 mg<small>Suspension</small></li>
+        </ul>
+      </div>
+      <div class="phone">
+        <p class="ph-title">Receipt</p>
+        <p class="ph-small">No. 0142 · 14 Oct</p>
+        <div class="rows">
+          <p><span>Consultation</span><span>300</span></p>
+          <p><span>Paracetamol × 6</span><span>48</span></p>
+        </div>
+        <div class="rows total">
+          <p><span>Total</span><span>348</span></p>
+        </div>
+        <span class="ph-btn ghost">Print receipt</span>
+      </div>
+    </div>
+  )}
+
+  {slug === 'paper-studio' && (
+    <div class="desk">
+      <div class="win"><i></i><i></i><i></i><span>Paper Studio · Physics, Class XI</span></div>
+      <div class="split">
+        <div class="qlist">
+          <div class="ql-head"><span>Question bank</span><span class="ql-count">24</span></div>
+          <ul>
+            <li class="sel"><i class="chk"></i><span><b>Q1</b> Define work done by a variable force.</span><small>2 marks</small></li>
+            <li class="sel"><i class="chk"></i><span><b>Q2</b> A 5 kg body accelerates uniformly from rest.</span><small>3 marks</small></li>
+            <li><i class="chk"></i><span><b>Q3</b> State the principle of conservation of momentum.</span><small>2 marks</small></li>
+          </ul>
+          <span class="ai-btn">AI draft</span>
+        </div>
+        <div class="preview">
+          <div class="paper">
+            <p class="p-head">Unit Test 3</p>
+            <p class="p-sub">Physics · Class XI · 60 min · 50 marks</p>
+            <p class="p-sec">Section A</p>
+            <p class="p-q"><b>1.</b> Define work done by a variable force. <span>(2)</span></p>
+            <p class="p-q"><b>2.</b> A 5 kg body accelerates uniformly from rest over 4 m. Find its final velocity. <span>(3)</span></p>
+            <p class="p-q"><b>3.</b> State the principle of conservation of momentum. <span>(2)</span></p>
+            <p class="p-q"><b>4.</b> Derive the period of a simple pendulum. <span>(5)</span></p>
+            <p class="p-opts">(a) 2 m/s &nbsp; (b) 4 m/s &nbsp; (c) 8 m/s &nbsp; (d) 16 m/s</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {slug === 'fieldbook' && (
+    <div class="phones">
+      <div class="phone">
+        <p class="ph-title">Today</p>
+        <p class="ph-small">Route · 6 stops</p>
+        <ul class="route">
+          <li class="done"><time>09:30</time><span>Sharma Stores</span></li>
+          <li class="next"><time>10:45</time><span>Kiran Medical</span></li>
+          <li><time>12:15</time><span>Nila Traders</span></li>
+          <li><time>14:00</time><span>Om Sweets</span></li>
+        </ul>
+      </div>
+      <div class="phone">
+        <p class="ph-title">Catalogue</p>
+        <div class="search">Search products</div>
+        <div class="grid2">
+          <div class="tile"><i style="--s: 18%"></i><p>Basmati 5 kg</p><p class="pr">412</p></div>
+          <div class="tile"><i style="--s: 34%"></i><p>Sunflower oil</p><p class="pr">165</p></div>
+          <div class="tile"><i style="--s: 52%"></i><p>Sugar 1 kg</p><p class="pr">48</p></div>
+          <div class="tile"><i style="--s: 70%"></i><p>Toor dal 1 kg</p><p class="pr">136</p></div>
+        </div>
+      </div>
+      <div class="phone">
+        <p class="ph-title">Cart</p>
+        <p class="ph-small">3 items</p>
+        <ul class="cart">
+          <li><span>Basmati 5 kg</span><span class="step">− 2 +</span></li>
+          <li><span>Sunflower oil 1 L</span><span class="step">− 1 +</span></li>
+          <li><span>Sugar 1 kg</span><span class="step">− 4 +</span></li>
+        </ul>
+        <div class="rows total"><p><span>Total</span><span>989</span></p></div>
+        <span class="ph-btn">Place order</span>
+      </div>
+    </div>
+  )}
+
+  {slug === 'dhi' && (
+    <div class="desk">
+      <div class="win"><i></i><i></i><i></i><span>Dhi · Memory</span></div>
+      <div class="split">
+        <div class="editor">
+          <p class="doc-title">Spaced repetition</p>
+          <p class="doc-line">Retrieval practice beats rereading. See <span class="wl">[[Active recall]]</span> and <span class="wl">[[Forgetting curve]]</span>.</p>
+          <p class="doc-line">Each review is scheduled from the last successful recall, so easy cards wait longer.</p>
+          <p class="doc-line">Links to <span class="wl">[[Memory palace]]</span> appear when a concept repeats across sources.</p>
+          <p class="doc-meta">3 linked sources</p>
+        </div>
+        <svg class="graph" viewBox="0 0 230 250" role="presentation" focusable="false">
+          <g class="edges">
+            <line x1="115" y1="122" x2="62" y2="66" />
+            <line x1="115" y1="122" x2="168" y2="72" />
+            <line x1="115" y1="122" x2="72" y2="176" />
+            <line x1="115" y1="122" x2="160" y2="178" />
+            <line x1="62" y1="66" x2="34" y2="38" />
+            <line x1="62" y1="66" x2="40" y2="106" />
+            <line x1="168" y1="72" x2="196" y2="40" />
+            <line x1="160" y1="178" x2="196" y2="222" />
+            <line x1="72" y1="176" x2="36" y2="210" />
+            <line class="cross" x1="168" y1="72" x2="190" y2="128" />
+            <line class="cross" x1="40" y1="106" x2="72" y2="176" />
+          </g>
+          <circle class="c-a" cx="115" cy="122" r="17" />
+          <circle class="c-a" cx="62" cy="66" r="10" />
+          <circle class="c-a" cx="168" cy="72" r="10" />
+          <circle class="c-a" cx="72" cy="176" r="9" />
+          <circle class="c-a" cx="160" cy="178" r="8" />
+          <circle class="c-b" cx="34" cy="38" r="8" />
+          <circle class="c-b" cx="40" cy="106" r="7" />
+          <circle class="c-b" cx="36" cy="210" r="7" />
+          <circle class="c-c" cx="196" cy="40" r="7" />
+          <circle class="c-c" cx="196" cy="222" r="9" />
+          <circle class="c-c" cx="190" cy="128" r="7" />
+          <g class="labels">
+            <text x="115" y="108" text-anchor="middle" class="big">Memory</text>
+            <text x="62" y="50" text-anchor="middle">Recall</text>
+            <text x="168" y="56" text-anchor="middle">Forgetting</text>
+            <text x="72" y="196" text-anchor="middle">Spacing</text>
+            <text x="34" y="26" text-anchor="middle">Notes</text>
+            <text x="196" y="26" text-anchor="middle">Tags</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  )}
+
+  {slug === 'net-watch' && (
+    <div class="phones single">
+      <div class="phone lg">
+        <p class="ph-title">Connection</p>
+        <p class="ph-small">Last 24 hours · 3 drops</p>
+        <ol class="timeline">
+          <li class="ok"><time>08:02</time><span>Connected, 84 Mbps</span></li>
+          <li class="drop"><time>08:14</time><span>Drop, 38 s</span></li>
+          <li class="slow"><time>09:40</time><span>Slow, 1.2 Mbps</span></li>
+          <li class="drop"><time>11:05</time><span>Drop, 12 s</span></li>
+          <li class="ok"><time>13:20</time><span>Stable again</span></li>
+        </ol>
+        <span class="ph-btn">Export report</span>
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  .mock {
+    --m-paper: #ffffff;
+    --m-ink: #14171e;
+    --m-mute: #6b7280;
+    --m-line: #e3e6ec;
+    --m-soft: #f2f4f7;
+    --m-red: #e5484d;
+    --m-amber: #d99100;
+    --m-green: #2fa36b;
+
+    width: 460px;
+    height: 300px;
+    transform: scale(0.86);
+    transform-origin: 0 0;
+    overflow: hidden;
+    border: 1px solid rgb(0 0 0 / 0.08);
+    border-radius: 12px;
+    background: var(--m-soft);
+    color: var(--m-ink);
+    box-shadow: 0 40px 70px -30px rgb(0 0 0 / 0.5);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 450;
+    font-stretch: 100%;
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: left;
+  }
+
+  .mock p,
+  .mock span,
+  .mock li,
+  .mock td,
+  .mock th,
+  .mock time {
+    margin: 0;
+    font-family: inherit;
+  }
+
+  .mock ul,
+  .mock ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Window chrome for desktop mocks */
+  .desk {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .win {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 12px;
+    flex: none;
+    background: #e9ecf1;
+    border-bottom: 1px solid var(--m-line);
+  }
+
+  .win i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #cdd2db;
+  }
+
+  .win span {
+    margin-left: 10px;
+    color: var(--m-mute);
+    font-size: 11px;
+  }
+
+  /* wholesale-os */
+  .app {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .side {
+    display: grid;
+    align-content: start;
+    gap: 2px;
+    width: 100px;
+    flex: none;
+    padding: 12px 8px;
+    border-right: 1px solid var(--m-line);
+    background: #fbfbfc;
+  }
+
+  .side .brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px 12px;
+    font-weight: 700;
+    font-size: 11.5px;
+    white-space: nowrap;
+  }
+
+  .side .brand b {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    background: var(--tone);
+  }
+
+  .side > span {
+    padding: 5px 6px;
+    border-radius: 6px;
+    color: var(--m-mute);
+  }
+
+  .side > .on {
+    background: color-mix(in srgb, var(--tone) 14%, transparent);
+    color: var(--m-ink);
+    font-weight: 600;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 10px;
+    flex: 0 0 226px;
+    min-width: 0;
+    padding: 12px 14px;
+  }
+
+  .main-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .main-head strong {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .btn-mini {
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: var(--tone);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  th:first-child,
+  td:first-child {
+    width: 58%;
+  }
+
+  th {
+    padding: 5px 6px;
+    border-bottom: 1px solid var(--m-line);
+    color: var(--m-mute);
+    font-size: 9.5px;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 6px;
+    border-bottom: 1px solid var(--m-line);
+  }
+
+  .r {
+    text-align: right;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .pill--run {
+    background: color-mix(in srgb, var(--tone) 16%, white);
+    color: color-mix(in srgb, var(--tone) 80%, black);
+  }
+
+  .pill--ok {
+    background: #e3f6ec;
+    color: #1c7a4d;
+  }
+
+  .pill--wait {
+    background: #fff4d6;
+    color: #8a6100;
+  }
+
+  .pill--grey {
+    background: #ecedf1;
+    color: #4a5161;
+  }
+
+  .stock {
+    display: grid;
+    gap: 6px;
+    padding: 9px 10px;
+    border: 1px solid var(--m-line);
+    border-radius: 8px;
+    background: var(--m-paper);
+  }
+
+  .stock-title {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .bar {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    align-items: center;
+    gap: 8px;
+    color: var(--m-mute);
+    font-size: 10.5px;
+  }
+
+  .bar i {
+    position: relative;
+    height: 6px;
+    overflow: hidden;
+    border-radius: 3px;
+    background: var(--m-line);
+  }
+
+  .bar i::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--w);
+    border-radius: 3px;
+    background: var(--tone);
+  }
+
+  .bar .low::before {
+    background: var(--m-red);
+  }
+
+  .drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    width: 134px;
+    padding: 14px 11px;
+    border-left: 1px solid var(--m-line);
+    background: var(--m-paper);
+    box-shadow: -14px 0 26px -18px rgb(0 0 0 / 0.35);
+  }
+
+  .drawer .k {
+    color: var(--m-mute);
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .drawer .h {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .drawer .sub {
+    color: var(--m-mute);
+  }
+
+  .drawer .line {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--m-line);
+    font-size: 10.5px;
+  }
+
+  .drawer .total {
+    border-bottom: 0;
+    font-weight: 700;
+  }
+
+  .drawer .send {
+    margin-top: 6px;
+    padding: 7px;
+    border-radius: 6px;
+    background: var(--m-ink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* Phone mocks (medjot, fieldbook, net-watch) */
+  .phones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .phone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 124px;
+    height: 258px;
+    padding: 22px 10px 10px;
+    overflow: hidden;
+    border: 5px solid #1b1e26;
+    border-radius: 22px;
+    background: var(--m-paper);
+    box-shadow: 0 18px 30px -18px rgb(0 0 0 / 0.5);
+  }
+
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 36px;
+    height: 8px;
+    margin-left: -18px;
+    border-radius: 6px;
+    background: #1b1e26;
+  }
+
+  .phone.lg {
+    width: 150px;
+    height: 272px;
+    padding-top: 26px;
+  }
+
+  .phones.single {
+    justify-content: center;
+  }
+
+  .ph-title {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .ph-small {
+    color: var(--m-mute);
+    font-size: 9.5px;
+  }
+
+  .ph-label {
+    margin-top: 2px;
+    color: var(--m-mute);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ph-field {
+    display: grid;
+    gap: 2px;
+    padding: 6px 7px;
+    border: 1px solid var(--m-line);
+    border-radius: 7px;
+  }
+
+  .ph-field span {
+    color: var(--m-mute);
+    font-size: 9px;
+  }
+
+  .ph-field b {
+    font-size: 10.5px;
+    font-weight: 600;
+  }
+
+  .ph-note {
+    padding: 6px 7px;
+    border-radius: 7px;
+    background: var(--m-soft);
+    color: var(--m-ink);
+    font-size: 9.5px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .chip {
+    padding: 3px 7px;
+    border: 1px solid var(--m-line);
+    border-radius: 999px;
+    font-size: 9.5px;
+  }
+
+  .chip.on {
+    border-color: transparent;
+    background: var(--tone);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .ph-btn {
+    margin-top: auto;
+    padding: 7px 8px;
+    border-radius: 7px;
+    background: var(--tone);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .ph-btn.ghost {
+    background: transparent;
+    border: 1px solid var(--m-line);
+    color: var(--m-ink);
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 8px;
+    border: 1px solid var(--m-line);
+    border-radius: 7px;
+    color: var(--m-mute);
+    font-size: 10px;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    margin-left: 1px;
+    background: var(--m-ink);
+  }
+
+  .suggest {
+    display: grid;
+    border-top: 1px solid var(--m-line);
+  }
+
+  .suggest li {
+    display: grid;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--m-line);
+    font-size: 10px;
+  }
+
+  .suggest b {
+    color: var(--tone);
+    font-weight: 700;
+  }
+
+  .suggest small {
+    color: var(--m-mute);
+    font-size: 8.5px;
+  }
+
+  .rows {
+    display: grid;
+    gap: 3px;
+    padding: 6px 0;
+    border-top: 1px solid var(--m-line);
+    font-size: 10px;
+  }
+
+  .rows p {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .rows.total {
+    padding-top: 6px;
+    border-bottom: 0;
+    font-weight: 700;
+  }
+
+  .route {
+    display: grid;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .route li {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    align-items: center;
+    padding: 7px 6px;
+    border-radius: 7px;
+    font-size: 10px;
+  }
+
+  .route time {
+    color: var(--m-mute);
+    font-size: 9px;
+  }
+
+  .route .done {
+    color: var(--m-mute);
+    text-decoration: line-through;
+  }
+
+  .route .next {
+    background: color-mix(in srgb, var(--tone) 14%, transparent);
+    font-weight: 700;
+  }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .tile {
+    display: grid;
+    gap: 3px;
+    padding: 4px;
+    border: 1px solid var(--m-line);
+    border-radius: 7px;
+    font-size: 9px;
+  }
+
+  .tile i {
+    height: 42px;
+    border-radius: 5px;
+    background: color-mix(in srgb, var(--tone) var(--s), white);
+  }
+
+  .tile .pr {
+    color: var(--m-mute);
+  }
+
+  .cart {
+    display: grid;
+    gap: 4px;
+    font-size: 9.5px;
+  }
+
+  .cart li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--m-line);
+  }
+
+  .step {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: var(--m-soft);
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  /* paper-studio */
+  .split {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .qlist {
+    display: flex;
+    flex-direction: column;
+    width: 172px;
+    flex: none;
+    padding: 12px 10px;
+    border-right: 1px solid var(--m-line);
+    background: #fbfbfc;
+  }
+
+  .ql-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .ql-count {
+    color: var(--m-mute);
+    font-weight: 500;
+  }
+
+  .qlist ul {
+    display: grid;
+    gap: 6px;
+  }
+
+  .qlist li {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 2px 6px;
+    padding: 6px;
+    border: 1px solid var(--m-line);
+    border-radius: 7px;
+    background: var(--m-paper);
+    font-size: 9.5px;
+    line-height: 1.35;
+  }
+
+  .qlist li small {
+    grid-column: 2;
+    color: var(--m-mute);
+    font-size: 8.5px;
+  }
+
+  .qlist li b {
+    font-weight: 700;
+  }
+
+  .chk {
+    width: 11px;
+    height: 11px;
+    margin-top: 1px;
+    border: 1px solid #b7bec9;
+    border-radius: 3px;
+  }
+
+  .qlist li.sel .chk {
+    border-color: var(--tone);
+    background: var(--tone);
+    box-shadow: inset 0 0 0 2px var(--m-paper);
+  }
+
+  .qlist li.sel {
+    border-color: color-mix(in srgb, var(--tone) 45%, white);
+  }
+
+  .ai-btn {
+    margin-top: auto;
+    padding: 7px;
+    border-radius: 7px;
+    background: var(--tone);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .preview {
+    display: grid;
+    place-items: center;
+    flex: 1;
+    min-width: 0;
+    background: #e6e9ef;
+  }
+
+  .paper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 188px;
+    height: 266px;
+    padding: 16px 16px;
+    background: #ffffff;
+    box-shadow: 0 6px 18px -8px rgb(0 0 0 / 0.35);
+    font-family: var(--font-serif);
+    color: #1d1f24;
+    font-size: 7.6px;
+    line-height: 1.4;
+  }
+
+  .p-head {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .p-sub {
+    margin-bottom: 4px;
+    text-align: center;
+    color: #5a5f69;
+    font-size: 6.8px;
+  }
+
+  .p-sec {
+    margin-top: 2px;
+    font-size: 7.6px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .p-q span {
+    color: #5a5f69;
+  }
+
+  .p-opts {
+    margin-top: 2px;
+    color: #5a5f69;
+    font-size: 7px;
+  }
+
+  /* dhi */
+  .editor {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    width: 200px;
+    flex: none;
+    padding: 14px 14px;
+    border-right: 1px solid var(--m-line);
+    background: var(--m-paper);
+  }
+
+  .doc-title {
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .doc-line {
+    color: #353a45;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .wl {
+    color: var(--tone);
+    font-weight: 600;
+  }
+
+  .doc-meta {
+    margin-top: 4px;
+    color: var(--m-mute);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .graph {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: #f7f8fa;
+  }
+
+  .graph .edges line {
+    stroke: #c9ced8;
+    stroke-width: 1.2;
+  }
+
+  .graph .edges .cross {
+    stroke-dasharray: 3 3;
+  }
+
+  .graph circle {
+    stroke: #ffffff;
+    stroke-width: 2;
+  }
+
+  .graph .c-a {
+    fill: var(--tone);
+  }
+
+  .graph .c-b {
+    fill: #14b8a6;
+  }
+
+  .graph .c-c {
+    fill: #f59e0b;
+  }
+
+  .graph text {
+    fill: #4a5161;
+    font-family: var(--font-ui);
+    font-size: 8.5px;
+  }
+
+  .graph text.big {
+    fill: #14171e;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  /* net-watch timeline */
+  .mock .timeline {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    margin-top: 2px;
+    padding-left: 16px;
+  }
+
+  .mock .timeline::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 9px;
+    width: 2px;
+    background: var(--m-line);
+  }
+
+  .mock .timeline li {
+    position: relative;
+    display: grid;
+    gap: 1px;
+    font-size: 10px;
+  }
+
+  .mock .timeline li::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: -10px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--m-green);
+    box-shadow: 0 0 0 2px var(--m-paper);
+  }
+
+  .mock .timeline li.drop::before {
+    background: var(--m-red);
+  }
+
+  .mock .timeline li.slow::before {
+    background: var(--m-amber);
+  }
+
+  .mock .timeline time {
+    color: var(--m-mute);
+    font-size: 8.5px;
+  }
+
+  .mock .timeline span {
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import Arrow from './Arrow.astro';
+import { content, splitPhrase } from '../lib/content';
+
+const { person, headlines, bio } = content;
+
+// The one highlighted phrase, taken verbatim from the content's headline.
+const { lead, mark, trail } = splitPhrase(headlines.plain, 'web and mobile apps');
+const meta = [person.location, person.timezone, person.availability];
+---
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap">
+    <h1 id="hero-title" class="hero-title">{lead}{mark && <mark>{mark}</mark>}{trail}</h1>
+
+    <div class="hero-body">
+      <p class="standfirst">{bio.short}</p>
+      <div class="hero-links">
+        <a class="cta cta--primary" href="#contact">Start a project <Arrow /></a>
+        <a class="cta" href={person.links.cv} target="_blank" rel="noopener noreferrer">
+          Download CV <Arrow dir="out" />
+        </a>
+      </div>
+    </div>
+
+    <p class="meta mono">
+      {meta.map((item) => <span>{item}</span>)}
+    </p>
+  </div>
+</section>

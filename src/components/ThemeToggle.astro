@@ -1,0 +1,12 @@
+---
+// Dark-mode toggle. The click handler lives in scripts/site.ts; without JS the button is inert
+// and the page keeps the theme the system asks for.
+---
+<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6" />
+    <path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" />
+  </svg>
+  <span class="visually-hidden">Dark mode</span>
+  <span class="theme-text" aria-hidden="true">Dark</span>
+</button>

@@ -1,0 +1,69 @@
+/* Monograph Minimal design tokens (v2). Every colour, size and rhythm decision lives here.
+   Light is the default. Dark applies when the reader's system asks for it (and has not
+   picked light), or when the theme toggle sets data-theme="dark". */
+
+:root {
+  color-scheme: light;
+
+  --paper: #F8F9FB;
+  --ink: #0E1116;
+  --ink-2: #4A5161;
+  --rule: #D5D9E0;
+  --surface: #ECEEF3;
+  --accent: #2A35E8;
+  --accent-inv: #7C86FF;
+  --inv-2: #A3AAB9;
+  --inv-rule: #2E3440;
+  --highlight: #F4FF61;
+  --highlight-ink: #0E1116;
+
+  --font-display: 'Archivo Variable', 'Archivo', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --font-ui: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --max: 1280px;
+  --gutter: clamp(16px, 4vw, 56px);
+  --gap: clamp(16px, 2.2vw, 32px);
+  --section-y: clamp(48px, 8vw, 128px);
+
+  --fs-body: clamp(1.125rem, 1.08rem + 0.2vw, 1.25rem);
+  --fs-lead: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+  --fs-mono: 0.875rem;
+  --fs-h2: clamp(2.75rem, 1.5rem + 4.6vw, 6.25rem);
+  --fs-display: clamp(3.25rem, 1.2rem + 7.6vw, 8.75rem);
+  --fs-work: clamp(2rem, 1.5rem + 1.8vw, 3.25rem);
+  --fs-email: clamp(1.9rem, 1.2rem + 3vw, 3.75rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0D0F14;
+    --ink: #ECEEF2;
+    --ink-2: #A3AAB9;
+    --rule: #2A2F3A;
+    --surface: #161A23;
+    --accent: #7C86FF;
+    --accent-inv: #2A35E8;
+    --inv-2: #4A5161;
+    --inv-rule: #C9CED8;
+    --highlight: #F4FF61;
+    --highlight-ink: #0E1116;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0D0F14;
+  --ink: #ECEEF2;
+  --ink-2: #A3AAB9;
+  --rule: #2A2F3A;
+  --surface: #161A23;
+  --accent: #7C86FF;
+  --accent-inv: #2A35E8;
+  --inv-2: #4A5161;
+  --inv-rule: #C9CED8;
+  --highlight: #F4FF61;
+  --highlight-ink: #0E1116;
+}

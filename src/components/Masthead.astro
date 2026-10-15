@@ -1,0 +1,30 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { content } from '../lib/content';
+
+const { person } = content;
+
+const nav = [
+  { href: '#work', label: 'Work' },
+  { href: '#services', label: 'Services' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<header class="masthead">
+  <div class="wrap masthead-bar">
+    <a class="wordmark" href="#top" aria-label={`${person.name}, back to top`}>
+      <span class="monogram" aria-hidden="true">{person.monogram}</span>
+      <span class="wordmark-name">{person.name}</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <ThemeToggle />
+  </div>
+</header>
