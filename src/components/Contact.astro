@@ -1,0 +1,46 @@
+---
+// Contact: the studio headline, the address as selectable text with a copy button (clipboard with a
+// fallback), a write-an-email link, links and availability. Nothing here claims a message was sent.
+import Arrow from './Arrow.astro';
+import { content } from '../lib/content';
+
+const { person, headlines } = content;
+const HIGHLIGHT = 'built properly';
+const [headBefore = '', headAfter = ''] = headlines.studio.split(HIGHLIGHT);
+const links = [
+  { label: 'LinkedIn', href: person.links.linkedin },
+  { label: 'GitHub', href: person.links.github },
+  { label: 'CV (PDF)', href: person.links.cv },
+];
+---
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <p class="kicker">Contact</p>
+    <h2 id="contact-title" class="contact-title">{headBefore}<mark class="hl">{HIGHLIGHT}</mark>{headAfter}</h2>
+
+    <a class="email" href={`mailto:${person.email}`}>{person.email}</a>
+
+    <div class="contact-actions">
+      <button type="button" class="btn btn--primary" data-copy={person.email} aria-describedby="copy-status" data-magnetic>
+        Copy email
+      </button>
+      <a class="cta-link" href={`mailto:${person.email}`}>Write an email <Arrow /></a>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+    </div>
+
+    <div class="contact-grid">
+      <ul class="contact-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label} <Arrow dir="out" /></a>
+          </li>
+        ))}
+      </ul>
+      <div class="contact-note">
+        <p class="avail">{person.availability}.</p>
+        <p class="meta">{person.location}</p>
+        <p class="meta">{person.remote} · {person.timezone}</p>
+      </div>
+    </div>
+  </div>
+</section>

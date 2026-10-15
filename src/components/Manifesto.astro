@@ -1,0 +1,15 @@
+---
+// Inverted section. Each line is set in giant condensed type; motion.ts lights the words up as you scroll.
+// Without JS, every word is already at full strength.
+import { content } from '../lib/content';
+
+const lines = content.manifesto;
+---
+<section class="stage" aria-label="Manifesto" data-manifesto>
+  <div class="wrap">
+    <p class="kicker">Manifesto</p>
+    <div class="manifesto">
+      {lines.map((line) => <p class="manifesto-line">{line}</p>)}
+    </div>
+  </div>
+</section>

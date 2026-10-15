@@ -1,0 +1,41 @@
+---
+// Services: a slow outline marquee of the four service titles (decorative, hidden from assistive tech,
+// static under reduced motion), then the four services as a row with their one-line descriptions.
+import { content } from '../lib/content';
+
+const services = content.services;
+const titles = services.map((s) => s.title);
+---
+<section class="services" id="services" aria-labelledby="services-title">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1].map((copy) => (
+        <div class="marquee-group" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {titles.map((title) => (
+            <span class="marquee-pair">
+              <span class="marquee-item">{title}</span>
+              <span class="marquee-dot"></span>
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="wrap services-intro">
+    <div class="section-head">
+      <p class="kicker">Services</p>
+      <h2 id="services-title" class="section-title" data-stretch>What I build</h2>
+    </div>
+
+    <ol class="service-grid">
+      {services.map((s, i) => (
+        <li class="service" data-reveal>
+          <span class="service-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="service-title">{s.title}</h3>
+          <p class="service-line">{s.line}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

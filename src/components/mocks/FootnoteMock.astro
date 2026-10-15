@@ -1,0 +1,220 @@
+---
+// Chat with citations for Footnote: an answer with numbered sources, and the document
+// page with the cited passage highlighted. Static on purpose: no streaming, no typing effect.
+import type { Project } from '../../lib/content';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const label = `${project.title} chat: an answer with numbered citations, next to the source document with the cited passage highlighted.`;
+---
+<div class="mock mock--fn" style={`--p:${project.accent};--on-p:#0E1116`} role="img" aria-label={label}>
+  <div class="mock-win" aria-hidden="true">
+    <div class="mock-bar"><i></i><i></i><i></i><b>footnote / renewal-terms</b></div>
+    <div class="fn">
+      <div class="fn-chat">
+        <p class="fn-q">When must we send the renewal notice?</p>
+        <div class="fn-a">
+          <p>Written notice is due at least 60 days before renewal<sup class="cite">1</sup>. Accounts on annual terms need 90 days<sup class="cite">2</sup>.</p>
+        </div>
+        <p class="fn-q fn-q--next">Does an email reminder count as notice?</p>
+        <div class="fn-a">
+          <p>No. A reminder does not end the agreement, so the renewal date still applies<sup class="cite">1</sup>.</p>
+        </div>
+        <div class="fn-src">
+          <span class="fn-chip"><b>1</b>MSA 2025 · p. 14</span>
+          <span class="fn-chip"><b>2</b>Order form · p. 2</span>
+        </div>
+        <p class="fn-input">Ask about these documents</p>
+      </div>
+
+      <div class="fn-doc">
+        <p class="fn-doc-head">MSA 2025 · p. 14</p>
+        <p class="fn-sec">14.2 Renewal</p>
+        <p class="fn-p">This agreement renews automatically for successive one-year terms unless ended as set out below.</p>
+        <p class="fn-p"><mark class="fn-hit">Either party may terminate by giving written notice no fewer than sixty (60) days before the renewal date.</mark></p>
+        <p class="fn-p fn-p--dim">Notices must be delivered to the registered address of the other party.</p>
+        <div class="fn-ln"></div>
+        <div class="fn-ln fn-ln--s"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mock-note mock-note--before" style="left: 0; top: -34px;">Where did this come from?</p>
+  <p class="mock-note mock-note--before" style="right: 0; bottom: -34px;">Can I check it?</p>
+  <p class="mock-result" style="right: 0; top: -40px;" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5" /></svg>
+    Every sentence cites its source
+  </p>
+</div>
+
+<style>
+  .fn {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    flex: 1;
+    min-height: 0;
+  }
+
+  .fn-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9em;
+    padding: 1em 1.1em;
+    min-width: 0;
+  }
+
+  .fn-q {
+    align-self: flex-end;
+    max-width: 88%;
+    padding: 0.6em 0.9em;
+    background: var(--surface);
+    border-radius: 12px 12px 3px 12px;
+    font-size: 0.95em;
+    line-height: 1.35;
+  }
+
+  .fn-a {
+    font-family: var(--font-serif);
+    font-size: 1.05em;
+    line-height: 1.5;
+    padding-right: 0.4em;
+  }
+
+  .cite {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.35em;
+    height: 1.35em;
+    padding: 0 0.3em;
+    margin-left: 0.1em;
+    vertical-align: 0.55em;
+    background: color-mix(in srgb, var(--p) 26%, var(--paper));
+    border: 1px solid color-mix(in srgb, var(--p) 60%, transparent);
+    border-radius: 4px;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.62em;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .fn-src {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+  }
+
+  .fn-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.3em 0.6em 0.3em 0.35em;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.78em;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+
+  .fn-chip b {
+    display: grid;
+    place-items: center;
+    width: 1.5em;
+    height: 1.5em;
+    background: color-mix(in srgb, var(--p) 26%, var(--paper));
+    color: var(--ink);
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .fn-q--next {
+    margin-top: 0.2em;
+  }
+
+  .fn-input {
+    margin-top: auto;
+    padding: 0.7em 0.9em;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    color: var(--ink-2);
+    font-size: 0.88em;
+    background: var(--paper);
+  }
+
+  /* The source pane sits on the surface tint; the document itself is a printed page,
+     so it keeps its own light colours in both themes. */
+  .fn-doc {
+    --ink-p: #15171C;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65em;
+    padding: 1.1em 1em;
+    background: #FFFEFA;
+    border-left: 1px solid var(--rule);
+    min-width: 0;
+    color: var(--ink-p);
+  }
+
+  .fn-doc-head {
+    font-family: var(--font-mono);
+    font-size: 0.72em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #5B6070;
+  }
+
+  .fn-sec {
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+
+  .fn-p {
+    font-family: var(--font-serif);
+    font-size: 0.78em;
+    line-height: 1.5;
+  }
+
+  .fn-p--dim {
+    color: #5B6070;
+  }
+
+  .fn-hit {
+    color: var(--ink-p);
+    background: #F4FF61;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 0.05em 0.15em;
+  }
+
+  .fn-ln {
+    height: 0.36em;
+    width: 92%;
+    border-radius: 2px;
+    background: #C9CDD6;
+  }
+
+  .fn-ln--s {
+    width: 60%;
+  }
+
+  @container mock (max-width: 560px) {
+    .fn {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fn-doc {
+      display: none;
+    }
+
+    .fn-chat {
+      padding: 0.9em;
+    }
+  }
+</style>

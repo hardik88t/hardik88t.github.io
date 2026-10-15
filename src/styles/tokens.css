@@ -1,0 +1,73 @@
+/* Monograph design tokens. Every colour, size and rhythm decision lives here.
+   Light is the default. Dark applies when the reader's system asks for it (and has not
+   picked light), or when the theme toggle sets data-theme="dark".
+   --stage* is the inverted section (the manifesto): ink on paper, flipped in dark mode. */
+
+:root {
+  color-scheme: light;
+
+  --paper: #F8F9FB;
+  --ink: #0E1116;
+  --ink-2: #4A5161;
+  --rule: #D5D9E0;
+  --surface: #ECEEF3;
+  --accent: #2A35E8;
+  --on-accent: #FFFFFF;
+  --highlight: #F4FF61;
+
+  --stage: #0E1116;
+  --stage-fg: #F8F9FB;
+  --stage-dim: #8A92A6;
+  --stage-rule: #2E3440;
+
+  --font-display: 'Archivo Variable', 'Archivo', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --font-ui: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --max: 1440px;
+  --gutter: clamp(16px, 4vw, 56px);
+  --gap: clamp(16px, 2.2vw, 32px);
+  --section-y: clamp(56px, 8vw, 140px);
+
+  --fs-body: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+  --fs-standfirst: clamp(1.25rem, 1.08rem + 0.6vw, 1.5rem);
+  --fs-mono: 0.8125rem;
+  --fs-h2: clamp(2.9rem, 1.4rem + 5.6vw, 8rem);
+  --fs-display: clamp(2.75rem, 0.6rem + 8.2vw, 9.5rem);
+  --fs-stage: clamp(3rem, 0.8rem + 6.8vw, 8.75rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0D0F14;
+    --ink: #ECEEF2;
+    --ink-2: #A3AAB9;
+    --rule: #2A2F3A;
+    --surface: #161A23;
+    --accent: #7C86FF;
+    --on-accent: #0D0F14;
+    --highlight: rgb(244 255 97 / 0.34);
+    --stage: #ECEEF2;
+    --stage-fg: #0D0F14;
+    --stage-dim: #5C6477;
+    --stage-rule: #C9CED8;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0D0F14;
+  --ink: #ECEEF2;
+  --ink-2: #A3AAB9;
+  --rule: #2A2F3A;
+  --surface: #161A23;
+  --accent: #7C86FF;
+  --on-accent: #0D0F14;
+  --highlight: rgb(244 255 97 / 0.34);
+  --stage: #ECEEF2;
+  --stage-fg: #0D0F14;
+  --stage-dim: #5C6477;
+  --stage-rule: #C9CED8;
+}

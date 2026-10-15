@@ -1,0 +1,29 @@
+---
+// Also built: four smaller projects as one typographic list. Each row is a title and a one-liner.
+import Arrow from './Arrow.astro';
+import { projectBySlug } from '../lib/content';
+
+const items = ['medjot', 'dhi', 'net-watch', 'kiln-ui'].map((slug) => projectBySlug(slug));
+---
+<section class="built section" id="also" aria-labelledby="also-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="also-title" class="section-title" data-stretch>Also built</h2>
+    </div>
+
+    <ul class="built-list">
+      {items.map((p) => (
+        <li class="built-item" data-reveal>
+          <h3 class="built-title">{p.title}</h3>
+          <p class="built-line">{p.oneLiner}</p>
+          {p.links?.github && (
+            <a class="built-code" href={p.links.github} target="_blank" rel="noopener noreferrer">
+              Code on GitHub <Arrow dir="out" />
+              <span class="visually-hidden"> for {p.title}, opens in a new tab</span>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

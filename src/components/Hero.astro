@@ -1,0 +1,26 @@
+---
+// Hero: the promise as a small mono line, the statement as the one h1 (it unfolds on load),
+// a plain line saying what he does, and two actions.
+import Arrow from './Arrow.astro';
+import { content } from '../lib/content';
+
+const { headlines } = content;
+const HIGHLIGHT = 'design and build';
+const [plainBefore = '', plainAfter = ''] = headlines.plain.split(HIGHLIGHT);
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="kicker hero-promise">{headlines.promise}</p>
+    <h1 id="hero-title" class="hero-title" data-hero-title>{headlines.statement}</h1>
+
+    <div class="hero-foot">
+      <div class="hero-copy">
+        <p class="standfirst">{plainBefore}<mark class="hl">{HIGHLIGHT}</mark>{plainAfter}</p>
+      </div>
+      <div class="ctas">
+        <a class="btn btn--primary" href="#contact" data-magnetic>Start a project <Arrow /></a>
+        <a class="cta-link" href="#work">See the work <Arrow dir="down" /></a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,354 @@
+---
+// Desktop dashboard for Wholesale OS, drawn from the project's `visual` hint.
+// Challenge and Outcome notes live outside the window (see mocks.css), so UI text is never covered.
+import type { Project } from '../../lib/content';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const label = `${project.title} dashboard: order table with status pills, stock levels and an invoice panel.`;
+---
+<div class="mock mock--ws" style={`--p:${project.accent};--on-p:#FFFFFF`} role="img" aria-label={label}>
+  <div class="mock-win" aria-hidden="true">
+    <div class="mock-bar"><i></i><i></i><i></i><b>wholesale.app / orders</b></div>
+    <div class="ws">
+      <aside class="ws-side">
+        <p class="ws-brand"><span class="ws-logo">W</span>Wholesale</p>
+        <ul class="ws-nav">
+          <li class="is-on"><span>Orders</span><em>24</em></li>
+          <li><span>Stock</span></li>
+          <li><span>Invoices</span></li>
+          <li><span>Reps</span></li>
+          <li><span>Customers</span></li>
+        </ul>
+        <p class="ws-user"><span class="ws-av">AR</span>Office</p>
+      </aside>
+
+      <div class="ws-main">
+        <div class="ws-head">
+          <p class="ws-h">Orders</p>
+          <span class="ws-search">Search orders</span>
+          <span class="mock-btn mock-btn--solid">New order</span>
+        </div>
+
+        <table class="ws-table">
+          <thead>
+            <tr><th>Order</th><th>Customer</th><th class="num">Total</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>#4812</td><td>Arora Traders</td><td class="num">₹48,200</td><td><span class="mock-pill mock-pill--ok">Packed</span></td></tr>
+            <tr class="is-sel"><td>#4813</td><td>Sunrise Mart</td><td class="num">₹12,940</td><td><span class="mock-pill mock-pill--info">Invoiced</span></td></tr>
+            <tr><td>#4814</td><td>Patel &amp; Sons</td><td class="num">₹1,06,500</td><td><span class="mock-pill mock-pill--warn">Queued</span></td></tr>
+            <tr><td>#4815</td><td>Leela Stores</td><td class="num">₹27,300</td><td><span class="mock-pill">Pending</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="ws-foot">
+          <div class="ws-stock">
+            <p class="ws-cap">Stock</p>
+            <div class="ws-bar"><span>Basmati 5 kg</span><i style="--v:82%"></i><b>412</b></div>
+            <div class="ws-bar ws-bar--low"><span>Toor dal 1 kg</span><i style="--v:24%"></i><b>96</b></div>
+            <div class="ws-bar"><span>Sunflower 1 L</span><i style="--v:80%"></i><b>240</b></div>
+            <div class="ws-bar"><span>Rice 25 kg</span><i style="--v:78%"></i><b>310</b></div>
+          </div>
+
+          <div class="ws-invoice">
+            <p class="ws-cap">Invoice INV-0931</p>
+            <p class="ws-inv-name">Sunrise Mart</p>
+            <p class="ws-line"><span>Basmati 5 kg × 20</span><b>₹8,400</b></p>
+            <p class="ws-line"><span>Sunflower 1 L × 40</span><b>₹4,540</b></p>
+            <p class="ws-total"><span>Total</span><b>₹12,940</b></p>
+            <span class="mock-btn mock-btn--solid ws-send">Send invoice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mock-note mock-note--before" style="left: 0; top: -34px;">Paper slips</p>
+  <p class="mock-note mock-note--before" style="left: 128px; top: -34px;">Phone orders</p>
+  <p class="mock-note mock-note--before" style="right: 0; bottom: -34px;">A second spreadsheet</p>
+  <p class="mock-result" style="right: 0; top: -40px;" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5" /></svg>
+    Offline orders synced
+  </p>
+</div>
+
+<style>
+  .ws {
+    display: grid;
+    grid-template-columns: 21% minmax(0, 1fr);
+    flex: 1;
+    min-height: 0;
+  }
+
+  .ws-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
+    padding: 1em 0.8em;
+    background: color-mix(in srgb, var(--p) 6%, var(--paper));
+    border-right: 1px solid var(--rule);
+    min-width: 0;
+  }
+
+  .ws-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-weight: 700;
+    font-size: 1.15em;
+    white-space: nowrap;
+  }
+
+  .ws-logo {
+    display: grid;
+    place-items: center;
+    width: 1.7em;
+    height: 1.7em;
+    background: var(--p);
+    color: #FFFFFF;
+    font-stretch: 62%;
+    font-weight: 760;
+    font-size: 0.9em;
+  }
+
+  .ws-nav {
+    display: grid;
+    gap: 0.2em;
+  }
+
+  .ws-nav li {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.4em;
+    padding: 0.42em 0.5em;
+    color: var(--ink-2);
+    font-size: 0.95em;
+    white-space: nowrap;
+  }
+
+  .ws-nav li.is-on {
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 650;
+    box-shadow: inset 2px 0 0 var(--p);
+  }
+
+  .ws-nav em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--p);
+  }
+
+  .ws-user {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--ink-2);
+    font-size: 0.9em;
+  }
+
+  .ws-av {
+    display: grid;
+    place-items: center;
+    width: 1.9em;
+    height: 1.9em;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 0.8em;
+    font-weight: 700;
+  }
+
+  .ws-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85em;
+    min-width: 0;
+    padding: 1em 1.1em;
+  }
+
+  .ws-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+
+  .ws-h {
+    flex: 1;
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-weight: 740;
+    font-size: 1.5em;
+    line-height: 1;
+  }
+
+  .ws-search {
+    padding: 0.5em 0.8em;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    color: var(--ink-2);
+    font-size: 0.9em;
+    white-space: nowrap;
+    background: var(--paper);
+  }
+
+  .ws-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92em;
+    table-layout: auto;
+  }
+
+  .ws-table th {
+    padding: 0.5em 0.5em;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.82em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+
+  .ws-table td {
+    padding: 0.55em 0.5em;
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+
+  .ws-table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ws-table tr.is-sel td {
+    background: color-mix(in srgb, var(--p) 8%, transparent);
+  }
+
+  .ws-foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 0.9em;
+    margin-top: auto;
+  }
+
+  .ws-cap {
+    margin-bottom: 0.55em;
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .ws-stock,
+  .ws-invoice {
+    padding: 0.8em 0.9em;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    min-width: 0;
+  }
+
+  .ws-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.6fr) 2.4em;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.42em;
+    font-size: 0.88em;
+  }
+
+  .ws-bar span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ws-bar i {
+    display: block;
+    height: 0.5em;
+    border-radius: 999px;
+    background: linear-gradient(var(--p), var(--p)) no-repeat 0 0 / var(--v) 100%, var(--surface);
+  }
+
+  .ws-bar--low i {
+    background: linear-gradient(#D9442F, #D9442F) no-repeat 0 0 / var(--v) 100%, var(--surface);
+  }
+
+  .ws-bar b {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .ws-inv-name {
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+
+  .ws-line,
+  .ws-total {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+    margin-top: 0.4em;
+    font-size: 0.9em;
+    color: var(--ink-2);
+  }
+
+  .ws-line b,
+  .ws-total b {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  .ws-total {
+    padding-top: 0.45em;
+    border-top: 1px solid var(--rule);
+    font-weight: 650;
+    color: var(--ink);
+  }
+
+  .ws-send {
+    margin-top: 0.7em;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Narrow mock: the sidebar goes first, then (phone widths) the panels and the total column. */
+  @container mock (max-width: 560px) {
+    .ws {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ws-side,
+    .ws-search {
+      display: none;
+    }
+
+    .ws-main {
+      padding: 0.9em;
+    }
+  }
+
+  @container mock (max-width: 420px) {
+    .ws-foot,
+    .ws-table th:nth-child(3),
+    .ws-table td:nth-child(3) {
+      display: none;
+    }
+  }
+</style>

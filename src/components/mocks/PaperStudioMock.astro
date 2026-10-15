@@ -1,0 +1,270 @@
+---
+// Split view for Paper Studio: question bank on the left, a typeset A4 preview on the right.
+import type { Project } from '../../lib/content';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const label = `${project.title} split view: question list on the left, typeset A4 paper preview on the right, and an AI draft button.`;
+
+const questions = [
+  { n: 'Q1', t: 'Velocity of a projectile at the top', k: 'MCQ' },
+  { n: 'Q2', t: 'Work done by friction on a slope', k: 'MCQ' },
+  { n: 'Q3', t: 'Scalar or vector? Justify each', k: 'Short' },
+  { n: 'Q4', t: 'Refraction through a glass slab', k: 'Long' },
+  { n: 'Q5', t: 'Moment of inertia of a rod', k: 'Short' },
+];
+---
+<div class="mock mock--ps" style={`--p:${project.accent};--on-p:#0E1116`} role="img" aria-label={label}>
+  <div class="mock-win" aria-hidden="true">
+    <div class="mock-bar"><i></i><i></i><i></i><b>paper-studio / unit-test-4</b></div>
+    <div class="ps">
+      <div class="ps-list">
+        <div class="ps-top">
+          <p class="ps-cap">Question bank</p>
+          <span class="mock-btn mock-btn--solid">AI draft</span>
+        </div>
+        <ol class="ps-q">
+          {questions.map((q) => (
+            <li class:list={[{ 'is-on': q.n === 'Q4' }]}>
+              <span class="ps-n">{q.n}</span>
+              <span class="ps-t">{q.t}</span>
+              <span class="ps-k">{q.k}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="ps-canvas">
+        <div class="ps-paper">
+          <p class="ps-title">Unit Test 4 · Physics</p>
+          <p class="ps-meta">Class 11 · 40 marks · 60 min</p>
+          <div class="ps-rule"></div>
+
+          <div class="ps-block">
+            <p class="ps-qn"><b>1.</b> Velocity of a projectile at the top of its path</p>
+            <div class="ps-opts"><span>(a) 0</span><span>(b) u cos θ</span><span>(c) u sin θ</span><span>(d) g</span></div>
+          </div>
+
+          <div class="ps-block">
+            <p class="ps-qn"><b>2.</b> Work done by friction on a block sliding down</p>
+            <div class="ps-opts"><span>(a) mgh</span><span>(b) −μmg cos θ · s</span><span>(c) zero</span><span>(d) mv²</span></div>
+          </div>
+
+          <div class="ps-block">
+            <p class="ps-qn"><b>3.</b> Moment of inertia of a uniform rod about its centre</p>
+            <div class="ps-opts"><span>(a) ML²/12</span><span>(b) ML²/3</span><span>(c) ML²/2</span><span>(d) ML²</span></div>
+          </div>
+
+          <div class="ps-block ps-block--on">
+            <p class="ps-qn"><b>4.</b> A ray enters a glass slab at 40°. Find the lateral shift.</p>
+            <div class="ps-ln"></div>
+            <div class="ps-ln ps-ln--s"></div>
+            <div class="ps-ln ps-ln--m"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mock-note mock-note--before" style="left: 0; top: -34px;">Formatting by hand</p>
+  <p class="mock-note mock-note--before" style="right: 0; bottom: -34px;">Answer key in a second file</p>
+  <p class="mock-result" style="right: 0; top: -40px;" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 6.5 12 13 4.5" /></svg>
+    Paper and answer key ready
+  </p>
+</div>
+
+<style>
+  .ps {
+    display: grid;
+    grid-template-columns: 36% minmax(0, 1fr);
+    flex: 1;
+    min-height: 0;
+  }
+
+  .ps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    padding: 0.9em 0.85em;
+    border-right: 1px solid var(--rule);
+    min-width: 0;
+  }
+
+  .ps-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+  }
+
+  .ps-cap {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+
+  .ps-q {
+    display: grid;
+    gap: 0.3em;
+  }
+
+  .ps-q li {
+    display: grid;
+    grid-template-columns: 2.1em minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.5em 0.5em;
+    font-size: 0.9em;
+    border-radius: 6px;
+  }
+
+  .ps-q li.is-on {
+    background: var(--paper);
+    box-shadow: inset 2px 0 0 var(--p), 0 1px 0 var(--rule);
+    font-weight: 650;
+  }
+
+  .ps-n {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--ink-2);
+  }
+
+  .ps-t {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ps-k {
+    font-family: var(--font-mono);
+    font-size: 0.75em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .ps-canvas {
+    display: grid;
+    place-items: center;
+    padding: 0.9em;
+    background: var(--surface);
+    min-width: 0;
+    min-height: 0;
+  }
+
+  /* A4 sheet. Kept white in both themes, the way printed paper is. */
+  .ps-paper {
+    --ink-p: #15171C;
+    --line: #D9DCE3;
+    height: 100%;
+    max-height: 100%;
+    aspect-ratio: 1 / 1.414;
+    padding: 9% 9% 8%;
+    background: #FFFEFA;
+    color: var(--ink-p);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 18px 30px -22px rgb(0 0 0 / 0.45);
+    font-family: var(--font-serif);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    min-width: 0;
+  }
+
+  .ps-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.1em;
+    line-height: 1.2;
+  }
+
+  .ps-meta {
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    color: #5B6070;
+    letter-spacing: 0.02em;
+  }
+
+  .ps-rule {
+    height: 1px;
+    background: var(--ink-p);
+  }
+
+  .ps-block {
+    display: grid;
+    gap: 0.4em;
+  }
+
+  .ps-qn {
+    font-size: 0.82em;
+    line-height: 1.35;
+  }
+
+  .ps-qn b {
+    font-weight: 700;
+  }
+
+  .ps-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2em 0.8em;
+    padding-left: 1.6em;
+    font-size: 0.72em;
+    color: #2D3140;
+  }
+
+  .ps-block--on {
+    padding: 0.5em 0.55em;
+    margin-inline: -0.55em;
+    background: color-mix(in srgb, var(--p) 14%, #FFFEFA);
+    border-radius: 3px;
+  }
+
+  .ps-ln {
+    height: 0.36em;
+    border-radius: 2px;
+    background: var(--line);
+    width: 100%;
+  }
+
+  .ps-ln--s {
+    width: 86%;
+  }
+
+  .ps-ln--m {
+    width: 62%;
+  }
+
+  @container mock (max-width: 420px) {
+    .ps {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ps-list {
+      display: none;
+    }
+
+    /* Phone: the sheet is larger and runs off the bottom of the window, like a page preview. */
+    .ps-canvas {
+      place-items: start center;
+      padding: 0.9em 0.9em 0;
+    }
+
+    .ps-paper {
+      width: 86%;
+      height: auto;
+      max-height: none;
+      aspect-ratio: auto;
+      padding: 7% 7% 6%;
+      font-size: 12.5px;
+    }
+  }
+</style>

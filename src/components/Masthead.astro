@@ -1,0 +1,20 @@
+---
+// Sticky masthead: name, a Contact button and the theme toggle. The progress hairline is driven by motion.ts.
+import ThemeToggle from './ThemeToggle.astro';
+import { content } from '../lib/content';
+
+const { person } = content;
+---
+<header class="masthead" id="top">
+  <div class="wrap bar">
+    <a class="wordmark" href="#top">
+      <span class="monogram" aria-hidden="true">{person.monogram}</span>
+      <span class="wordmark-name">{person.name}</span>
+    </a>
+    <div class="bar-end">
+      <a class="btn btn--ghost" href="#contact">Contact</a>
+      <ThemeToggle />
+    </div>
+  </div>
+  <div class="progress" data-progress aria-hidden="true"></div>
+</header>

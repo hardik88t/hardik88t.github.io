@@ -1,0 +1,48 @@
+---
+// One case study. On desktop the article is a two-column grid: the stage (mock) sticks on one side while
+// the text scrolls. The three [data-step] blocks drive the stage state (Challenge, Approach, Outcome)
+// from site.ts. On phones it is a stacked card: mock first, then the text.
+import { caseLabelParts, type Project } from '../lib/content';
+
+interface Props {
+  project: Project;
+  index: number;
+  flip?: boolean;
+}
+
+const { project, index, flip = false } = Astro.props;
+const headingId = `case-${project.slug}`;
+const labelParts = caseLabelParts(project);
+const steps = [
+  { key: 'challenge', label: 'Challenge', text: project.challenge },
+  { key: 'approach', label: 'Approach', text: project.approach },
+  { key: 'outcome', label: 'Outcome', text: project.outcome },
+] as const;
+---
+<article class:list={['case', { 'case--flip': flip }]} data-case data-state="approach" aria-labelledby={headingId}>
+  <div class="case-stage">
+    <slot name="stage" />
+  </div>
+
+  <div class="case-body">
+    <p class="case-kicker">
+      <span class="num">{String(index).padStart(2, '0')}</span>
+      {labelParts.map((part) => <span>{part}</span>)}
+    </p>
+    <h3 id={headingId} class="case-title">{project.title}</h3>
+    <p class="case-lede">{project.oneLiner}</p>
+
+    <dl class="steps">
+      {steps.map((step) => (
+        <div class="step" data-step={step.key}>
+          <dt>{step.label}</dt>
+          <dd>{step.text}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <p class="case-stack">
+      {project.stack.map((tech) => <span>{tech}</span>)}
+    </p>
+  </div>
+</article>

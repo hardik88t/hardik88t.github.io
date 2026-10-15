@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+import Hero from '../components/Hero.astro';
+import Manifesto from '../components/Manifesto.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import WholesaleMock from '../components/mocks/WholesaleMock.astro';
+import PaperStudioMock from '../components/mocks/PaperStudioMock.astro';
+import FootnoteMock from '../components/mocks/FootnoteMock.astro';
+import Services from '../components/Services.astro';
+import AlsoBuilt from '../components/AlsoBuilt.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { content, projectBySlug } from '../lib/content';
+
+// The three case studies, in reading order. flip puts the sticky stage on the left (desktop).
+const cases = [
+  { slug: 'wholesale-os', Mock: WholesaleMock, flip: false },
+  { slug: 'paper-studio', Mock: PaperStudioMock, flip: true },
+  { slug: 'footnote', Mock: FootnoteMock, flip: false },
+];
+
+const { person, bio } = content;
+---
+<Base title={`${person.name}, ${person.title}`} description={bio.short}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Masthead />
+  <main id="main">
+    <Hero />
+    <Manifesto />
+
+    <section class="work section" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="work-title" class="section-title" data-stretch>Selected work</h2>
+        </div>
+        {cases.map((c, i) => {
+          const project = projectBySlug(c.slug);
+          const { Mock } = c;
+          return (
+            <CaseStudy project={project} index={i + 1} flip={c.flip}>
+              <Mock slot="stage" project={project} />
+            </CaseStudy>
+          );
+        })}
+      </div>
+    </section>
+
+    <Services />
+    <AlsoBuilt />
+    <Contact />
+  </main>
+  <Footer />
+</Base>
