@@ -1,0 +1,36 @@
+/* Design tokens. Single dark theme by design: every colour is set explicitly. */
+:root {
+  color-scheme: dark;
+
+  --bg-0: #031012;
+  --bg-1: #06161a;
+  --bg-2: #0a2024;
+  --panel: rgba(8, 30, 34, 0.74);
+  --panel-solid: #071b1f;
+
+  --ink: #e8f1f0;
+  --ink-strong: #f4f8f7;
+  --ink-muted: #8fa8a6; /* ~7:1 on --bg-1 */
+  --ink-faint: #7d9794; /* ~6:1 on --bg-0, used for mono labels */
+
+  --teal: #3fe0d0;
+  --gold: #f2c14e;
+  --teal-soft: rgba(63, 224, 208, 0.1);
+  --teal-line: rgba(63, 224, 208, 0.32);
+
+  --line: rgba(232, 241, 240, 0.12);
+  --line-strong: rgba(232, 241, 240, 0.22);
+
+  --focus: #3fe0d0;
+  --on-accent: #031012;
+
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Hanken Grotesk Variable', system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --maxw: 1280px;
+  --header-h: 68px;
+  --section-pad: clamp(96px, 14vh, 160px);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
