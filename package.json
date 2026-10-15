@@ -1,0 +1,30 @@
+{
+  "name": "vue-bento-lab",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Portfolio prototype: Workbench / bento lab (Vue 3 + Vite + Tailwind v4).",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vue-tsc -b && vite build",
+    "typecheck": "vue-tsc -b",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/onest": "^5.2.8",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@vueuse/core": "^15.0.0",
+    "@vueuse/motion": "^3.0.3",
+    "vue": "^3.5.44"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.5",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.9.3",
+    "vite": "~6.4.4",
+    "vue-tsc": "^3.3.13"
+  }
+}
