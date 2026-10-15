@@ -1,0 +1,290 @@
+/* Hello and Contact cards. Canvas sizes are world units; phone sizes are css px at 360 to 430 wide. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow-frame);
+}
+
+.card--canvas {
+  padding: 44px 46px;
+}
+
+.card--mobile {
+  padding: 26px 22px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 10px 24px -16px rgba(16, 24, 40, 0.2);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.card-name strong {
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.card-name span {
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+/* Hello */
+.hello-title {
+  margin-top: 30px;
+  font-size: 50px;
+  line-height: 1.04;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.hello-bio {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.services {
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.services li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.services strong {
+  font-size: 19px;
+  font-weight: 620;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.services-index {
+  width: 26px;
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.card-actions {
+  margin-top: auto;
+  padding-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card--mobile .hello-title {
+  margin-top: 22px;
+  font-size: 34px;
+  letter-spacing: -0.02em;
+}
+
+.card--mobile .hello-bio {
+  margin-top: 14px;
+  font-size: 17px;
+}
+
+.card--mobile .services {
+  margin-top: 22px;
+}
+
+.card--mobile .services li {
+  padding: 14px 0;
+}
+
+.card--mobile .services strong {
+  font-size: 18px;
+}
+
+.card--mobile .card-actions {
+  padding-top: 22px;
+}
+
+/* Contact */
+.contact-title {
+  font-size: 44px;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.contact-intro {
+  margin-top: 12px;
+  font-size: 18px;
+  color: var(--ink-2);
+}
+
+.email-block {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #f5f6f8;
+  border: 1px solid var(--line);
+}
+
+.email {
+  font-size: 19px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.copy-status {
+  min-height: 1.5em;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.link-list {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.link-list li {
+  border-bottom: 1px solid var(--line);
+}
+
+.link-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-list a:hover {
+  color: var(--focus);
+}
+
+.availability {
+  margin-top: auto;
+  padding-top: 24px;
+  font-size: 16px;
+}
+
+.availability p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.availability .where {
+  margin-top: 6px;
+  padding-left: 20px;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  background: #1f9d6b;
+  box-shadow: 0 0 0 4px rgba(31, 157, 107, 0.16);
+}
+
+.card--mobile .contact-title {
+  font-size: 34px;
+}
+
+.card--mobile .contact-intro {
+  font-size: 17px;
+}
+
+.card--mobile .email {
+  font-size: 17px;
+}
+
+.card--mobile .email-block {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.card--mobile .email-block .btn {
+  width: 100%;
+}
+
+.card--mobile .link-list a {
+  font-size: 17px;
+}
+
+/* Phones: the sticky header already shows the name */
+.card--mobile .card-head {
+  display: none;
+}
+
+/* Canvas Hello: larger type so the start view reads at 0.65 to 1.0 zoom */
+.card--hello.card--canvas .hello-title {
+  margin-top: 26px;
+  font-size: 56px;
+}
+
+.card--hello.card--canvas .hello-bio {
+  font-size: 22px;
+}
+
+.card--hello.card--canvas .services {
+  margin-top: 26px;
+}
+
+.card--hello.card--canvas .services li {
+  padding: 11px 0;
+}
+
+.card--hello.card--canvas .services strong {
+  font-size: 21px;
+}
+
+.card--hello.card--canvas .services-index {
+  width: 30px;
+  font-size: 15px;
+}
+
+.card--hello.card--canvas .card-name strong {
+  font-size: 19px;
+}
+
+.card--hello.card--canvas .card-name span {
+  font-size: 16px;
+}
+
+.card--hello.card--canvas .card-actions .btn {
+  min-height: 48px;
+  padding: 0 22px;
+  font-size: 17px;
+}

@@ -1,0 +1,267 @@
+/* Phone layout (below 900px): short page, swipe gallery, full-screen viewer. */
+
+.m-app {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+.m-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(236, 237, 239, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(21, 22, 26, 0.06);
+}
+
+.m-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 16px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.monogram--sm {
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+}
+
+.m-cta {
+  min-height: 44px;
+  padding: 0 18px;
+}
+
+.m-main {
+  padding: 16px 16px 8px;
+}
+
+.m-hello {
+  scroll-margin-top: 72px;
+}
+
+.m-work {
+  margin-top: 36px;
+}
+
+.m-work-head h2 {
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.m-work-head p {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--ink-3);
+}
+
+/* Horizontal gallery: scroll-snap, edge to edge, inner scroll only */
+.m-gallery {
+  display: flex;
+  gap: 14px;
+  margin: 20px -16px 0;
+  padding: 4px 16px 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.m-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.m-gallery:focus-visible {
+  border-radius: 16px;
+}
+
+.slide {
+  flex: 0 0 min(84vw, 340px);
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.slide-frame {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 26px -18px rgba(16, 24, 40, 0.35);
+  text-align: left;
+}
+
+.slide-frame:focus-visible {
+  outline-offset: 3px;
+}
+
+.fit {
+  position: relative;
+  width: 100%;
+  height: 222px;
+  overflow: hidden;
+}
+
+.fit-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 50%;
+  pointer-events: none;
+}
+
+.slide-meta {
+  margin-top: 14px;
+  padding: 0 2px;
+}
+
+.slide-meta h3 {
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 650;
+}
+
+.slide-meta h3 span {
+  font-weight: 450;
+  color: var(--ink-3);
+}
+
+.slide-caption {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.m-sticky {
+  align-self: flex-start;
+  margin: 14px 0 0 2px;
+  max-width: 320px;
+  padding: 14px 16px 16px;
+  background: var(--note);
+  color: var(--note-ink);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 rgba(90, 60, 0, 0.06), 0 14px 22px -14px rgba(70, 48, 0, 0.5);
+  transform: rotate(-1deg);
+}
+
+.m-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.m-dots button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.m-dots button span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line-2);
+  transition: width 220ms ease, background-color 220ms ease;
+}
+
+.m-dots button[aria-current='true'] span {
+  width: 22px;
+  background: var(--ink);
+}
+
+.m-contact {
+  margin-top: 40px;
+  scroll-margin-top: 72px;
+}
+
+.m-foot {
+  padding: 28px 16px 40px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+/* Full-screen viewer */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px 8px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+
+.viewer-bar p {
+  font-size: 16px;
+  color: var(--ink-3);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viewer-bar strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.viewer-close {
+  flex: none;
+  min-height: 44px;
+  padding: 0 16px;
+}
+
+.viewer-hint {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.viewer-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.viewer-stage {
+  margin: 0 auto;
+  position: relative;
+}
